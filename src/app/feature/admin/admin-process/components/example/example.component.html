@@ -1,0 +1,45 @@
+<h2>Sử dụng Angular Material https://material.angular.io/, góc trên bên phải trang web có để phiên bản, nhớ chọn lại <b>v16</b> </h2>
+<h5>1. Vào trang Angular Material, chọn Component, chọn component muốn sử dụng, bấm quá tab 'API', copy dòng import &#10100; ... &#10101; from <span>"</span> @angular/… <span>"</span> </h5>
+<h5>2. Dán dòng import đó vào module cha của component muốn sử dụng material (module chứa component đó), ví dụ muốn sử dụng metarial trong component process-detail, thì import vào process-management.module.ts. Khai báo tên module trong phần @NgModel(&#10100;import&#10101;)</h5>
+<h5>3. Quay lai trang Angular Material, qua tab Overview , chọn biểu tượng “< >”, copy code html để vào file html của component đó (nếu đoạn html đó có sử dụng biến, hàm thì bấm qua TS xem và copy hoặc khai báo tương ứng lại)</h5>
+<br>
+<h5>Ví dụ chen Expansion từ material, xem file này, file <i>example.component.ts</i> và file <i>admin-process.module.ts</i> </h5>
+
+<!-- copy html de do day, do no co su dụng bien khai báo ben file .ts nên chung ta sẽ qua file .ts trên trang angular material để xem người ta khai báo cũng như nó dùng để làm gì rồi mình khai báo tương ứng -->
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          This is the expansion title
+        </mat-panel-title>
+        <mat-panel-description>
+          This is a summary of the content
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>This is the primary content of the panel.</p>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Self aware panel
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>I'm visible because I am open</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+<h2> Sử dụng Font Awesome:</h2>
+<h5>1. Chọn icon, để ý tên class của icon, ví dụ < i class=" <b>fa-solid fa-circle-user</b> " >< / ></h5>
+<h5>2. Tại component muốn sử dụng icon, trong file .ts  import &#10100; <b>faCircleUser</b> &#10101; from '@fortawesome/free-solid-svg-icons', nhấn từ từ hệ thống sẽ đề xuất.</h5>
+<h5>3. Trong phần export class, khai báo biến với giá trị là icom name, ví dụ: tempAvatar (biến này đặt tên gì cũng được) = faCircleUser (đây là cái đã import bên trên), xem file example.component.ts</h5>
+<h5>4. Trong file .html, sử dụng thẻ </h5>
+
+<fa-icon [icon]="tempAvatar"></fa-icon>
+
+<h2>Sử dụng các thành phần trong file scss-config, đặt trong thư mục src/assets: @import "path đến file scss-config"</h2>
+
+   
