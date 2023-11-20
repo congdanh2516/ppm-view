@@ -6,17 +6,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminRoutingModule } from './admin-routing.module';
 
 @NgModule({
-  declarations: [
-    AdminComponent
-  ],
+  declarations: [AdminComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
     AdminProcessModule,
-    AdminRoutingModule
+    AdminRoutingModule,
   ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AdminModule { }
+export class AdminModule {}
