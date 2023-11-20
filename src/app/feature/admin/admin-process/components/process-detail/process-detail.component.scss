@@ -6,46 +6,59 @@
     font-weight: 500;
     font-size: 26px;
     color: #000;
-    background-color: white;
   }
   &__date {
     border-style: none;
     width: 100px;
-    background-color: white;
   }
   &__duration {
     border-style: none;
     width: 40px;
-    background-color: white;
   }
 }
-.bg-red {
-  background-color: red;
-  height: 50px;
-  width: 100%;
+.table-task {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  &__heading-task {
+    position: static;
+    background-color: #ffffff;
+    padding: 20px 0px 20px 0px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  &__body-task {
+    position: static;
+    &__task {
+      &__content-task {
+        position: static;
+        margin-left: 10px;
+        margin-top: 5px;
+        padding: 10px 0px 10px 0px;
+        padding-left: 10px;
+        border-radius: 5px;
+        border-left: 8px solid #1a2848;
+        background-color: #ffffff;
+      }
+      &__subtask {
+        position: static;
+        margin-left: 20px;
+        margin-top: 5px;
+        padding: 10px 0px 10px 0px;
+        border-radius: 5px;
+        border-left: 8px solid #1a2848;
+        background-color: #ffffff;
+      }
+    }
+  }
 }
-.bg-blue {
-  background-color: blue;
-  height: 50px;
-  width: 100%;
+.margin-right-10 {
+  margin-right: 10px;
 }
-.bg-black {
-  background-color: black;
-  height: 50px;
-  width: 100%;
+.padding-left-10 {
+  padding-left: 20px;
 }
-.bg-pink {
-  background-color: pink;
-  height: 50px;
-  width: 100%;
-}
-.bg-yellow {
-  background-color: yellow;
-  height: 50px;
-  width: 100%;
-}
-.bg-green {
-  background-color: green;
-  height: 50px;
-  width: 100%;
+
+.container {
+  background-color: #e9edf0;
 }

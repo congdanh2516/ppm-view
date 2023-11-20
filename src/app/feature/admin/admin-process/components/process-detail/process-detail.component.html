@@ -1,4 +1,4 @@
-<div class="container mt-8">
+<div class="container mt-4">
   <div class="mt-2">
     <div class="row">
       <div class="col-3 task-infor">
@@ -77,285 +77,231 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <div
-        class="task-table"
-        style="
-          background-color: black;
-          height: 100%;
-          width: 100%;
-          position: relative;
-        "
-      >
-        <div
-          class="task-table__heading"
-          style="
-            background-color: red;
-            height: 50px;
-            width: 100%;
-            position: relative;
-          "
-        ></div>
-        <div
-          class="table-main"
-          style="
-            background-color: brown;
-            position: static;
-            width: 100%;
-            height: 100%;
-          "
-        >
-          <div
-            class="task-table__body"
-            style="
-              background-color: yellow;
-              position: static;
-              width: 100%;
-              height: 100%;
-            "
-          >
-            <div
-              class="task-table__body__task"
-              style="background-color: pink; position: static"
-            >
-              <div
-                class="task-table__body__task__content"
-                style="background-color: blue; position: static; height: 100%"
-              >
-                <div
-                  style="
-                    background-color: salmon;
-                    width: 80%;
-                    height: 100%;
-                    position: static;
-                  "
+  <div class="row mt-4">
+    <div class="table-task">
+      <div class="table-task__heading-task col-12">
+        <div class="row">
+          <div class="col-1">&nbsp;</div>
+          <div class="col-3">Name</div>
+          <div class="col-3">Description</div>
+          <div class="col-1">Duration</div>
+          <div class="col-1">Start date</div>
+          <div class="col-1">End date</div>
+          <div class="col-1">Prerequisite</div>
+          <div class="col-1">Action</div>
+        </div>
+      </div>
+      <div class="table-task__body-task">
+        <div class="table-task__body-task__task">
+          <div class="table-task__body-task__task__content-task">
+            <div class="row">
+              <div class="col-2">1</div>
+              <div class="col-2">Task 1</div>
+              <div class="col-3">Description task 1</div>
+              <div class="col-1 text-center">1</div>
+              <div class="col-1">20/11/2023</div>
+              <div class="col-1">21/11/2023</div>
+              <div class="col-1 text-center">1</div>
+              <div class="col-1 text-center">
+                <span
+                  class="margin-right-10 opacity"
+                  [matMenuTriggerFor]="menu"
                 >
-                  <p style="height: 100%">sjkhf sakdf asdf askdnj</p>
-                </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1.5rem"
+                    width="1.5rem"
+                    viewBox="0 0 448 512"
+                  >
+                    <path
+                      d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
+                    />
+                  </svg>
+                </span>
+                <span class="opacity">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1.5rem"
+                    height="1.5rem"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
+                    />
+                  </svg>
+                </span>
               </div>
-              <div
-                class="task-table__body__task__subtask mt-1"
-                style="
-                  background-color: green;
-                  width: 80%;
-                  float: right;
-                  position: static;
-                "
-              >
-                <div
-                  style="
-                    background-color: magenta;
-                    height: 100%;
-                    width: 60%;
-                    position: static;
-                  "
-                >
-                  <p style="height: 100%">
-                    jskajk <br />
-                    ajsdh sakdjfk sakldjflk askdhjfjk askdjfkb lasjdf asdkhf
-                    aksjhdf adhasf ajkhsdfkj asdkjhf asdfh askdhf alsdhjf
-                    ajsdhfh asdkhf askdhf alsdhfh alsdhjf asdfl
-                    jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-                    dshhhhhhhhhhhhhhhhhhhoadhaohdo asdkhfasosaj asjkhd
-                    aksdjfa-flip-horizontalasdkj aksdjfa-flip-horizontalasdkj
-                    kjhds
-
-                    <br />
-                    sdjkhf ksjahd ksjahdsadkfa-flip-horizontal kdshj
-                    jdfa-flip-horizontallkjas aksdjfa-flip-horizontalasdkj
-                    jdfa-flip-horizontallkjas
-                    <br /><br />
-                    dsklhjjjjjjjjjjjjjj ajkhsd aksjhd alkdhs alhkhd ahdsa oahsd
-                  </p>
-                </div>
-              </div>
-              <div
-                class="task-table__body__task__subtask mt-1"
-                style="
-                  position: static;
-                  background-color: green;
-                  min-height: 40px;
-                  width: 80%;
-                  float: right;
-                "
-              ></div>
-              <div
-                class="task-table__body__task__subtask mt-1"
-                style="
-                  position: static;
-                  background-color: green;
-                  min-height: 40px;
-                  width: 80%;
-                  float: right;
-                "
-              ></div>
             </div>
           </div>
-          <div
-            class="task-table__body"
-            style="
-              background-color: yellow;
-              position: static;
-              width: 100%;
-              height: 100%;
-            "
-          >
-            <div
-              class="task-table__body__task"
-              style="background-color: pink; position: static"
-            >
-              <div
-                class="task-table__body__task__content"
-                style="background-color: blue; position: static"
-              >
-                <div
-                  style="
-                    background-color: salmon;
-                    width: 80%;
-                    height: 100%;
-                    position: static;
-                  "
+          <div class="table-task__body-task__task__subtask">
+            <div class="row">
+              <div class="col-2 padding-left-10">2</div>
+              <div class="col-2">Subtask 1</div>
+              <div class="col-3">Description subtask 1</div>
+              <div class="col-1 text-center">1</div>
+              <div class="col-1">20/11/2023</div>
+              <div class="col-1">21/11/2023</div>
+              <div class="col-1 text-center">0</div>
+              <div class="col-1 text-center">
+                <span
+                  class="margin-right-10 opacity"
+                  [matMenuTriggerFor]="menu"
                 >
-                  <p>sjkhf sakdf asdf askdnj</p>
-                </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1.5rem"
+                    width="1.5rem"
+                    viewBox="0 0 448 512"
+                  >
+                    <path
+                      d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
+                    />
+                  </svg>
+                </span>
+                <span class="opacity">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1.5rem"
+                    height="1.5rem"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
+                    />
+                  </svg>
+                </span>
               </div>
-              <div
-                class="task-table__body__task__subtask mt-1"
-                style="
-                  background-color: green;
-                  width: 80%;
-                  float: right;
-                  position: static;
-                "
-              >
-                <div
-                  style="
-                    background-color: magenta;
-                    height: 100%;
-                    width: 60%;
-                    position: static;
-                  "
+            </div>
+          </div>
+          <div class="table-task__body-task__task__subtask">
+            <div class="row">
+              <div class="col-2 padding-left-10">3</div>
+              <div class="col-2">Subtask 2</div>
+              <div class="col-3">Description subtask 2</div>
+              <div class="col-1 text-center">1</div>
+              <div class="col-1">20/11/2023</div>
+              <div class="col-1">21/11/2023</div>
+              <div class="col-1 text-center">0</div>
+              <div class="col-1 text-center">
+                <span
+                  class="margin-right-10 opacity"
+                  [matMenuTriggerFor]="menu"
                 >
-                  <p style="height: 100%">
-                    jskajk <br />
-                    ajsdh sakdjfk sakldjflk askdhjfjk askdjfkb lasjdf asdkhf
-                    aksjhdf adhasf ajkhsdfkj asdkjhf asdfh askdhf alsdhjf
-                    ajsdhfh asdkhf askdhf alsdhfh alsdhjf asdfl
-                    jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-                    dshhhhhhhhhhhhhhhhhhhoadhaohdo asdkhfasosaj asjkhd
-                    aksdjfa-flip-horizontalasdkj aksdjfa-flip-horizontalasdkj
-                    kjhds
-
-                    <br />
-                    sdjkhf ksjahd ksjahdsadkfa-flip-horizontal kdshj
-                    jdfa-flip-horizontallkjas aksdjfa-flip-horizontalasdkj
-                    jdfa-flip-horizontallkjas
-                    <br /><br />
-                    dsklhjjjjjjjjjjjjjj ajkhsd aksjhd alkdhs alhkhd ahdsa oahsd
-                  </p>
-                </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1.5rem"
+                    width="1.5rem"
+                    viewBox="0 0 448 512"
+                  >
+                    <path
+                      d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
+                    />
+                  </svg>
+                </span>
+                <span class="opacity">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1.5rem"
+                    height="1.5rem"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
+                    />
+                  </svg>
+                </span>
               </div>
-              <div
-                class="task-table__body__task__subtask mt-1"
-                style="
-                  position: static;
-                  background-color: green;
-                  min-height: 40px;
-                  width: 80%;
-                  float: right;
-                "
-              ></div>
-              <div
-                class="task-table__body__task__subtask mt-1"
-                style="
-                  position: static;
-                  background-color: green;
-                  min-height: 40px;
-                  width: 80%;
-                  float: right;
-                "
-              ></div>
+            </div>
+          </div>
+          <div class="table-task__body-task__task__subtask">
+            <div class="row">
+              <div class="col-2 padding-left-10">4</div>
+              <div class="col-2">Subtask 3</div>
+              <div class="col-3">Description subtask 3</div>
+              <div class="col-1 text-center">1</div>
+              <div class="col-1">20/11/2023</div>
+              <div class="col-1">21/11/2023</div>
+              <div class="col-1 text-center">0</div>
+              <div class="col-1 text-center">
+                <span
+                  class="margin-right-10 opacity"
+                  [matMenuTriggerFor]="menu"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1.5rem"
+                    width="1.5rem"
+                    viewBox="0 0 448 512"
+                  >
+                    <path
+                      d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
+                    />
+                  </svg>
+                </span>
+                <span class="opacity">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1.5rem"
+                    height="1.5rem"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <span class="margin-right-10">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 512 512"
+            >
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"
+              />
+            </svg>
+          </span>
+          <span>Modify</span>
+        </button>
+        <button mat-menu-item>
+          <span class="margin-right-10">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 448 512"
+            >
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+              />
+            </svg>
+          </span>
+          <span>Add subtask</span>
+        </button>
+        <button mat-menu-item>
+          <span class="margin-right-10">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 448 512"
+            >
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+              />
+            </svg>
+          </span>
+          <span>Delete</span>
+        </button>
+      </mat-menu>
     </div>
-    <!-- <div class="text-center">
-    <span
-      class="margin-right-10 opacity"
-      [matMenuTriggerFor]="menu"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        height="1.5rem"
-        width="1.5rem"
-        viewBox="0 0 448 512"
-      >
-        <path
-          d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
-        />
-      </svg>
-    </span>
-    <span class="opacity">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="1.5rem"
-        height="1.5rem"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
-        />
-      </svg>
-    </span>
-  </div> -->
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <span class="margin-right-10">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="1em"
-            viewBox="0 0 512 512"
-          >
-            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-            <path
-              d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"
-            />
-          </svg>
-        </span>
-        <span>Modify</span>
-      </button>
-      <button mat-menu-item>
-        <span class="margin-right-10">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="1em"
-            viewBox="0 0 448 512"
-          >
-            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-            <path
-              d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
-            />
-          </svg>
-        </span>
-        <span>Add subtask</span>
-      </button>
-      <button mat-menu-item>
-        <span class="margin-right-10">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="1em"
-            viewBox="0 0 448 512"
-          >
-            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-            <path
-              d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"
-            />
-          </svg>
-        </span>
-        <span>Delete</span>
-      </button>
-    </mat-menu>
   </div>
 </div>
