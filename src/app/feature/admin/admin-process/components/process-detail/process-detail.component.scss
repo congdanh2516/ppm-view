@@ -1,6 +1,7 @@
 @import url(../../../../../../assets/scss/sass-config.scss);
 .task-infor {
   &__taskname {
+    margin-top: 5px;
     border-style: none;
     border-radius: 5px;
     font-weight: 500;
@@ -9,10 +10,12 @@
   }
   &__date {
     border-style: none;
+    border-radius: 5px;
     width: 100px;
   }
   &__duration {
     border-style: none;
+    border-radius: 5px;
     width: 40px;
   }
 }
