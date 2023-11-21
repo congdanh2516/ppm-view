@@ -1,4 +1,4 @@
-@import url(../../../../../../assets/scss/sass-config.scss);
+@import "../../../../../../assets/scss/sass-config.scss";
 .task-infor {
   &__taskname {
     margin-top: 5px;
@@ -6,6 +6,7 @@
     border-radius: 5px;
     font-weight: 500;
     font-size: 26px;
+    width: 100%;
     color: #000;
   }
   &__date {
@@ -35,21 +36,20 @@
     &__task {
       &__content-task {
         position: static;
-        margin-left: 10px;
         margin-top: 5px;
-        padding: 10px 0px 10px 0px;
-        padding-left: 10px;
+        padding: 20px 0px 20px 0px;
+        padding-left: 20px;
         border-radius: 5px;
-        border-left: 8px solid #1a2848;
+        border-left: 10px solid #1a2848;
         background-color: #ffffff;
       }
       &__subtask {
         position: static;
         margin-left: 20px;
         margin-top: 5px;
-        padding: 10px 0px 10px 0px;
+        padding: 20px 0px 20px 0px;
         border-radius: 5px;
-        border-left: 8px solid #1a2848;
+        border-left: 10px solid #1a2848;
         background-color: #ffffff;
       }
     }
@@ -61,11 +61,66 @@
 .padding-left-10 {
   padding-left: 20px;
 }
-
+.margin-left-50 {
+  margin-left: 50px;
+}
+.padding-left-20 {
+  padding-left: 20px;
+}
+.padding-left-30 {
+  padding-left: 30px;
+}
+.padding-top-10 {
+  padding-top: 20px;
+}
+.margin-left-5-minus {
+  margin-left: -5px;
+}
+.margin-left-10-minus {
+  margin-left: -10px;
+}
+.margin-left-20-minus {
+  margin-left: -20px;
+}
 .container {
   background-color: #e9edf0;
 }
 .opacity {
-  opacity: 0.7;
-  cursor: pointer;
+  opacity: 0.5;
+  &:hover {
+    opacity: 0.7;
+    color: #1a2848;
+    cursor: pointer;
+  }
+}
+.float-right {
+  float: right;
+}
+.width-height-100-percent {
+  width: 100%;
+  height: 100%;
+}
+
+.padding-10 {
+  padding: 10px;
+}
+.padding-5 {
+  padding: 5px;
+}
+.padding-top-2 {
+  padding-top: 2px;
+}
+.text-right {
+  text-align: right;
+  right: -1px;
+}
+
+.text-green {
+  color: #23c476;
+}
+.text-red {
+  color: #e32347;
+}
+.text-orange {
+  color: #f1853b;
 }

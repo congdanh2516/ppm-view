@@ -1,79 +1,72 @@
-<div class="container mt-4">
-  <div class="mt-2">
-    <div class="row">
-      <div class="col-3 task-infor">
-        <input
-          class="task-infor__taskname"
-          type="text"
-          name=""
-          value="process name"
-          [attr.disabled]="isDisabledName ? true : null"
-        />
-      </div>
-      <div class="col-2">
-        <span class="opacity">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="1em"
-            viewBox="0 0 512 512"
-            (click)="removeDisabledName()"
-          >
-            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-            <path
-              d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"
-            />
-          </svg>
-        </span>
-      </div>
-    </div>
-    <div class="row mt-2 task-infor">
-      <div class="col-2">
-        <span class="margin-right-10">
-          Start date:
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <div class="row">
+        <div class="col-4 task-infor">
           <input
-            class="task-infor__date"
+            class="task-infor__taskname"
             type="text"
-            value="18/11/2023"
-            [attr.disabled]="isDisabledInfor ? true : null"
+            name=""
+            value="process name"
+            [attr.disabled]="isDisabledName ? true : null"
           />
-        </span>
+        </div>
+        <div class="col-1">
+          <div class="opacity width-height-100-percent padding-10">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 512 512"
+              (click)="removeDisabledName()"
+            >
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"
+              />
+            </svg>
+          </div>
+        </div>
       </div>
-      <div class="col-2">
-        <span>
-          Duration:
-          <input
-            class="task-infor__duration"
-            type="text"
-            value="2"
-            [attr.disabled]="isDisabledInfor ? true : null"
-          />
-        </span>
-      </div>
-      <div class="col-2">
-        <span>
-          End date:
-          <input
-            class="task-infor__date"
-            type="text"
-            value="20/11/2023"
-            [attr.disabled]="isDisabledInfor ? true : null"
-          />
-        </span>
-      </div>
-      <div class="col-1">
-        <span class="opacity">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="1em"
-            viewBox="0 0 512 512"
-            (click)="removeDisabledInfor()"
-          >
-            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-            <path
-              d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"
-            />
-          </svg>
-        </span>
+      <div class="row mt-2 task-infor">
+        <div class="col-3">
+          <div class="width-height-100-percent padding-5">
+            Start date:
+            <span
+              ><input
+                class="task-infor__date"
+                type="text"
+                value="18/11/2023"
+                [attr.disabled]="isDisabledInfor ? true : null"
+            /></span>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="opacity width-height-100-percent padding-top-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 512 512"
+              (click)="removeDisabledInfor()"
+            >
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="width-height-100-percent padding-5">
+            Duration: <span>2</span>
+          </div>
+        </div>
+        <div class="col-3">
+          <div>
+            <div class="width-height-100-percent padding-5">
+              End date: <span>20/11/2023</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -82,174 +75,182 @@
       <div class="table-task__heading-task col-12">
         <div class="row">
           <div class="col-1">&nbsp;</div>
-          <div class="col-3">Name</div>
+          <div class="col-2">Name</div>
           <div class="col-3">Description</div>
           <div class="col-1">Duration</div>
           <div class="col-1">Start date</div>
           <div class="col-1">End date</div>
           <div class="col-1">Prerequisite</div>
-          <div class="col-1">Action</div>
+          <div class="col-2 text-right margin-left-20-minus">Action</div>
         </div>
       </div>
       <div class="table-task__body-task">
         <div class="table-task__body-task__task">
           <div class="table-task__body-task__task__content-task">
             <div class="row">
-              <div class="col-2">1</div>
+              <div class="col-1">1</div>
               <div class="col-2">Task 1</div>
               <div class="col-3">Description task 1</div>
               <div class="col-1 text-center">1</div>
               <div class="col-1">20/11/2023</div>
               <div class="col-1">21/11/2023</div>
               <div class="col-1 text-center">1</div>
-              <div class="col-1 text-center">
-                <span
-                  class="margin-right-10 opacity"
-                  [matMenuTriggerFor]="menu"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="1.5rem"
-                    width="1.5rem"
-                    viewBox="0 0 448 512"
+              <div class="col-2 text-right">
+                <div class="margin-right-10">
+                  <span
+                    class="margin-right-10 opacity"
+                    [matMenuTriggerFor]="menu"
                   >
-                    <path
-                      d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
-                    />
-                  </svg>
-                </span>
-                <span class="opacity">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1.5rem"
-                    height="1.5rem"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
-                    />
-                  </svg>
-                </span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="1.5rem"
+                      width="1.5rem"
+                      viewBox="0 0 448 512"
+                    >
+                      <path
+                        d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
+                      />
+                    </svg>
+                  </span>
+                  <span class="opacity">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.5rem"
+                      height="1.5rem"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
+                      />
+                    </svg>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
           <div class="table-task__body-task__task__subtask">
             <div class="row">
-              <div class="col-2 padding-left-10">2</div>
+              <div class="col-1 padding-left-10">2</div>
               <div class="col-2">Subtask 1</div>
               <div class="col-3">Description subtask 1</div>
               <div class="col-1 text-center">1</div>
               <div class="col-1">20/11/2023</div>
               <div class="col-1">21/11/2023</div>
               <div class="col-1 text-center">0</div>
-              <div class="col-1 text-center">
-                <span
-                  class="margin-right-10 opacity"
-                  [matMenuTriggerFor]="menu"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="1.5rem"
-                    width="1.5rem"
-                    viewBox="0 0 448 512"
+              <div class="col-2 text-right">
+                <div class="margin-right-10">
+                  <span
+                    class="margin-right-10 opacity"
+                    [matMenuTriggerFor]="menu"
                   >
-                    <path
-                      d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
-                    />
-                  </svg>
-                </span>
-                <span class="opacity">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1.5rem"
-                    height="1.5rem"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
-                    />
-                  </svg>
-                </span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="1.5rem"
+                      width="1.5rem"
+                      viewBox="0 0 448 512"
+                    >
+                      <path
+                        d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
+                      />
+                    </svg>
+                  </span>
+                  <span class="opacity">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.5rem"
+                      height="1.5rem"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
+                      />
+                    </svg>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
           <div class="table-task__body-task__task__subtask">
             <div class="row">
-              <div class="col-2 padding-left-10">3</div>
+              <div class="col-1 padding-left-10">3</div>
               <div class="col-2">Subtask 2</div>
               <div class="col-3">Description subtask 2</div>
               <div class="col-1 text-center">1</div>
               <div class="col-1">20/11/2023</div>
               <div class="col-1">21/11/2023</div>
               <div class="col-1 text-center">0</div>
-              <div class="col-1 text-center">
-                <span
-                  class="margin-right-10 opacity"
-                  [matMenuTriggerFor]="menu"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="1.5rem"
-                    width="1.5rem"
-                    viewBox="0 0 448 512"
+              <div class="col-2 text-right">
+                <div class="margin-right-10">
+                  <span
+                    class="margin-right-10 opacity"
+                    [matMenuTriggerFor]="menu"
                   >
-                    <path
-                      d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
-                    />
-                  </svg>
-                </span>
-                <span class="opacity">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1.5rem"
-                    height="1.5rem"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
-                    />
-                  </svg>
-                </span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="1.5rem"
+                      width="1.5rem"
+                      viewBox="0 0 448 512"
+                    >
+                      <path
+                        d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
+                      />
+                    </svg>
+                  </span>
+                  <span class="opacity">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.5rem"
+                      height="1.5rem"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
+                      />
+                    </svg>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
           <div class="table-task__body-task__task__subtask">
             <div class="row">
-              <div class="col-2 padding-left-10">4</div>
+              <div class="col-1 padding-left-10">4</div>
               <div class="col-2">Subtask 3</div>
               <div class="col-3">Description subtask 3</div>
               <div class="col-1 text-center">1</div>
               <div class="col-1">20/11/2023</div>
               <div class="col-1">21/11/2023</div>
               <div class="col-1 text-center">0</div>
-              <div class="col-1 text-center">
-                <span
-                  class="margin-right-10 opacity"
-                  [matMenuTriggerFor]="menu"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="1.5rem"
-                    width="1.5rem"
-                    viewBox="0 0 448 512"
+              <div class="col-2 text-right">
+                <div class="margin-right-10">
+                  <span
+                    class="margin-right-10 opacity"
+                    [matMenuTriggerFor]="menu"
                   >
-                    <path
-                      d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
-                    />
-                  </svg>
-                </span>
-                <span class="opacity">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1.5rem"
-                    height="1.5rem"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
-                    />
-                  </svg>
-                </span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="1.5rem"
+                      width="1.5rem"
+                      viewBox="0 0 448 512"
+                    >
+                      <path
+                        d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
+                      />
+                    </svg>
+                  </span>
+                  <span class="opacity">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.5rem"
+                      height="1.5rem"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
+                      />
+                    </svg>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
