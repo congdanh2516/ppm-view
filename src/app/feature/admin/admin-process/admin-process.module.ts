@@ -11,6 +11,7 @@ import {MatExpansionModule} from '@angular/material/expansion'; //copy tu Angula
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminProcessRoutingModule } from './admin-process-routing.module';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ProcessCreationComponent } from './components/process-creation/process-creation.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     ProcessDetailComponent,
     TaskCreationComponent,
     TaskModificationComponent,
-    ExampleComponent
+    ExampleComponent,
+    ProcessCreationComponent
   ],
   imports: [
     CommonModule,
