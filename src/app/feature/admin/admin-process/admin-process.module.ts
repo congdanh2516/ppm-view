@@ -22,7 +22,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
   declarations: [
     AdminProcessComponent,
     ProcessDetailComponent,
-    ExampleComponent
+    ExampleComponent,
+    TaskCreationComponent
   ],
   imports: [
     CommonModule,
