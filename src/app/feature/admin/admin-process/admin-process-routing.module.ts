@@ -8,7 +8,6 @@ import { TaskModificationComponent } from "./components/task-modification/task-m
 const routes: Routes = [
     {path: 'detail', component: ProcessDetailComponent},
     {path: '', redirectTo: 'detail', pathMatch: 'full'},
-    {path: 'task-creation', component: AdminProcessComponent},
 ];
 
 @NgModule({

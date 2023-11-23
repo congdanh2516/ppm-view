@@ -13,8 +13,11 @@ import { AdminRoutingModule } from './admin-routing.module';
     CommonModule,
     FontAwesomeModule,
     AdminProcessModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    
+    
   ],
+  
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ]

@@ -1,1 +1,48 @@
-<p>task-creation works!</p>
+<div class="task-dialog">
+    <h1 mat-dialog-title>Create Task</h1>
+    <h2 mat-dialog-title>Task name</h2>
+<div mat-dialog-content>
+    <p>Name</p>
+    <mat-form-field class="task-attribute">
+      <mat-label>Task name</mat-label>
+      <input matInput >
+    </mat-form-field>
+    <p>Description</p>
+    <mat-form-field class="task-attribute">
+      <mat-label>Task description</mat-label>
+      <input matInput >
+    </mat-form-field>
+    <p>Prerequisite</p>
+    <mat-form-field class="task-attribute">
+      <mat-label>Tasks prerequisite</mat-label>
+      <mat-select [formControl]="tasks" multiple>
+        <mat-option *ngFor="let task of taskList" [value]="task">{{task}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="task-field">
+    <p>Duration</p>
+    <mat-form-field>
+      <mat-label>Task duration</mat-label>
+      <input matInput >
+    </mat-form-field>
+    <p>Period</p>
+    <mat-form-field>
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="Start date">
+          <input matEndDate placeholder="End date">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+
+  </div>
+  <div mat-dialog-actions class="task-button">
+    <button mat-button>Cancel</button>
+    <button mat-button class="task-create-button">Create</button>
+  </div>
+
+</div>

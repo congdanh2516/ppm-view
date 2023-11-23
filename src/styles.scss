@@ -37,3 +37,40 @@ $ppm-view-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.task-button {
+  float: right;
+  
+}
+.task-button .task-create-button{
+  color: white !important;
+  background-color: #1a2848; 
+}
+.task-button .task-modify-button{
+  color: white !important;
+  background-color: #1a2848; 
+}
+
+.task-dialog .task-field .task-attribute{
+  width: 650px;
+}
+.task-dialog .task-attribute{
+  width: 650px;
+}
+.task-dialog .task-field{
+  display: flex;
+  width: 650px;
+}
+.task-dialog .task-field p{
+  margin-right: 15px;
+  margin-left: 10px;
+}
+h1 {
+  font-weight: bold !important;
+  font-size: larger !important;
+  
+}
+h2 {
+  font-weight: bold !important;
+  font-size: medium !important;
+}

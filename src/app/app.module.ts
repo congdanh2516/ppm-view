@@ -8,6 +8,9 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminModule } from './feature/admin/admin.module';
 import { AdminProcessModule } from './feature/admin/admin-process/admin-process.module';
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AuthenticationService } from './core/services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -19,9 +22,11 @@ import { AdminProcessModule } from './feature/admin/admin-process/admin-process.
     BrowserAnimationsModule,
     MatExpansionModule,
     FontAwesomeModule,
+    FormsModule,
     AdminModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
