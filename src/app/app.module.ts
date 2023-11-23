@@ -8,6 +8,9 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminModule } from './feature/admin/admin.module';
 import { AdminProcessModule } from './feature/admin/admin-process/admin-process.module';
+import { AuthenticationModule } from './feature/authentication/authentication.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,10 @@ import { AdminProcessModule } from './feature/admin/admin-process/admin-process.
     MatExpansionModule,
     FontAwesomeModule,
     AdminModule,
+    AuthenticationModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent],
