@@ -12,17 +12,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./process-detail.component.scss'],
 })
 export class ProcessDetailComponent implements OnInit {
-  // handle click icon edit process-name
   isDisabledName: boolean = true;
   isDisabledInfor: boolean = true;
+
   removeDisabledName() {
     this.isDisabledName = false;
   }
+  
   removeDisabledInfor() {
     this.isDisabledInfor = false;
   }
 
-  // handle click icon menu task and subtask
   @ViewChild(MatMenuTrigger)
   trigger!: MatMenuTrigger;
 
@@ -30,7 +30,6 @@ export class ProcessDetailComponent implements OnInit {
     this.trigger.openMenu();
   }
 
-  // handle call api
   @Input() project: Project | undefined;
   @Input() tasklist: Task[] = [];
   @Input() projectList: Project[] = [];
