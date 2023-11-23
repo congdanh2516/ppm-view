@@ -6,11 +6,13 @@ import { TaskCreationComponent } from './components/task-creation/task-creation.
 import { TaskModificationComponent } from './components/task-modification/task-modification.component';
 import { ExampleComponent } from './components/example/example.component';
 
-import {MatExpansionModule} from '@angular/material/expansion'; //copy tu Angular Material
-
+import { MatExpansionModule } from '@angular/material/expansion'; //copy tu Angular Material
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminProcessRoutingModule } from './admin-process-routing.module';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 import { ProcessCreationComponent } from './components/process-creation/process-creation.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,18 +34,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FontAwesomeModule,
     AdminProcessRoutingModule,
     MatDialogModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatExpansionModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
-
-    MatExpansionModule, //copy ten đe xuong day
     SharedModule
 
   ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AdminProcessModule { }
+export class AdminProcessModule {}

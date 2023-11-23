@@ -8,11 +8,11 @@ const routes: Routes = [
     {path: 'detail', component: ProcessDetailComponent},
     {path: '', redirectTo: 'list', pathMatch: 'full'},
     {path: 'task-creation', component: AdminProcessComponent},
+    {path: 'detail/:id', component: ProcessDetailComponent },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-
-export class AdminProcessRoutingModule { }
+export class AdminProcessRoutingModule {}
