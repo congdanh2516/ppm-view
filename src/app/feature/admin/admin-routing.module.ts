@@ -1,10 +1,15 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AdminComponent } from "./admin.component";
 
 const routes: Routes = [
-    {path: 'process',
-        loadChildren: () => import('../admin/admin-process/admin-process.module').then(x => x.AdminProcessModule)
-    },
+    {path: '', component: AdminComponent,
+        children: [
+            {path: 'process',
+                loadChildren: () => import('../admin/admin-process/admin-process.module').then(x => x.AdminProcessModule)
+            },
+        ]
+    }
 ];
 
 @NgModule({

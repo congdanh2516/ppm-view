@@ -12,7 +12,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminProcessRoutingModule } from './admin-process-routing.module';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ProcessCreationComponent } from './components/process-creation/process-creation.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,8 +32,14 @@ import { ProcessCreationComponent } from './components/process-creation/process-
     FontAwesomeModule,
     AdminProcessRoutingModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule,
 
-    MatExpansionModule //copy ten đe xuong day
+    MatExpansionModule, //copy ten đe xuong day
+    SharedModule
 
   ],
   schemas: [

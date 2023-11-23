@@ -10,7 +10,7 @@ import { TaskCreationComponent } from './components/task-creation/task-creation.
 })
 export class AdminProcessComponent {
   constructor(public dialog: MatDialog) {
-    this.openCreationProcessDialog();
+    // this.openCreationProcessDialog();
   }
 
   openDialog(): void {

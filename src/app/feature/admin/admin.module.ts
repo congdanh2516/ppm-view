@@ -4,6 +4,8 @@ import { AdminComponent } from './admin.component';
 import { AdminProcessModule } from './admin-process/admin-process.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminRoutingModule } from './admin-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,10 @@ import { AdminRoutingModule } from './admin-routing.module';
     CommonModule,
     FontAwesomeModule,
     AdminProcessModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

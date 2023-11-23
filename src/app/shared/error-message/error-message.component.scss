@@ -1,0 +1,9 @@
+@import '../../../assets/scss/sass-config.scss';
+span {
+    margin-left: 5px;
+    font-size: 13px;
+    color: $red;
+    fa-icon {
+        margin-right: 10px;
+    }
+}

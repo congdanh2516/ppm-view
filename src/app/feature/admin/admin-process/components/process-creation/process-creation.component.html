@@ -2,21 +2,27 @@
     <div class="process-creation__heading">
         Create process
     </div>
-    <form class="process-creation__form">
+    <form class="process-creation__form" [formGroup]="processCreationForm" (ngSubmit)="createProcess()">
         <div class="process-creation__form__name-field">
             <label for="process-name">Tên quy trình</label>
-            <input type="text" name="" id="process-name" aria-label="-1">
+            <input type="text" name="" id="process-name" aria-label="-1" formControlName="processName">
+            <div class="error">
+                <app-error-message *ngIf="(processCreationForm.get('processName')?.errors?.['required'] 
+                    && processCreationForm.get('processName')?.touched)">
+                    Vui lòng nhập tên quy trình
+                </app-error-message>
+            </div>
         </div>
         <div class="process-creation__form__description-field">
             <label for="process-description">Mô tả</label>
-            <textarea type="text" name="" id="process-description"></textarea>
+            <textarea type="text" name="" id="process-description" formControlName="description"></textarea>
         </div>
         <div class="process-creation__form__start-date-field">
             <label for="">Ngày bắt đầu</label>
-            <input type="date" name="" id="">
+            <input type="date" name="" id="" value={{date}} min={{date}} formControlName="startDate">
         </div>
         <div class="process-creation__form__action">
-            <button class="process-creation__form__action__create-btn">
+            <button type="submit" class="process-creation__form__action__create-btn">
                 Create
             </button>
         </div>
