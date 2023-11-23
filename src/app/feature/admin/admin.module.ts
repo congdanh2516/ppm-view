@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { AdminProcessModule } from './admin-process/admin-process.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminRoutingModule } from './admin-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AdminComponent],
@@ -12,6 +13,7 @@ import { AdminRoutingModule } from './admin-routing.module';
     FontAwesomeModule,
     AdminProcessModule,
     AdminRoutingModule,
+    HttpClientModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

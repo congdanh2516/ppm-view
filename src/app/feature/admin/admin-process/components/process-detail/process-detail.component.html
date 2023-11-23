@@ -7,7 +7,7 @@
             class="task-infor__taskname"
             type="text"
             name=""
-            value="process name"
+            [value]="project?.projectName"
             [attr.disabled]="isDisabledName ? true : null"
           />
         </div>
@@ -57,7 +57,7 @@
         </div>
         <div class="col-2">
           <div class="width-height-100-percent padding-5">
-            Duration: <span>2</span>
+            Duration: <span>{{ project?.projectDuration }}</span>
           </div>
         </div>
         <div class="col-3">
@@ -85,16 +85,22 @@
         </div>
       </div>
       <div class="table-task__body-task">
-        <div class="table-task__body-task__task">
-          <div class="table-task__body-task__task__content-task">
+        <div
+          *ngFor="let task of tasklist; let i = index"
+          class="table-task__body-task__task"
+        >
+          <div
+            *ngIf="project?.projectId == task.projectId"
+            class="table-task__body-task__task__content-task"
+          >
             <div class="row">
-              <div class="col-1">1</div>
-              <div class="col-2">Task 1</div>
-              <div class="col-3">Description task 1</div>
-              <div class="col-1 text-center">1</div>
-              <div class="col-1">20/11/2023</div>
-              <div class="col-1">21/11/2023</div>
-              <div class="col-1 text-center">1</div>
+              <div class="col-1">{{ i + 1 }}</div>
+              <div class="col-2">{{ task.taskName }}</div>
+              <div class="col-3">{{ task.taskDescription }}</div>
+              <div class="col-1 text-center">{{ task.taskDuration }}</div>
+              <div class="col-1">{{ task.taskStartAt }}</div>
+              <div class="col-1">{{ task.taskEndAt }}</div>
+              <div class="col-1 text-center">{{ task.taskParentId }}</div>
               <div class="col-2 text-right">
                 <div class="margin-right-10">
                   <span
@@ -128,99 +134,18 @@
               </div>
             </div>
           </div>
-          <div class="table-task__body-task__task__subtask">
+          <div
+            *ngFor="let subtask of task.subtasks; let j = index"
+            class="table-task__body-task__task__subtask"
+          >
             <div class="row">
-              <div class="col-1 padding-left-10">2</div>
-              <div class="col-2">Subtask 1</div>
-              <div class="col-3">Description subtask 1</div>
-              <div class="col-1 text-center">1</div>
-              <div class="col-1">20/11/2023</div>
-              <div class="col-1">21/11/2023</div>
-              <div class="col-1 text-center">0</div>
-              <div class="col-2 text-right">
-                <div class="margin-right-10">
-                  <span
-                    class="margin-right-10 opacity"
-                    [matMenuTriggerFor]="menu"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="1.5rem"
-                      width="1.5rem"
-                      viewBox="0 0 448 512"
-                    >
-                      <path
-                        d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
-                      />
-                    </svg>
-                  </span>
-                  <span class="opacity">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="1.5rem"
-                      height="1.5rem"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="table-task__body-task__task__subtask">
-            <div class="row">
-              <div class="col-1 padding-left-10">3</div>
-              <div class="col-2">Subtask 2</div>
-              <div class="col-3">Description subtask 2</div>
-              <div class="col-1 text-center">1</div>
-              <div class="col-1">20/11/2023</div>
-              <div class="col-1">21/11/2023</div>
-              <div class="col-1 text-center">0</div>
-              <div class="col-2 text-right">
-                <div class="margin-right-10">
-                  <span
-                    class="margin-right-10 opacity"
-                    [matMenuTriggerFor]="menu"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="1.5rem"
-                      width="1.5rem"
-                      viewBox="0 0 448 512"
-                    >
-                      <path
-                        d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
-                      />
-                    </svg>
-                  </span>
-                  <span class="opacity">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="1.5rem"
-                      height="1.5rem"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="table-task__body-task__task__subtask">
-            <div class="row">
-              <div class="col-1 padding-left-10">4</div>
-              <div class="col-2">Subtask 3</div>
-              <div class="col-3">Description subtask 3</div>
-              <div class="col-1 text-center">1</div>
-              <div class="col-1">20/11/2023</div>
-              <div class="col-1">21/11/2023</div>
-              <div class="col-1 text-center">0</div>
+              <div class="col-1 padding-left-10">{{ i + 1 }}.{{ j + 1 }}</div>
+              <div class="col-2">{{ subtask.taskName }}</div>
+              <div class="col-3">{{ subtask.taskDescription }}</div>
+              <div class="col-1 text-center">{{ subtask.taskDuration }}</div>
+              <div class="col-1">{{ subtask.taskStartAt }}</div>
+              <div class="col-1">{{ subtask.taskEndAt }}</div>
+              <div class="col-1 text-center">{{ subtask.taskParentId }}</div>
               <div class="col-2 text-right">
                 <div class="margin-right-10">
                   <span
