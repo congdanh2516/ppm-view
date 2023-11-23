@@ -1,0 +1,53 @@
+<div class="sign-in">
+    <div class="sign-in__project-signature">
+        COLD STORAGE
+    </div>
+    <div class="sign-in__account-info">
+        <div class="sign-in__account-info__heading">
+            SIGN IN 
+        </div>
+        <form class="sign-in__account-info__input" [formGroup]="signInForm" (ngSubmit)="signIn()">
+            <div class="sign-in__account-info__input__username">
+                <div class="icon">
+                    <fa-icon [icon]="faUser"></fa-icon>
+                </div>
+                <div class="input">
+                    <input type="text" name="" id="" placeholder="Username" formControlName="username">
+                </div>
+            </div>
+            <div class="sign-in__account-info__input__password">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 16 16" width="16px" height="16px"><path stroke="black" stroke-width="0.5" d="M 8 1 C 5.796875 1 4 2.796875 4 5 L 4 6 L 3.5 6 C 2.675781 6 2 6.675781 2 7.5 L 2 12.5 C 2 13.324219 2.675781 14 3.5 14 L 12.5 14 C 13.324219 14 14 13.324219 14 12.5 L 14 7.5 C 14 6.675781 13.324219 6 12.5 6 L 12 6 L 12 5 C 12 2.796875 10.203125 1 8 1 Z M 8 2 C 9.664063 2 11 3.335938 11 5 L 11 6 L 5 6 L 5 5 C 5 3.335938 6.335938 2 8 2 Z M 3.5 7 L 12.5 7 C 12.78125 7 13 7.21875 13 7.5 L 13 12.5 C 13 12.78125 12.78125 13 12.5 13 L 3.5 13 C 3.21875 13 3 12.78125 3 12.5 L 3 7.5 C 3 7.21875 3.21875 7 3.5 7 Z"/></svg>
+                </div>
+                <div class="input">
+                    <input [type]="hiddenPassword ? 'password' : 'text'" name="" id="" placeholder="Password" formControlName="password">
+                </div>
+                <div class="hidden-password" (click)="hiddenPassword = !hiddenPassword">
+                    <fa-icon [icon]="faEye" *ngIf="hiddenPassword"></fa-icon>
+                    <fa-icon [icon]="faEyeSlash" *ngIf="!hiddenPassword"></fa-icon>
+                </div>
+            </div>
+        </form>
+        <div class="sign-in__account-info__error">
+            <app-error-message 
+                *ngIf="(signInForm.get('username')?.errors?.['required'] 
+                && signInForm.get('username')?.touched) && (!signInForm.get('password')?.errors?.['required'] 
+                || !signInForm.get('password')?.touched)"
+            >Please enter username</app-error-message>
+            <app-error-message 
+                *ngIf="(signInForm.get('password')?.errors?.['required'] 
+                && signInForm.get('password')?.touched) && (!signInForm.get('username')?.errors?.['required'] 
+                || !signInForm.get('username')?.touched)"
+            >Please enter password</app-error-message>
+            <app-error-message 
+                *ngIf="(signInForm.get('password')?.errors?.['required'] 
+                && signInForm.get('password')?.touched) && (signInForm.get('username')?.errors?.['required'] 
+                && signInForm.get('username')?.touched)"
+            >Please enter username, password</app-error-message>
+        </div>
+        <div class="sign-in__account-info__button">
+            <div class="sign-in__account-info__button__forgot-pass">Forgot password?</div>
+            <button class="sign-in__account-info__button__sign-in" type="submit" [disabled]="signInForm.invalid">Sign in</button>
+        </div>
+    </div>
+</div>

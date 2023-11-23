@@ -5,6 +5,8 @@ import { AdminProcessModule } from './admin-process/admin-process.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminRoutingModule } from './admin-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [AdminComponent],
@@ -14,6 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
     AdminProcessModule,
     AdminRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

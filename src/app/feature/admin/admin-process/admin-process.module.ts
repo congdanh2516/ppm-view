@@ -13,6 +13,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { ProcessCreationComponent } from './components/process-creation/process-creation.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +27,7 @@ import { MatMenuModule } from '@angular/material/menu';
     TaskCreationComponent,
     TaskModificationComponent,
     ExampleComponent,
+    ProcessCreationComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +37,14 @@ import { MatMenuModule } from '@angular/material/menu';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    MatExpansionModule, //copy ten đe xuong day
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
