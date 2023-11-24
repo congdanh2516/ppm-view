@@ -19,7 +19,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+// import { NotificationBoxComponent } from './components/process-detail/notification-box/notification-box.component';
+import { NotificationBoxUpdateComponent } from './components/process-detail/notificationBox/notification-box-update/notification-box-update.component';
+import { NotificationBoxDeleteComponent } from './components/process-detail/notificationBox/notification-box-delete/notification-box-delete.component';
 @NgModule({
   declarations: [
     AdminProcessComponent,
@@ -27,7 +29,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TaskCreationComponent,
     TaskModificationComponent,
     ExampleComponent,
-    ProcessCreationComponent
+    ProcessCreationComponent,
+    NotificationBoxUpdateComponent,
+    NotificationBoxDeleteComponent,
   ],
   imports: [
     CommonModule,
@@ -43,8 +47,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
-
+    SharedModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
