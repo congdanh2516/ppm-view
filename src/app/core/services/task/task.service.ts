@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Task } from '../../models/task';
 import { format } from 'src/app/utils/date-utils';
+import { Subtask } from '../../models/subtask';
 
 const api = 'http://103.221.220.183:8081/tasks';
 
@@ -53,6 +54,15 @@ export class TaskService {
       tap((taskId) => {
         console.log(`Delete task ${taskId} successfully`);
       })
+    );
+  }
+
+  getSubtaskList(taskId: string): Observable<Subtask[]> {
+    return this.httpClient.get<Subtask[]>(`${api}/${taskId}/subtasks`).pipe(
+      tap((taskId) => {
+        console.log('Successfully retrieved subtask by taskId: ', taskId);
+      }),
+      catchError(this.handleError)
     );
   }
 

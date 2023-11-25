@@ -17,6 +17,7 @@ import { NotificationBoxUpdateComponent } from './notificationBox/notification-b
 import { TaskCreationComponent } from '../task-creation/task-creation.component';
 import { NotificationBoxUpdateDateComponent } from './notificationBox/notification-box-update-date/notification-box-update-date.component';
 import { format, time } from 'src/app/utils/date-utils';
+import { Subtask } from 'src/app/core/models/subtask';
 
 @Component({
   selector: 'app-process-detail',
@@ -26,6 +27,7 @@ import { format, time } from 'src/app/utils/date-utils';
 export class ProcessDetailComponent implements OnInit {
   isDisabledName: boolean = true;
   isDisabledInfor: boolean = true;
+  isSubtasks: Array<string> = [];
 
   removeDisabledName() {
     if (this.isDisabledName) {
@@ -53,6 +55,8 @@ export class ProcessDetailComponent implements OnInit {
   @Input() project: Project;
   @Input() task: Task;
   @Input() tasklist: Task[] = [];
+  @Input() subtasklist: Subtask[] = [];
+  @Input() subtask: Subtask;
   @Input() projectList: Project[] = [];
 
   constructor(
@@ -69,6 +73,10 @@ export class ProcessDetailComponent implements OnInit {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([currentUrl]);
     });
+  }
+
+  handleOnClick(event: Event): void {
+    event.stopPropagation();
   }
 
   private detectChanges(): void {
@@ -284,5 +292,26 @@ export class ProcessDetailComponent implements OnInit {
         console.log(error);
       },
     });
+  }
+
+  getSubtasks(taskId: any) {
+    console.log('taskId: ', taskId);
+
+    if (this.isSubtasks.includes(taskId)) {
+      this.isSubtasks = this.isSubtasks.filter((item) => item !== taskId);
+      this.subtasklist = this.subtasklist.filter(
+        (item) => item.taskParentId !== taskId
+      );
+    } else {
+      this.taskService.getSubtaskList(taskId).subscribe({
+        next: (subTasks: any) => {
+          this.isSubtasks.push(taskId);
+          this.subtasklist = [...this.subtasklist, ...subTasks];
+        },
+        error: (error: any) => {
+          console.log(error);
+        },
+      });
+    }
   }
 }
