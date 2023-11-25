@@ -10,7 +10,7 @@ import { Task } from 'src/app/core/models/task';
 import { TaskService } from 'src/app/core/services/task/task.service';
 import { Project } from 'src/app/core/models/project';
 import { ProjectService } from 'src/app/core/services/project/project.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationBoxDeleteComponent } from './notificationBox/notification-box-delete/notification-box-delete.component';
 import { NotificationBoxUpdateComponent } from './notificationBox/notification-box-update/notification-box-update.component';
@@ -60,8 +60,16 @@ export class ProcessDetailComponent implements OnInit {
     private projectService: ProjectService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
+
+  reloadComponent() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
 
   private detectChanges(): void {
     this.route.params.subscribe((params: any) => {
@@ -79,6 +87,7 @@ export class ProcessDetailComponent implements OnInit {
     this.getTaskList();
     this.getProjectList();
   }
+
   getTaskList() {
     this.taskService.getTaskList().subscribe({
       next: (task: any) => {
@@ -201,6 +210,7 @@ export class ProcessDetailComponent implements OnInit {
           ...data,
           taskStartAt: format(new Date(data.taskStartAt)),
           taskEndAt: format(new Date(data.taskEndAt)),
+          taskId: data.taskId,
         },
       ];
       data = {
@@ -233,7 +243,7 @@ export class ProcessDetailComponent implements OnInit {
 
   handleCreateTask(task: Task) {
     this.createTask(task);
-    this.detectChanges();
+    this.cdr.detectChanges();
   }
 
   createTask(task: Task) {
@@ -244,6 +254,7 @@ export class ProcessDetailComponent implements OnInit {
           this.getProjectById(params.id);
           this.taskService.getTaskList();
         });
+        this.reloadComponent();
       },
       error: (error) => {
         console.log(error);
