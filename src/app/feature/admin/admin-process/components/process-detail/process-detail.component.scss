@@ -144,3 +144,24 @@
   font-weight: 500;
   font-family: sans-serif;
 }
+
+.btn {
+  background-color: #1a2848;
+  width: auto;
+  padding: 10px;
+  margin-right: 10px;
+  margin-top: 30px;
+  color: #ffffff;
+  &__createTask {
+    width: 150px;
+  }
+  &:hover {
+    opacity: 0.7;
+    border: 2px solid #1a2848;
+  }
+  &:active {
+    background-color: #ffffff;
+    color: #1a2848;
+    border: 3px solid #1a2848;
+  }
+}

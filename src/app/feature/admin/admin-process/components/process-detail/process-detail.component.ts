@@ -14,6 +14,9 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationBoxDeleteComponent } from './notificationBox/notification-box-delete/notification-box-delete.component';
 import { NotificationBoxUpdateComponent } from './notificationBox/notification-box-update/notification-box-update.component';
+import { TaskCreationComponent } from '../task-creation/task-creation.component';
+import { NotificationBoxUpdateDateComponent } from './notificationBox/notification-box-update-date/notification-box-update-date.component';
+import { format, time } from 'src/app/utils/date-utils';
 
 @Component({
   selector: 'app-process-detail',
@@ -48,6 +51,7 @@ export class ProcessDetailComponent implements OnInit {
   }
 
   @Input() project: Project;
+  @Input() task: Task;
   @Input() tasklist: Task[] = [];
   @Input() projectList: Project[] = [];
 
@@ -62,6 +66,8 @@ export class ProcessDetailComponent implements OnInit {
   private detectChanges(): void {
     this.route.params.subscribe((params: any) => {
       this.getProjectById(params.id);
+      this.getProjectList();
+      this.getTaskList();
     });
     this.cdr.detectChanges();
   }
@@ -76,8 +82,16 @@ export class ProcessDetailComponent implements OnInit {
   getTaskList() {
     this.taskService.getTaskList().subscribe({
       next: (task: any) => {
-        this.tasklist = task;
-        console.log('call api get all tasks successfully!');
+        const tasks = task.map((item: any) => {
+          return {
+            ...item,
+            taskStartAt: item.taskStartAt ? format(item.taskStartAt) : null,
+            taskEndAt: item.taskEndAt ? format(item.taskEndAt) : null,
+          };
+        });
+        console.log('task', tasks);
+        this.tasklist = tasks;
+        console.log('call api get all tasks successfully!' + task);
       },
       error: (error) => {
         console.log(error);
@@ -131,7 +145,7 @@ export class ProcessDetailComponent implements OnInit {
     });
   }
 
-  updateDialogProject(project: Project) {
+  updateDialogProjectName(project: Project) {
     const dialogRef = this.dialog.open(NotificationBoxUpdateComponent, {
       width: '500px',
       data: {
@@ -151,23 +165,90 @@ export class ProcessDetailComponent implements OnInit {
     this.detectChanges();
   }
 
+  updateDialogProjectDate(project: Project) {
+    const dialogRef = this.dialog.open(NotificationBoxUpdateDateComponent, {
+      width: '500px',
+      data: {
+        projectStartAt: project.projectStartAt,
+        projectId: project.projectId,
+      },
+    });
+    dialogRef.afterClosed().subscribe((response) => {
+      console.log('updated project successfully: ' + response);
+      this.projectService.updateProject(response).subscribe(() => {
+        console.log('handle update successfully:' + this.project);
+        this.route.params.subscribe((params: any) => {
+          this.getProjectById(params.id);
+        });
+      });
+    });
+    this.detectChanges();
+  }
+
+  createDialogTask(projectId: any) {
+    const dialogRef = this.dialog.open(TaskCreationComponent, {
+      width: '500px',
+      data: {
+        projectId: projectId,
+        task: this.task,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((data) => {
+      this.tasklist = [
+        ...this.tasklist,
+        {
+          ...data,
+          taskStartAt: format(new Date(data.taskStartAt)),
+          taskEndAt: format(new Date(data.taskEndAt)),
+        },
+      ];
+      data = {
+        ...data,
+        taskStartAt: time(data.taskStartAt),
+        taskEndAt: time(data.taskEndAt),
+      };
+      this.handleCreateTask(data);
+    });
+  }
+
   handleUpdateName(event: Event): void {
     if (!this.isDisabledName) {
       this.project.projectName = (event.target as HTMLInputElement).value;
       this.isDisabledName = true;
-      this.updateDialogProject(this.project);
+      this.updateDialogProjectName(this.project);
     }
   }
   handleUpdateInfor(event: Event): void {
     if (!this.isDisabledInfor) {
       this.project.projectStartAt = (event.target as HTMLInputElement).value;
       this.isDisabledInfor = true;
-      this.updateProject(this.project);
+      this.updateDialogProjectDate(this.project);
     }
   }
 
   handleDelete(projectId: string) {
     this.deleteTask(projectId);
+  }
+
+  handleCreateTask(task: Task) {
+    this.createTask(task);
+    this.detectChanges();
+  }
+
+  createTask(task: Task) {
+    this.taskService.createTask(task).subscribe({
+      next: (task: any) => {
+        this.task = task;
+        this.route.params.subscribe((params: any) => {
+          this.getProjectById(params.id);
+          this.taskService.getTaskList();
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   updateProject(project: Project) {

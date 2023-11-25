@@ -19,9 +19,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { NotificationBoxComponent } from './components/process-detail/notification-box/notification-box.component';
 import { NotificationBoxUpdateComponent } from './components/process-detail/notificationBox/notification-box-update/notification-box-update.component';
 import { NotificationBoxDeleteComponent } from './components/process-detail/notificationBox/notification-box-delete/notification-box-delete.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { NotificationBoxUpdateDateComponent } from './components/process-detail/notificationBox/notification-box-update-date/notification-box-update-date.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 @NgModule({
   declarations: [
     AdminProcessComponent,
@@ -32,6 +36,7 @@ import { NotificationBoxDeleteComponent } from './components/process-detail/noti
     ProcessCreationComponent,
     NotificationBoxUpdateComponent,
     NotificationBoxDeleteComponent,
+    NotificationBoxUpdateDateComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +53,10 @@ import { NotificationBoxDeleteComponent } from './components/process-detail/noti
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    MatInputModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatAutocompleteModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
