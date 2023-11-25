@@ -59,8 +59,8 @@ export class TaskService {
 
   getSubtaskList(taskId: string): Observable<Subtask[]> {
     return this.httpClient.get<Subtask[]>(`${api}/${taskId}/subtasks`).pipe(
-      tap((taskId) => {
-        console.log('Successfully retrieved subtask by taskId: ', taskId);
+      tap((subTasks) => {
+        console.log('Successfully retrieved subtask by taskId: ', subTasks);
       }),
       catchError(this.handleError)
     );
