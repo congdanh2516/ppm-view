@@ -1,5 +1,5 @@
 export interface Subtask {
-  subTaskId?: string;
-  subTaskName: string;
-  taskParentId: string;
+  subTaskId?: string | undefined;
+  subTaskName: string | undefined;
+  taskParentId: string | undefined;
 }

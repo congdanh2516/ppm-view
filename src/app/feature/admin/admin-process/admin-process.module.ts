@@ -26,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NotificationBoxUpdateDateComponent } from './components/process-detail/notificationBox/notification-box-update-date/notification-box-update-date.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { NotificationBoxCreateSubtaskComponent } from './components/process-detail/notificationBox/notification-box-create-subtask/notification-box-create-subtask.component';
 @NgModule({
   declarations: [
     AdminProcessComponent,
@@ -37,6 +38,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     NotificationBoxUpdateComponent,
     NotificationBoxDeleteComponent,
     NotificationBoxUpdateDateComponent,
+    NotificationBoxCreateSubtaskComponent,
   ],
   imports: [
     CommonModule,

@@ -18,6 +18,10 @@ import { TaskCreationComponent } from '../task-creation/task-creation.component'
 import { NotificationBoxUpdateDateComponent } from './notificationBox/notification-box-update-date/notification-box-update-date.component';
 import { format, time } from 'src/app/utils/date-utils';
 import { Subtask } from 'src/app/core/models/subtask';
+import { TaskModificationComponent } from '../task-modification/task-modification.component';
+import { log } from 'console';
+import { NotificationBoxCreateSubtaskComponent } from './notificationBox/notification-box-create-subtask/notification-box-create-subtask.component';
+import { SubtaskService } from 'src/app/core/services/subtask/subtask.service';
 
 @Component({
   selector: 'app-process-detail',
@@ -65,7 +69,8 @@ export class ProcessDetailComponent implements OnInit {
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private subtaskService: SubtaskService
   ) {}
 
   reloadComponent() {
@@ -182,6 +187,20 @@ export class ProcessDetailComponent implements OnInit {
     this.detectChanges();
   }
 
+  updateDialogTask(task: Task) {
+    const dialogRef = this.dialog.open(TaskModificationComponent, {
+      width: '500px',
+      data: {
+        task: task,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((response) => {
+      console.log('TaskModificationComponent id: ' + task.taskId);
+    });
+    this.detectChanges();
+  }
+
   updateDialogProjectDate(project: Project) {
     const dialogRef = this.dialog.open(NotificationBoxUpdateDateComponent, {
       width: '500px',
@@ -200,6 +219,28 @@ export class ProcessDetailComponent implements OnInit {
       });
     });
     this.detectChanges();
+  }
+
+  createDialogSubtask(task: Task) {
+    const dialogRef = this.dialog.open(NotificationBoxCreateSubtaskComponent, {
+      width: '500px',
+      data: {
+        taskId: task.taskId,
+        taskName: task.taskName,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        // Kiểm tra xem có dữ liệu được trả về từ hộp thoại không
+        // Nếu có, thêm subtask mới vào subtasklist
+        console.log('test data', data);
+        this.subtasklist = [...this.subtasklist, { ...data }];
+
+        // Các công việc khác bạn muốn thực hiện trong hàm này
+        this.handleCreateSubtask(data);
+      }
+    });
   }
 
   createDialogTask(projectId: any) {
@@ -252,6 +293,27 @@ export class ProcessDetailComponent implements OnInit {
   handleCreateTask(task: Task) {
     this.createTask(task);
     this.cdr.detectChanges();
+  }
+
+  handleCreateSubtask(subtask: Subtask) {
+    this.createSubtask(subtask);
+    this.cdr.detectChanges();
+  }
+
+  createSubtask(subtask: Subtask) {
+    this.subtaskService.createTask(subtask).subscribe({
+      next: (subtask: any) => {
+        this.subtask = subtask;
+        this.route.params.subscribe((params: any) => {
+          this.getProjectById(params.id);
+          this.taskService.getTaskList();
+        });
+        this.reloadComponent();
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   createTask(task: Task) {
