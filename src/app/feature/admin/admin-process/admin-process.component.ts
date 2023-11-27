@@ -24,6 +24,7 @@ export class AdminProcessComponent {
 
   openCreationProcessDialog() {
     const dialogRef = this.dialog.open(ProcessCreationComponent, {
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {

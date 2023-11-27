@@ -1,0 +1,38 @@
+<!-- <div class="confirm-box">
+    <div class="confirm-box__content">
+        <div class="confirm-box__content__title">
+            {{ title }}
+        </div>
+        <div class="confirm-box__content__description">
+            {{ description }}
+        </div>
+    </div>
+    <div class="confirm-box__action">
+        <div class="confirm-box__action__cancel">Hủy</div>
+        <div class="confirm-box__action__accept">OK</div>
+    </div>
+</div> -->
+
+
+<div *ngIf="isDisplay">
+    <div class="confirm" [class.confirm--active]="fadeBackground">
+        <div class="confirm-box shadow" [class.slideOutUp]="cancel_var">
+            <div class="confirm-box__content">
+                <div class="confirm-box__content__title">
+                    {{ message?.title }} 
+                </div>
+                <div class="confirm-box__content__description">
+                    {{ message?.description }}
+                </div>
+            </div>
+            <div class="confirm-box__action">
+                <div class="confirm-box__action__cancel" (click)="cancel()">
+                    Hủy
+                </div>
+                <div class="confirm-box__action__accept" (click)="accept()">
+                    Đồng ý
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

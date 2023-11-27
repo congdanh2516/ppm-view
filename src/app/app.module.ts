@@ -11,6 +11,7 @@ import { AdminProcessModule } from './feature/admin/admin-process/admin-process.
 import { AuthenticationModule } from './feature/authentication/authentication.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SharedModule } from './shared/shared.module';
     AuthenticationModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

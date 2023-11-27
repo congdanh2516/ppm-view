@@ -2,11 +2,11 @@
     <div class="sign-in__project-signature">
         COLD STORAGE
     </div>
-    <div class="sign-in__account-info">
+    <form class="sign-in__account-info" [formGroup]="signInForm" (ngSubmit)="signIn()">
         <div class="sign-in__account-info__heading">
             SIGN IN 
         </div>
-        <form class="sign-in__account-info__input" [formGroup]="signInForm" (ngSubmit)="signIn()">
+        <div class="sign-in__account-info__input">
             <div class="sign-in__account-info__input__username">
                 <div class="icon">
                     <fa-icon [icon]="faUser"></fa-icon>
@@ -27,7 +27,7 @@
                     <fa-icon [icon]="faEyeSlash" *ngIf="!hiddenPassword"></fa-icon>
                 </div>
             </div>
-        </form>
+        </div>
         <div class="sign-in__account-info__error">
             <app-error-message 
                 *ngIf="(signInForm.get('username')?.errors?.['required'] 
@@ -49,5 +49,5 @@
             <div class="sign-in__account-info__button__forgot-pass">Forgot password?</div>
             <button class="sign-in__account-info__button__sign-in" type="submit" [disabled]="signInForm.invalid">Sign in</button>
         </div>
-    </div>
+    </form>
 </div>

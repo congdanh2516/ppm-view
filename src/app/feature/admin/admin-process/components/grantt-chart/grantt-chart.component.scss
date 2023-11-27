@@ -1,0 +1,46 @@
+.grantt {
+    display: flex;
+    &__task-info {
+        &__heading {
+            height: 30px;
+            border: 1px solid red;
+        }
+        &__task-list {
+            &__item {
+                height: 50px;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+    }
+    &__process {
+        position: relative;
+        &__date-division {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 1px solid green;
+            display: flex;
+            height: 100px;
+            &__date {
+                box-sizing: border-box;
+                height: 100%;
+                width: 30px;
+                border: 1px solid red;
+            }
+        }
+        &__processing-bar-list {
+            margin-top: 30px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            &__item {
+                display: flex;
+                align-items: center;
+                height: 50px;
+                border: 1px solid red;
+            }
+        }
+    }
+}
