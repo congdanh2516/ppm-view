@@ -19,7 +19,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-<<<<<<< HEAD
 import { NotificationBoxUpdateComponent } from './components/process-detail/notificationBox/notification-box-update/notification-box-update.component';
 import { NotificationBoxDeleteComponent } from './components/process-detail/notificationBox/notification-box-delete/notification-box-delete.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -31,11 +30,9 @@ import { NotificationBoxCreateSubtaskComponent } from './components/process-deta
 import { NotificationBoxUpdateSubtaskComponent } from './components/process-detail/notificationBox/notification-box-update-subtask/notification-box-update-subtask.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NotificationBoxMessageComponent } from './components/process-detail/notificationBox/notification-box-message/notification-box-message.component';
-=======
 import { GranttChartComponent } from './components/grantt-chart/grantt-chart.component';
 import { ProcessingBarComponent } from './components/grantt-chart/processing-bar/processing-bar.component';
 
->>>>>>> main
 @NgModule({
   declarations: [
     AdminProcessComponent,
@@ -44,17 +41,14 @@ import { ProcessingBarComponent } from './components/grantt-chart/processing-bar
     TaskModificationComponent,
     ExampleComponent,
     ProcessCreationComponent,
-<<<<<<< HEAD
     NotificationBoxUpdateComponent,
     NotificationBoxDeleteComponent,
     NotificationBoxUpdateDateComponent,
     NotificationBoxCreateSubtaskComponent,
     NotificationBoxUpdateSubtaskComponent,
     NotificationBoxMessageComponent,
-=======
     GranttChartComponent,
-    ProcessingBarComponent
->>>>>>> main
+    ProcessingBarComponent,
   ],
   imports: [
     CommonModule,
