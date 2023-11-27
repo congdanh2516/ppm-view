@@ -19,9 +19,15 @@ import { NotificationBoxUpdateDateComponent } from './notificationBox/notificati
 import { format, time } from 'src/app/utils/date-utils';
 import { Subtask } from 'src/app/core/models/subtask';
 import { TaskModificationComponent } from '../task-modification/task-modification.component';
-import { log } from 'console';
 import { NotificationBoxCreateSubtaskComponent } from './notificationBox/notification-box-create-subtask/notification-box-create-subtask.component';
 import { SubtaskService } from 'src/app/core/services/subtask/subtask.service';
+import { NotificationBoxUpdateSubtaskComponent } from './notificationBox/notification-box-update-subtask/notification-box-update-subtask.component';
+import { NotificationBoxMessageComponent } from './notificationBox/notification-box-message/notification-box-message.component';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-process-detail',
@@ -70,7 +76,8 @@ export class ProcessDetailComponent implements OnInit {
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private router: Router,
-    private subtaskService: SubtaskService
+    private subtaskService: SubtaskService,
+    private _snackBar: MatSnackBar
   ) {}
 
   reloadComponent() {
@@ -167,6 +174,28 @@ export class ProcessDetailComponent implements OnInit {
     });
   }
 
+  deleteDialogSubTask(subTask: Subtask): void {
+    const dialogRef = this.dialog.open(NotificationBoxDeleteComponent, {
+      width: '500px',
+      data: {
+        taskId: subTask.subTaskId,
+        taskName: subTask.subTaskName,
+      },
+    });
+    dialogRef.afterClosed().subscribe((response) => {
+      console.log('Dialog closed with result:', response.taskId);
+      this.subtaskService.deleteSubtask(response.taskId).subscribe(() => {
+        this.subtasklist = this.subtasklist.filter(
+          (subtask) => subTask.subTaskId !== response.taskId
+        );
+        console.log('taskList handle delete' + this.tasklist);
+        this.route.params.subscribe((params: any) => {
+          this.getProjectById(params.id);
+        });
+      });
+    });
+  }
+
   updateDialogProjectName(project: Project) {
     const dialogRef = this.dialog.open(NotificationBoxUpdateComponent, {
       width: '500px',
@@ -199,6 +228,35 @@ export class ProcessDetailComponent implements OnInit {
       console.log('TaskModificationComponent id: ' + task.taskId);
     });
     this.detectChanges();
+  }
+
+  updateDialogSubtask(subtask: Subtask, task: Task) {
+    const dialogRef = this.dialog.open(NotificationBoxUpdateSubtaskComponent, {
+      width: '500px',
+      data: {
+        subtask: subtask,
+        taskId: task.taskId,
+        taskName: task.taskName,
+      },
+    });
+
+    dialogRef.componentInstance.cancelUpdate.subscribe(() => {
+      this.detectChanges();
+      dialogRef.close();
+    });
+
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        const updatedSubtaskIndex = this.subtasklist.findIndex(
+          (item) => item.subTaskId === subtask.subTaskId
+        );
+        if (updatedSubtaskIndex !== -1) {
+          this.subtasklist[updatedSubtaskIndex] = { ...data };
+        }
+        this.handleUpdateSubtask(data);
+      }
+      this.detectChanges();
+    });
   }
 
   updateDialogProjectDate(project: Project) {
@@ -300,8 +358,13 @@ export class ProcessDetailComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
+  handleUpdateSubtask(subtask: Subtask) {
+    this.updataSubtask(subtask);
+    this.cdr.detectChanges();
+  }
+
   createSubtask(subtask: Subtask) {
-    this.subtaskService.createTask(subtask).subscribe({
+    this.subtaskService.createSubtask(subtask).subscribe({
       next: (subtask: any) => {
         this.subtask = subtask;
         this.route.params.subscribe((params: any) => {
@@ -376,4 +439,28 @@ export class ProcessDetailComponent implements OnInit {
       });
     }
   }
+
+  updataSubtask(subtask: Subtask) {
+    this.subtaskService.updateSubtask(subtask).subscribe({
+      next: (subtask: any) => {
+        this.subtask = subtask;
+        this.route.params.subscribe((params: any) => {
+          this.getProjectById(params.id);
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+  // horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  // verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  // openSnackBar(duration: number, message: string) {
+  //   this._snackBar.openFromComponent(NotificationBoxMessageComponent, {
+  //     duration: duration * 1000,
+  //     data: { message: message },
+  //     horizontalPosition: this.horizontalPosition,
+  //     verticalPosition: this.verticalPosition, // Truyền dữ liệu message vào component
+  //   });
+  // }
 }

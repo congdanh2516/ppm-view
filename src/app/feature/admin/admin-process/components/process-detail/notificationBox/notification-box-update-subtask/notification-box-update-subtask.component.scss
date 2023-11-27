@@ -1,0 +1,62 @@
+@import "../../../../../../../../assets/scss/sass-config.scss";
+.btn-box {
+  &__success {
+    background-color: $green;
+    color: #fff !important;
+    &:hover {
+      opacity: 0.6;
+      color: $dark-blue !important;
+    }
+  }
+  &__close {
+    background-color: $red;
+    color: #fff !important;
+    &:hover {
+      opacity: 0.6;
+      color: $dark-blue !important;
+    }
+  }
+}
+
+.float-right {
+  float: right !important;
+}
+
+.float-left {
+  float: left !important;
+}
+
+.box-title {
+  font-size: 24px;
+  font-family: sans-serif;
+  font-weight: 600;
+  text-align: $dark-blue;
+  margin-bottom: 30px !important;
+}
+
+.text-content {
+  color: #000 !important;
+  &__textName {
+    color: $red !important;
+  }
+}
+
+.box-content {
+  &__field-100 {
+    width: 100%;
+    border-radius: 30px !important;
+  }
+  &__field-30 {
+    width: 30%;
+  }
+  &__field-60 {
+    width: 60%;
+  }
+}
+
+.chip-list {
+  &__chip-item {
+    margin-right: 1%;
+    margin-bottom: 2%;
+  }
+}

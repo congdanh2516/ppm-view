@@ -110,9 +110,10 @@
         >
           <div
             *ngIf="project?.projectId == task.projectId"
-            class="table-task__body-task__task__content-task"
+            class="table-task__body-task__task__content-task btn-hover"
+            (click)="getSubtasks(task.taskId)"
           >
-            <div class="row" (click)="getSubtasks(task.taskId)">
+            <div class="row">
               <div class="col-1">{{ i + 1 }}</div>
               <div class="col-2">{{ task.taskName }}</div>
               <div class="col-3">{{ task.taskDescription }}</div>
@@ -210,12 +211,8 @@
                   <div class="col-1 padding-left-10">
                     <div *ngIf="j === 0">{{ i + 1 }}.{{ j + 1 }}</div>
                   </div>
-                  <div class="col-2">{{ subtask.subTaskName }}</div>
+                  <div class="col-4">{{ subtask.subTaskName }}</div>
                   <div class="col-5">{{ subtask.taskParentId }}</div>
-                  <div class="col-1 text-center"></div>
-                  <!-- <div class="col-1"></div> -->
-                  <!-- <div class="col-1"></div> -->
-                  <div class="col-1 text-center"></div>
                   <div class="col-2 text-right">
                     <div class="margin-right-10">
                       <span
@@ -246,7 +243,10 @@
                         </svg>
                       </span>
                       <mat-menu #menusubtask="matMenu">
-                        <button mat-menu-item>
+                        <button
+                          mat-menu-item
+                          (click)="updateDialogSubtask(subtask, task)"
+                        >
                           <span class="margin-right-10">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -260,7 +260,10 @@
                           </span>
                           <span>Thay đổi</span>
                         </button>
-                        <button mat-menu-item>
+                        <button
+                          mat-menu-item
+                          (click)="deleteDialogSubTask(subtask)"
+                        >
                           <span class="margin-right-10">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

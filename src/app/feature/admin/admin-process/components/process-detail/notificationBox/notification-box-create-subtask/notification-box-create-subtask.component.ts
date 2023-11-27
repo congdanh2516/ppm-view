@@ -3,7 +3,6 @@ import { ProcessDetailComponent } from '../../process-detail.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProjectService } from 'src/app/core/services/project/project.service';
 import { Subtask } from 'src/app/core/models/subtask';
-import { Task } from 'src/app/core/models/task';
 
 @Component({
   selector: 'app-notification-box-create-subtask',

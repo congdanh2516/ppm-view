@@ -11,12 +11,31 @@ const api = 'http://103.221.220.183:8081/subtasks';
 export class SubtaskService {
   constructor(private httpClient: HttpClient) {}
 
-  createTask(subtask: Subtask): Observable<Subtask> {
+  createSubtask(subtask: Subtask): Observable<Subtask> {
     return this.httpClient.post<Subtask>(api, subtask).pipe(
       tap((subtask) => {
         console.log('Create task successfully:', subtask);
       }),
       catchError(this.handleError)
+    );
+  }
+
+  updateSubtask(subtask: Subtask): Observable<Subtask> {
+    return this.httpClient
+      .patch<Subtask>(`${api}/${subtask.subTaskId}`, subtask)
+      .pipe(
+        tap((subtask) => {
+          console.log('Updated task successfully:', subtask);
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  deleteSubtask(subtaskId: string): Observable<Subtask> {
+    return this.httpClient.delete<Subtask>(`${api}/${subtaskId}`).pipe(
+      tap((subTaskId) => {
+        console.log(`Delete task ${subTaskId} successfully`);
+      })
     );
   }
 
