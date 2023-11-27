@@ -1,7 +1,17 @@
 .grantt {
     display: flex;
     &__task-info {
-        
+        &__heading {
+            height: 30px;
+            border: 1px solid red;
+        }
+        &__task-list {
+            &__item {
+                height: 50px;
+                display: flex;
+                align-items: center;
+            }
+        }
 
     }
     &__process {
@@ -10,12 +20,14 @@
             position: absolute;
             top: 0;
             left: 0;
-            border: 1px solid red;
+            border: 1px solid green;
             display: flex;
             height: 100px;
             &__date {
+                box-sizing: border-box;
                 height: 100%;
-                // border: 1px solid red;
+                width: 30px;
+                border: 1px solid red;
             }
         }
         &__processing-bar-list {
@@ -23,7 +35,12 @@
             position: absolute;
             top: 0;
             left: 0;
-            border: 1px solid red;
+            &__item {
+                display: flex;
+                align-items: center;
+                height: 50px;
+                border: 1px solid red;
+            }
         }
     }
 }

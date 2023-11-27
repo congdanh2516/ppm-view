@@ -1,7 +1,12 @@
-<p>grantt-chart works!</p>
+<!-- <p>grantt-chart works!</p> -->
 <div class="grantt">
     <div class="grantt__task-info">
-        abc
+        <div class="grantt__task-info__heading"></div>
+        <div class="grantt__task-info__task-list">
+            <div class="grantt__task-info__task-list__item" *ngFor="let item of [].constructor(5)">
+                Cong viec 1
+            </div>
+        </div>
     </div>
     <div class="grantt__process">
         <div class="grantt__process__date-division">
@@ -10,7 +15,18 @@
             </div>
         </div>
         <div class="grantt__process__processing-bar-list">
-            <app-processing-bar></app-processing-bar>
+            <div class="grantt__process__processing-bar-list__item">
+                <app-processing-bar [startDateProcess]="'2023-11-20'"
+                                    [startDateTask]="'2023-11-28'"
+                                    [endDateTask]="'2023-11-30'"
+                ></app-processing-bar>
+            </div>
+            <div class="grantt__process__processing-bar-list__item">
+                <app-processing-bar [startDateProcess]="'2023-11-20'"
+                                    [startDateTask]="'2023-11-20'"
+                                    [endDateTask]="'2023-11-25'"
+                ></app-processing-bar>
+            </div>
         </div>
     </div>
 </div>
