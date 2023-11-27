@@ -10,6 +10,7 @@ const routes: Routes = [
   {path: 'admin',
     loadChildren: () => import('../app/feature/admin/admin.module').then(x => x.AdminModule)
   },
+  {path: '', redirectTo: '/sign-in', pathMatch: 'full'},
   {path: 'sign-in', component: SignInComponent},
   {path: 'header', component: HeaderComponent}
 ];

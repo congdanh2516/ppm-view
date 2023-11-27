@@ -1,0 +1,29 @@
+.grantt {
+    display: flex;
+    &__task-info {
+        
+
+    }
+    &__process {
+        position: relative;
+        &__date-division {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 1px solid red;
+            display: flex;
+            height: 100px;
+            &__date {
+                height: 100%;
+                // border: 1px solid red;
+            }
+        }
+        &__processing-bar-list {
+            margin-top: 30px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 1px solid red;
+        }
+    }
+}

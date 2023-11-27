@@ -6,7 +6,7 @@ import { ProcessDetailComponent } from "./components/process-detail/process-deta
 const routes: Routes = [
     {path: 'list', component: AdminProcessComponent},
     {path: 'detail', component: ProcessDetailComponent},
-    {path: '', redirectTo: 'list', pathMatch: 'full'},
+    // {path: '', redirectTo: 'list', pathMatch: 'full'},
     {path: 'task-creation', component: AdminProcessComponent},
     {path: 'detail/:id', component: ProcessDetailComponent },
 ];

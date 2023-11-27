@@ -1,0 +1,36 @@
+.grantt {
+    border: 1px solid black;
+    max-width: 800px;
+    display: flex;
+    overflow-x: auto;
+    height: 500px;
+    position: relative;
+    &__divide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        height: 100%;
+        &__date {
+            height: 100%;
+            min-width: 30px;
+            max-width: 40px;
+            border: 1px solid red;
+        }
+    }
+    &__processing-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99 !important;
+        // background-color: blue;
+        &__item {
+            position: relative;
+            width: 300px;
+            top: 50px;
+            left: 30px;
+            height: 20px;
+            border: 1px solid green;
+        }
+    }
+}
