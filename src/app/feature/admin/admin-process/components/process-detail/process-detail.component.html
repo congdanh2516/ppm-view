@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid p-5">
   <div class="row">
     <div class="col-9">
       <div class="row">
@@ -31,7 +31,7 @@
       </div>
       <div class="row mt-2 task-infor">
         <div class="col-6">
-          <div class="width-height-100-percent padding-5">
+          <div class="width-height-100-percent">
             <div class="row">
               Ngày bắt đầu:
               <div class="col-4 padding-right-0">
@@ -79,7 +79,7 @@
         </div>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-3 padding-right-0">
       <div class="float-right">
         <button (click)="createDialogTask(project.projectId)" class="btn">
           <div class="btn__createTask">Tạo công việc</div>
@@ -94,10 +94,10 @@
           <div class="col-1">&nbsp;</div>
           <div class="col-2 font-text">Tên công việc</div>
           <div class="col-3 font-text">Mô tả công việc</div>
-          <div class="col-1 font-text">Thời gian</div>
+          <div class="col-1 font-text text-center">Thời gian</div>
+          <div class="col-1 font-text"></div>
           <div class="col-1 font-text">Ngày bắt đầu</div>
           <div class="col-1 font-text">Ngày kết thúc</div>
-          <div class="col-1 font-text">Điều kiện</div>
           <div class="col-2 text-right margin-left-20-minus font-text">
             Tùy chọn
           </div>
@@ -106,15 +106,15 @@
       <div class="table-task__body-task">
         <div
           *ngFor="let task of tasklist; let i = index"
-          class="table-task__body-task__task"
+          class="table-task__body-task__task z-index-10"
         >
           <div
             *ngIf="project?.projectId == task.projectId"
             class="table-task__body-task__task__content-task btn-hover"
             (click)="getSubtasks(task.taskId)"
           >
-            <div class="row">
-              <div class="col-1">{{ i + 1 }}</div>
+            <div class="row margin-right-10">
+              <div class="col-1 padding-left-10">{{ i + 1 }}</div>
               <div class="col-2">{{ task.taskName }}</div>
               <div class="col-3">{{ task.taskDescription }}</div>
               <div class="col-1 text-center">{{ task.taskDuration }}</div>
@@ -123,7 +123,7 @@
               </div>
               <div class="col-1">{{ task.taskEndAt }}</div>
               <div class="col-1 text-center"></div>
-              <div class="col-2 text-right">
+              <div class="col-2 text-right padding-right-0">
                 <div class="margin-right-10">
                   <span
                     (click)="handleOnClick($event)"
@@ -208,9 +208,7 @@
             <div *ngIf="subtask.taskParentId === task.taskId">
               <div class="table-task__body-task__task__subtask">
                 <div class="row">
-                  <div class="col-1 padding-left-10">
-                    <div *ngIf="j === 0">{{ i + 1 }}.{{ j + 1 }}</div>
-                  </div>
+                  <div class="col-1 padding-left-10"></div>
                   <div class="col-4">{{ subtask.subTaskName }}</div>
                   <div class="col-5">{{ subtask.taskParentId }}</div>
                   <div class="col-2 text-right">
