@@ -4,6 +4,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ConfirmBoxModalComponent } from './confirm-box-modal/confirm-box-modal.component';
+import { ToastBoxModalComponent } from './toast-box-modal/toast-box-modal.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 
@@ -11,7 +14,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    ConfirmBoxModalComponent,
+    ToastBoxModalComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +25,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   exports: [
     ErrorMessageComponent,
-    HeaderComponent
+    HeaderComponent,
+    ConfirmBoxModalComponent,
+    ToastBoxModalComponent,
+    LoaderComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

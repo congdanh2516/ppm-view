@@ -1,0 +1,33 @@
+@import '../../../assets/scss/sass-config.scss';
+.toast-message {
+    padding: 40px 20px;
+    width: 400px;
+    background-color: white;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__icon {
+        position: relative;
+        left: 0px;
+        &--success {
+            color: $green;
+        }
+        &--error {
+            color: $red;
+        }
+    }
+    &__content {
+        margin-left: 10px;
+        text-align: center;
+        color:black;
+        font-weight: 600;
+        span {
+            color: #244C66;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="header__flex-info__divide"></div>
-        <div class="header__flex-info__profile">
+        <div class="header__flex-info__profile" (click)="openSignOutDialog()">
             <div class="header__flex-info__profile__title">PROFILE</div>
             <div class="header__flex-info__profile__value">
                 <div class="active-status"></div>
@@ -22,3 +22,15 @@
         </div>
     </div>
 </header>
+
+<div class="sign-out" *ngIf="signOutDialogOpening !== undefined"
+    (mouseover)="closeSignOutDialogTimeOutOnHover()"
+    (mouseout)="setSignOutDialogTimeOut()"
+    [class.slideDown]="signOutDialogOpening"
+    [class.slideUp]="!signOutDialogOpening && signOutDialogOpening !== undefined"    
+>
+    <div class="sign-out__btn" (click)="logOut()">
+        <fa-icon [icon]="faArrowRightFromBracket"></fa-icon>
+        Đăng xuất
+    </div>
+</div>

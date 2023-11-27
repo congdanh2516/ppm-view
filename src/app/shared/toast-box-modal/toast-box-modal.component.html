@@ -1,0 +1,12 @@
+<div class="toast-message shadow">
+    <div class="toast-message__icon">
+        <fa-icon [icon]="faCircleCheck" class="toast-message__icon--success" *ngIf="icon=='success'"></fa-icon>
+        <fa-icon [icon]="faCircleExclamation" class="toast-message__icon--error" *ngIf="icon=='error'"></fa-icon>
+        
+    </div>
+    <div class="toast-message__content">
+        <!-- [innerHTML]="message" -->
+        {{ message }}
+        <!-- <span (click)="autoLogIn()" *ngIf="autoSignIn">Tự động đăng nhập</span> -->
+    </div>
+</div>

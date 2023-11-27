@@ -1,12 +1,8 @@
-<!-- <div class="grantt">
-    <div class="grantt__divide">
-        <div class="grantt__divide__date" *ngFor="let item of  [].constructor(50)">
-            30
-        </div>
+<!-- <div *ngIf="confirm.isDisplay"> -->
+    <app-confirm-box-modal></app-confirm-box-modal>
+    <!-- </div> -->
+    
+    <div id="toast" *ngIf="notice.isDisplay">
+        <app-toast-box-modal [message]="notice.message" [icon]="notice.icon"></app-toast-box-modal>
     </div>
-    <div class="grantt__processing-bar">
-        <div class="grantt__processing-bar__item">abc</div>
-        <div class="grantt__processing-bar__item">abc</div>
-    </div>
-</div> -->
 <router-outlet></router-outlet>
