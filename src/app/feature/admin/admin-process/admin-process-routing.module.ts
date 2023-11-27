@@ -8,7 +8,7 @@ const routes: Routes = [
     {path: 'detail', component: ProcessDetailComponent},
     // {path: '', redirectTo: 'list', pathMatch: 'full'},
     {path: 'task-creation', component: AdminProcessComponent},
-    {path: 'detail/:id', component: ProcessDetailComponent },
+    {path: 'list/:id', component: ProcessDetailComponent },
 ];
 
 @NgModule({

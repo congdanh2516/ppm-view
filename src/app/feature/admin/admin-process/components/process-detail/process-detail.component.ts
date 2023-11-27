@@ -186,12 +186,9 @@ export class ProcessDetailComponent implements OnInit {
       console.log('Dialog closed with result:', response.taskId);
       this.subtaskService.deleteSubtask(response.taskId).subscribe(() => {
         this.subtasklist = this.subtasklist.filter(
-          (subtask) => subTask.subTaskId !== response.taskId
+          (item) => item.subTaskId !== response.taskId
         );
         console.log('taskList handle delete' + this.tasklist);
-        this.route.params.subscribe((params: any) => {
-          this.getProjectById(params.id);
-        });
       });
     });
   }
@@ -387,7 +384,7 @@ export class ProcessDetailComponent implements OnInit {
           this.getProjectById(params.id);
           this.taskService.getTaskList();
         });
-        this.reloadComponent();
+        // this.reloadComponent();
       },
       error: (error) => {
         console.log(error);

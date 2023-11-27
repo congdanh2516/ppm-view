@@ -32,6 +32,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NotificationBoxMessageComponent } from './components/process-detail/notificationBox/notification-box-message/notification-box-message.component';
 import { GranttChartComponent } from './components/grantt-chart/grantt-chart.component';
 import { ProcessingBarComponent } from './components/grantt-chart/processing-bar/processing-bar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { ProcessingBarComponent } from './components/grantt-chart/processing-bar
     MatChipsModule,
     MatAutocompleteModule,
     MatSnackBarModule,
+    HttpClientModule,
+    RouterModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

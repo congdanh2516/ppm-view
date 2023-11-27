@@ -12,6 +12,7 @@ import { AuthenticationModule } from './feature/authentication/authentication.mo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent],
