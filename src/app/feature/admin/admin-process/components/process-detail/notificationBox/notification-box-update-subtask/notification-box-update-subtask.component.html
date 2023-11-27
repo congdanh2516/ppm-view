@@ -1,0 +1,18 @@
+<h1 class="box-title" mat-dialog-title>Tạo công việc con</h1>
+<h2 class="box-title" mat-dialog-title>
+  {{ taskParentName }}/{{ subtask.subTaskName }}
+</h2>
+<div class="box-content" mat-dialog-content>
+  <mat-form-field class="box-content__field-100">
+    <mat-label>Tên công việc</mat-label>
+    <input matInput type="text" [(ngModel)]="subtask.subTaskName" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="float-right btn-box">
+  <button class="btn-box__close" mat-button (click)="onCancelClick()">
+    Không
+  </button>
+  <button class="btn-box__success" mat-button [mat-dialog-close]="subtask">
+    Đồng ý
+  </button>
+</div>

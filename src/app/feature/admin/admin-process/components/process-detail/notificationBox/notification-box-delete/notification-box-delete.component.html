@@ -1,0 +1,21 @@
+<h1 class="box-title" mat-dialog-title>Thông báo</h1>
+<div mat-dialog-content>
+  <p class="text-content">
+    Bạn có muốn xóa công việc
+    <span class="text-content__textName"
+      ><b>{{ data.taskName }}</b></span
+    >
+    này không?
+  </p>
+</div>
+<div class="float-right btn-box" mat-dialog-actions>
+  <button class="btn-box__close" mat-button (click)="onNoClick()">Không</button>
+  <button
+    class="btn-box__success"
+    mat-button
+    [mat-dialog-close]="data"
+    cdkFocusInitial
+  >
+    Đồng ý
+  </button>
+</div>
