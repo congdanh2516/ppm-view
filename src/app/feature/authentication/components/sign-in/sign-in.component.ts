@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { AuthenticationService } from '../../services/authentication.service';
+import { Router } from '@angular/router';
+import { ToastBoxModalService } from 'src/app/core/services/toast-box-modal.service';
 
 
 @Component({
@@ -18,7 +21,11 @@ export class SignInComponent implements OnInit {
   hiddenPassword: boolean = true;
   signInForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, 
+              private router: Router, 
+              private authentocationSV: AuthenticationService,
+              private toastSV: ToastBoxModalService
+  ) {
     this.signInForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
@@ -28,6 +35,14 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  signIn() {}
+  signIn() {
+    console.log("abc");
+    this.router.navigateByUrl("/admin/process/list");
+    this.toastSV.sendMessage({
+      isDisplay: true,
+      message: "Đăng nhập thành công",
+      icon: 'success'
+    })
+  }
 
 }

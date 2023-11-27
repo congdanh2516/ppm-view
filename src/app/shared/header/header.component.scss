@@ -7,6 +7,8 @@
     padding: 0 40px;
     background-color: $dark-blue;
     color: white;
+    position: relative;
+    z-index: 4;
     &__app-info {
         &__name {
             font: {
@@ -27,6 +29,7 @@
             }
         }
         &__profile {
+            cursor: pointer;
             &__value {
                 display: flex;
                 align-items: center;
@@ -48,5 +51,49 @@
             border: 1px solid #f8f8f8a8;
             margin: 0 20px;
         }
+    }
+}
+
+.sign-out {
+    width: 200px;
+    // height: 50px;
+    background-color: white;
+    border-radius: 3px;
+    position: absolute;
+    right: 40px;
+    top: 90px;
+    z-index: 1;
+    @extend %shadow;
+    padding: 10px;
+    &__btn {
+        cursor: pointer;
+        display: inline-block;
+        padding: 10px;
+    }
+}
+
+.slideDown {
+    animation: slideDown ease .5s forwards;
+}
+
+.slideUp {
+    animation: slideUp ease .5s forwards;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(calc(-100% - 20px));
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(0%)
+    }
+    to {
+        transform: translateY(calc(-100% - 20px))
     }
 }

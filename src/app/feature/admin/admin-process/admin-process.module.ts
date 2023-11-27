@@ -19,6 +19,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GranttChartComponent } from './components/grantt-chart/grantt-chart.component';
+import { ProcessingBarComponent } from './components/grantt-chart/processing-bar/processing-bar.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TaskCreationComponent,
     TaskModificationComponent,
     ExampleComponent,
-    ProcessCreationComponent
+    ProcessCreationComponent,
+    GranttChartComponent,
+    ProcessingBarComponent
   ],
   imports: [
     CommonModule,

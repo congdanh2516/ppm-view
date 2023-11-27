@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { GranttChartComponent } from "./admin-process/components/grantt-chart/grantt-chart.component";
 import { AdminComponent } from "./admin.component";
 
 const routes: Routes = [
@@ -9,7 +10,8 @@ const routes: Routes = [
                 loadChildren: () => import('../admin/admin-process/admin-process.module').then(x => x.AdminProcessModule)
             },
         ]
-    }
+    },
+    {path: 'grantt', component: GranttChartComponent}
 ];
 
 @NgModule({

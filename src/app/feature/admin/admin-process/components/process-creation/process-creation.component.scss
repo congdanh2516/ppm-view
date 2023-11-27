@@ -52,6 +52,15 @@
             &__create-btn {
                 @include button(150px, 50px, $dark-blue);
             }
+            &__cancel-btn {
+                margin-right: 10px;
+                border: none;
+                cursor: pointer;
+                width: 90px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
         }
     }
 }
