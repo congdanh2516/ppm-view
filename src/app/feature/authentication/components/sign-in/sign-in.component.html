@@ -47,7 +47,10 @@
         </div>
         <div class="sign-in__account-info__button">
             <div class="sign-in__account-info__button__forgot-pass">Forgot password?</div>
-            <button class="sign-in__account-info__button__sign-in" type="submit" [disabled]="signInForm.invalid">Sign in</button>
+            <button class="sign-in__account-info__button__sign-in" type="submit" [disabled]="signInForm.invalid">
+                <app-loader [size]="'15px'" [color]="'white'" *ngIf="isLoading; else btnname"></app-loader>
+                <ng-template #btnname>Sign in</ng-template>
+            </button>
         </div>
     </form>
 </div>

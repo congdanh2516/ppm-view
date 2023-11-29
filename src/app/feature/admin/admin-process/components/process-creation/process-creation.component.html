@@ -5,26 +5,28 @@
     <form class="process-creation__form" [formGroup]="processCreationForm" (ngSubmit)="createProcess()">
         <div class="process-creation__form__name-field">
             <label for="process-name">Tên quy trình</label>
-            <input type="text" name="" id="process-name" tabindex="-1" formControlName="processName">
+            <input type="text" name="" id="process-name" tabindex="-1" formControlName="projectName">
             <div class="error">
-                <app-error-message *ngIf="(processCreationForm.get('processName')?.errors?.['required'] 
-                    && processCreationForm.get('processName')?.touched)">
+                <app-error-message *ngIf="(processCreationForm.get('projectName')?.errors?.['required'] 
+                    && processCreationForm.get('projectName')?.touched)">
                     Vui lòng nhập tên quy trình
                 </app-error-message>
             </div>
         </div>
         <div class="process-creation__form__description-field">
             <label for="process-description">Mô tả</label>
-            <textarea type="text" name="" id="process-description" tabindex="-1" formControlName="description"></textarea>
+            <textarea type="text" name="" id="process-description" tabindex="-1" ></textarea>
+            <!-- formControlName="description" -->
         </div>
         <div class="process-creation__form__start-date-field">
             <label for="">Ngày bắt đầu</label>
-            <input type="date" name="" id="" value={{date}} min={{date}} tabindex="-1" formControlName="startDate">
+            <input type="date" name="" id="" value={{date}} min={{date}} tabindex="-1" formControlName="projectStartAt">
         </div>
         <div class="process-creation__form__action">
             <div (click)="onNoclick()" class="process-creation__form__action__cancel-btn">Cancel</div>
             <button type="submit" class="process-creation__form__action__create-btn">
-                Create
+                <app-loader size="15px" color="white" *ngIf="isLoading; else btnname"></app-loader>
+                <ng-template #btnname>Tạo quy trình</ng-template>
             </button>
         </div>
     </form>

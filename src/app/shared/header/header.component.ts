@@ -34,4 +34,5 @@ export class HeaderComponent {
   logOut() {
     this.authenticationSV.logOut();
   }
+  
 }

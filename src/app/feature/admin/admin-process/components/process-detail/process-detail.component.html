@@ -81,9 +81,9 @@
     </div>
     <div class="col-3">
       <div class="float-right">
-        <button (click)="createDialogTask(project.projectId)" class="btn">
+        <div (click)="createDialogTask(project.projectId)" class="button">
           <div class="btn__createTask">Tạo công việc</div>
-        </button>
+        </div>
       </div>
     </div>
   </div>
@@ -167,7 +167,7 @@
                           />
                         </svg>
                       </span>
-                      <span>Thay đổi</span>
+                      <span>Chỉnh sửa</span>
                     </button>
                     <button mat-menu-item (click)="createDialogSubtask(task)">
                       <span class="margin-right-10">
@@ -258,7 +258,7 @@
                               />
                             </svg>
                           </span>
-                          <span>Thay đổi</span>
+                          <span>Chỉnh sửa</span>
                         </button>
                         <button
                           mat-menu-item
@@ -287,5 +287,13 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+
+<div *ngFor="let item of taskList">
+  <p> {{ item.taskId }} </p>
+  <div *ngFor="let subtask of item.subtask">
+    <b>{{ subtask.subTaskId }}</b>
   </div>
 </div>
