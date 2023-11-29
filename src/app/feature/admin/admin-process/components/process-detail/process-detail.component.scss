@@ -29,6 +29,8 @@
 }
 .table-task {
   margin-top: 20px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
   margin-bottom: 20px;
   position: relative;
   &__heading-task {
@@ -36,7 +38,6 @@
     background-color: #ffffff;
     padding: 20px 0px 20px 0px;
     border-radius: 5px;
-    text-align: center;
   }
   &__body-task {
     position: static;
@@ -45,10 +46,9 @@
         position: static;
         margin-top: 5px;
         padding: 20px 0px 20px 0px;
-        padding-left: 20px;
-        border-radius: 5px;
         border-left: 10px solid #1a2848;
         background-color: #ffffff;
+        border-radius: 5px;
       }
       &__subtask {
         position: static;
@@ -58,6 +58,7 @@
         border-radius: 5px;
         border-left: 10px solid #1a2848;
         background-color: #ffffff;
+        z-index: 1;
       }
     }
   }
@@ -67,6 +68,9 @@
 }
 .padding-left-10 {
   padding-left: 20px;
+}
+.padding-right-20 {
+  padding-right: 20px;
 }
 .margin-left-50 {
   margin-left: 50px;
@@ -140,7 +144,7 @@
   padding-left: 0 !important;
 }
 .font-text {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   font-family: sans-serif;
 }
@@ -149,7 +153,6 @@
   background-color: #1a2848;
   width: auto;
   padding: 10px;
-  margin-right: 10px;
   margin-top: 30px;
   color: #ffffff;
   &__createTask {
