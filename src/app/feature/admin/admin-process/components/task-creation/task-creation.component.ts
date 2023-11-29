@@ -1,9 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProcessDetailComponent } from '../process-detail/process-detail.component';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProjectService } from 'src/app/core/services/project/project.service';
 import { TaskService } from 'src/app/core/services/task/task.service';
+import { AdminProcessService } from '../../services/admin-process/admin-process.service';
 
 @Component({
   selector: 'app-task-creation',
@@ -27,18 +28,35 @@ export class TaskCreationComponent {
 
   prerequisites = new FormControl<string[]>([]);
   creationForm: FormGroup;
+  isLoading = false;
 
   constructor(
     public dialogRef: MatDialogRef<ProcessDetailComponent>,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private adminProcessSV: AdminProcessService
   ) {
-    this.creationForm = this.fb.group({
 
+    console.log("datata: ", data);
+    this.creationForm = this.fb.group({
+      taskName: ['', [Validators.required]],
+      taskDescription: [''],
+      taskDuration: [],
+      projectId: this.data.projectId
     })
   }
 
   creatTask() {
-    
+    this.isLoading = true;
+    this.adminProcessSV.createTask(this.creationForm.value).subscribe((data: any) => {
+      this.adminProcessSV.scheduleProcess(this.data.projectId).subscribe((data2) => {
+        console.log("schedule: ", data2);
+      })
+      setTimeout(() => {
+        this.onNoClick();
+        this.isLoading = false;
+      }, 2000);
+    })
   }
 
   removeTopping(prerequisites: string): void {

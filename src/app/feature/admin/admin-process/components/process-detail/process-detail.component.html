@@ -7,7 +7,6 @@
             class="task-infor__taskname"
             type="text"
             name=""
-            [value]="project.projectName"
             [disabled]="isDisabledName ? true : false"
             [(ngModel)]="project.projectName"
             (change)="handleUpdateName($event)"
@@ -291,9 +290,25 @@
 </div>
 
 
-<div *ngFor="let item of taskList">
-  <p> {{ item.taskId }} </p>
-  <div *ngFor="let subtask of item.subtask">
-    <b>{{ subtask.subTaskId }}</b>
+  <!-- <div *ngFor="let item of taskList; trackBy: trackByFn">
+    <p> {{ item.taskId }} </p>
+    <div *ngFor="let subtask of item.subtask; trackBy: trackByFnn">
+      <b>{{ subtask.subTaskId }}</b>
+    </div>
+    <button (click)="show(item.subtask)">Click</button>
+</div> -->
+
+<mat-expansion-panel [class.disabled-pointer]="item.subtask?.length==0" hideToggle *ngFor="let item of taskList; trackBy: trackByFn">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{ item.taskId }}
+    </mat-panel-title>
+    <mat-panel-description >
+      
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <div *ngFor="let subtask of item.subtask; trackBy: trackByFnn">
+    {{ subtask.subTaskId }}
   </div>
-</div>
+</mat-expansion-panel>
+

@@ -22,6 +22,16 @@ export class AdminProcessService {
           
   }
 
+  createTask(newTask: any) {
+    let api: string = environment.url + "tasks";
+    return this.httpClient.post(api, newTask);
+  }
+
+  scheduleProcess(projectId: any) {
+    let api: string = environment.url + `projects/${projectId}/schedule`;
+    return this.httpClient.post(api, {});
+  }
+
   createProcess(newProcess: any) {
     let api: string = environment.url + "projects";
     return this.httpClient.post(api, newProcess);
