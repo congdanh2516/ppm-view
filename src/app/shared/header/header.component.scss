@@ -10,7 +10,9 @@
     position: relative;
     z-index: 4;
     &__app-info {
+        text-decoration: none;
         &__name {
+            color: white;
             font: {
                 size: 20px;
             }

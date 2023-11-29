@@ -50,7 +50,7 @@
             display: flex;
             justify-content: right;
             &__create-btn {
-                @include button(150px, 50px, $dark-blue);
+                @include button(200px, 50px, $dark-blue);
             }
             &__cancel-btn {
                 margin-right: 10px;

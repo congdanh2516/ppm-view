@@ -2,8 +2,9 @@ import { Component, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProjectService } from 'src/app/core/services/project/project.service';
 import { TaskService } from 'src/app/core/services/task/task.service';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Task } from 'src/app/core/models/task';
+import { ProcessDetailComponent } from '../process-detail/process-detail.component';
 
 @Component({
   selector: 'app-task-modification',
@@ -11,19 +12,33 @@ import { Task } from 'src/app/core/models/task';
   styleUrls: ['./task-modification.component.scss'],
 })
 export class TaskModificationComponent {
-  @Input() task: Task;
-
-  prerequisitesList: string[] = [];
+  prerequisitesList: string[] = [
+    'task 1 abcdefshjadg',
+    'task 2',
+    'task 3',
+    'task 4',
+    'task 5',
+    'task 5',
+    'task 5',
+    'task 5',
+    'task 5',
+    'task 5',
+  ];
 
   prerequisites = new FormControl<string[]>([]);
+  creationForm: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<TaskModificationComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private projectService: ProjectService,
-    private taskService: TaskService
+    public dialogRef: MatDialogRef<ProcessDetailComponent>,
+    private fb: FormBuilder
   ) {
-    this.task = this.data.task;
+    this.creationForm = this.fb.group({
+
+    })
+  }
+
+  creatTask() {
+    
   }
 
   removeTopping(prerequisites: string): void {
@@ -43,8 +58,10 @@ export class TaskModificationComponent {
   }
 
   onNoClick(): void {
-    this.dialogRef.close({
-      task: this.task,
-    });
+    this.dialogRef.close();
+  }
+
+  showOption() {
+    console.log("prerequiste: ", this.prerequisites);
   }
 }

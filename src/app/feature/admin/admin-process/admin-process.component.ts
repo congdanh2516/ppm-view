@@ -14,7 +14,6 @@ export class AdminProcessComponent {
   processList: Array<any> = [];
 
   constructor(public dialog: MatDialog, private adminProcessSV: AdminProcessService) {
-    // this.openCreationProcessDialog();
     this.getProcessList();
   }
 
@@ -33,19 +32,13 @@ export class AdminProcessComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.getProcessList();
     });
   }
 
   getProcessList() {
-    this.adminProcessSV.getProcessList().subscribe({
-      next: (data: any) => {
-        console.log("data: ", data);
-        this.processList = data;
-      },
-      error: () => {
-        console.log("Loi");
-      }
+    this.adminProcessSV.getProcessList().subscribe((data: any) => {
+      this.processList = data;
     })
   }
 }

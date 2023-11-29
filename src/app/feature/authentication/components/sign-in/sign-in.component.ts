@@ -20,6 +20,7 @@ export class SignInComponent implements OnInit {
 
   hiddenPassword: boolean = true;
   signInForm: FormGroup;
+  isLoading: boolean = false;
 
   constructor(private fb: FormBuilder, 
               private router: Router, 
@@ -36,13 +37,15 @@ export class SignInComponent implements OnInit {
   }
 
   signIn() {
-    console.log("abc");
-    this.router.navigateByUrl("/admin/process/list");
-    this.toastSV.sendMessage({
-      isDisplay: true,
-      message: "Đăng nhập thành công",
-      icon: 'success'
+    this.isLoading=true;
+    this.authentocationSV.signIn(this.signInForm.value).subscribe({
+      next: (personalInfo) => {
+        this.isLoading=false;
+        console.log("personalInfo: ", personalInfo);
+      },
+      error: () => {
+        console.log("Loi");
+      }
     })
   }
-
 }

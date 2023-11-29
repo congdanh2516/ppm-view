@@ -19,6 +19,12 @@ export class AdminProcessService {
               }),
               catchError(this.handleError)
             )
+          
+  }
+
+  createProcess(newProcess: any) {
+    let api: string = environment.url + "projects";
+    return this.httpClient.post(api, newProcess);
   }
 
   private handleError(error: HttpErrorResponse) {

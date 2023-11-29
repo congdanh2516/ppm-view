@@ -12,7 +12,7 @@ export class ToastBoxModalComponent {
   faCircleCheck=faCircleCheck;
   faCircleExclamation=faCircleExclamation;
 
-  @Input()icon: string = "success";
+  @Input()icon: string = "success"; //error
   @Input()message: string = 'abc';
   constructor() { }
   

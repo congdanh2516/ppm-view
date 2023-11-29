@@ -28,6 +28,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { AuthenticationService } from 'src/app/feature/authentication/services/authentication.service';
 
 @Component({
   selector: 'app-process-detail',
@@ -69,6 +70,10 @@ export class ProcessDetailComponent implements OnInit {
   @Input() subtask: Subtask;
   @Input() projectList: Project[] = [];
 
+
+  taskList: Array<any> = [];
+  projectId: string = "";
+
   constructor(
     private taskService: TaskService,
     private projectService: ProjectService,
@@ -77,8 +82,16 @@ export class ProcessDetailComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private router: Router,
     private subtaskService: SubtaskService,
-    private _snackBar: MatSnackBar
-  ) {}
+    private _snackBar: MatSnackBar,
+    private authenticationSV: AuthenticationService
+  ) {
+    this.route.params.subscribe((params: any) => {
+      this.projectId = params.id;
+      this.getProjectById(params.id);
+    });
+    this.getTaskList();
+    this.getProjectList();
+  }
 
   reloadComponent() {
     const currentUrl = this.router.url;
@@ -101,16 +114,27 @@ export class ProcessDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: any) => {
-      this.getProjectById(params.id);
-    });
-    this.getTaskList();
-    this.getProjectList();
+    
   }
 
   getTaskList() {
     this.taskService.getTaskList().subscribe({
       next: (task: any) => {
+        console.log("task list: ", task);
+        // task.forEach((item: any) => {
+          
+        // })
+        this.taskList = task;
+        for(let i=0; i<this.taskList.length; i ++) {
+          this.taskService.getSubtaskList(this.taskList[i].taskId).subscribe((subtaskList) => {
+            this.taskList[i].substask = subtaskList;
+            console.log("subtask: ", subtaskList);
+          })
+        }
+
+        console.log("task - subtask: ", task);
+
+
         const tasks = task.map((item: any) => {
           return {
             ...item,
@@ -215,6 +239,7 @@ export class ProcessDetailComponent implements OnInit {
 
   updateDialogTask(task: Task) {
     const dialogRef = this.dialog.open(TaskModificationComponent, {
+      disableClose: true,
       width: '500px',
       data: {
         task: task,
@@ -229,6 +254,7 @@ export class ProcessDetailComponent implements OnInit {
 
   updateDialogSubtask(subtask: Subtask, task: Task) {
     const dialogRef = this.dialog.open(NotificationBoxUpdateSubtaskComponent, {
+      disableClose: true,
       width: '500px',
       data: {
         subtask: subtask,
@@ -300,7 +326,9 @@ export class ProcessDetailComponent implements OnInit {
 
   createDialogTask(projectId: any) {
     const dialogRef = this.dialog.open(TaskCreationComponent, {
+      disableClose: true,
       width: '500px',
+      height : 'auto',
       data: {
         projectId: projectId,
         task: this.task,
