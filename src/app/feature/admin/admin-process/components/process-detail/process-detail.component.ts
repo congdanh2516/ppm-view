@@ -443,7 +443,6 @@ export class ProcessDetailComponent implements OnInit {
       },
     });
   }
-
   getSubtasks(taskId: any) {
     console.log('taskId: ', taskId);
 
