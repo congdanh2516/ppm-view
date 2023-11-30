@@ -95,33 +95,33 @@
           <div class="col-3 font-text">Mô tả công việc</div>
           <div class="col-1 font-text text-center">Thời gian</div>
           <div class="col-1 font-text"></div>
-          <div class="col-1 font-text">Ngày bắt đầu</div>
-          <div class="col-1 font-text">Ngày kết thúc</div>
+          <div class="col-1 font-text padding-left-0">Ngày bắt đầu</div>
+          <div class="col-1 font-text padding-left-0">Ngày kết thúc</div>
           <div class="col-2 text-right margin-left-20-minus font-text">
             Tùy chọn
           </div>
         </div>
       </div>
-      <div class="table-task__body-task">
-        <div
-          *ngFor="let task of tasklist; let i = index"
-          class="table-task__body-task__task"
+      <mat-expansion-panel
+        class="table-task__body-task mt-2 background-gray padding-left-0 padding-right-0"
+        [class.disabled-pointer]="item.subtask?.length == 0"
+        hideToggle
+        *ngFor="let item of taskList; trackBy: trackByFn"
+      >
+        <mat-expansion-panel-header
+          class="table-task__body-task__task padding-left-0 padding-right-0"
         >
-          <div
-            *ngIf="project?.projectId == task.projectId"
+          <mat-panel-title
             class="table-task__body-task__task__content-task btn-hover"
-            (click)="getSubtasks(task.taskId)"
           >
             <div class="row margin-right-10">
-              <div class="col-1 padding-left-10">{{ i + 1 }}</div>
-              <div class="col-2">{{ task.taskName }}</div>
-              <div class="col-3">{{ task.taskDescription }}</div>
-              <div class="col-1 text-center">{{ task.taskDuration }}</div>
-              <div class="col-1">
-                {{ task.taskStartAt }}
-              </div>
-              <div class="col-1">{{ task.taskEndAt }}</div>
+              <div class="col-1 padding-left-10"></div>
+              <div class="col-2">{{ item.taskName }}</div>
+              <div class="col-3">{{ item.taskDescription }}</div>
+              <div class="col-1 text-center">{{ item.taskDuration }}</div>
               <div class="col-1 text-center"></div>
+              <div class="col-1">{{ item.taskStartAt }}</div>
+              <div class="col-1">{{ item.taskEndAt }}</div>
               <div class="col-2 text-right padding-right-0">
                 <div class="margin-right-10">
                   <span
@@ -153,7 +153,7 @@
                     </svg>
                   </span>
                   <mat-menu #menutask="matMenu">
-                    <button mat-menu-item (click)="updateDialogTask(task)">
+                    <button mat-menu-item (click)="updateDialogTask(item)">
                       <span class="margin-right-10">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +168,7 @@
                       </span>
                       <span>Chỉnh sửa</span>
                     </button>
-                    <button mat-menu-item (click)="createDialogSubtask(task)">
+                    <button mat-menu-item (click)="createDialogSubtask(item)">
                       <span class="margin-right-10">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -183,7 +183,7 @@
                       </span>
                       <span>Thêm công việc con</span>
                     </button>
-                    <button mat-menu-item (click)="deleteDialogTask(task)">
+                    <button mat-menu-item (click)="deleteDialogTask(item)">
                       <span class="margin-right-10">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -202,111 +202,85 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div *ngFor="let subtask of subtasklist; let j = index">
-            <div *ngIf="subtask.taskParentId === task.taskId">
-              <div class="table-task__body-task__task__subtask">
-                <div class="row">
-                  <div class="col-1 padding-left-10"></div>
-                  <div class="col-4">{{ subtask.subTaskName }}</div>
-                  <div class="col-5">{{ subtask.taskParentId }}</div>
-                  <div class="col-2 text-right">
-                    <div class="margin-right-10">
-                      <span
-                        class="margin-right-10 opacity"
-                        [matMenuTriggerFor]="menusubtask"
-                      >
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div *ngFor="let subtask of item.subtask; trackBy: trackByFnn">
+          <div class="table-task__body-task__task__subtask">
+            <div class="row">
+              <div class="col-1 padding-left-10"></div>
+              <div class="col-4">{{ subtask.subTaskName }}</div>
+              <div class="col-5">{{ subtask.taskParentId }}</div>
+              <div class="col-2 text-right">
+                <div class="margin-right-10">
+                  <span
+                    class="margin-right-10 opacity"
+                    [matMenuTriggerFor]="menusubtask"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="1.5rem"
+                      width="1.5rem"
+                      viewBox="0 0 448 512"
+                    >
+                      <path
+                        d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
+                      />
+                    </svg>
+                  </span>
+                  <span class="opacity">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.5rem"
+                      height="1.5rem"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
+                      />
+                    </svg>
+                  </span>
+                  <mat-menu #menusubtask="matMenu">
+                    <button
+                      mat-menu-item
+                      (click)="updateDialogSubtask(subtask, item)"
+                    >
+                      <span class="margin-right-10">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          height="1.5rem"
-                          width="1.5rem"
+                          height="1em"
+                          viewBox="0 0 512 512"
+                        >
+                          <path
+                            d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"
+                          />
+                        </svg>
+                      </span>
+                      <span>Chỉnh sửa</span>
+                    </button>
+                    <button
+                      mat-menu-item
+                      (click)="deleteDialogSubTask(subtask)"
+                    >
+                      <span class="margin-right-10">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="1em"
                           viewBox="0 0 448 512"
                         >
                           <path
-                            d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
+                            d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"
                           />
                         </svg>
                       </span>
-                      <span class="opacity">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="1.5rem"
-                          height="1.5rem"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"
-                          />
-                        </svg>
-                      </span>
-                      <mat-menu #menusubtask="matMenu">
-                        <button
-                          mat-menu-item
-                          (click)="updateDialogSubtask(subtask, task)"
-                        >
-                          <span class="margin-right-10">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              height="1em"
-                              viewBox="0 0 512 512"
-                            >
-                              <path
-                                d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"
-                              />
-                            </svg>
-                          </span>
-                          <span>Chỉnh sửa</span>
-                        </button>
-                        <button
-                          mat-menu-item
-                          (click)="deleteDialogSubTask(subtask)"
-                        >
-                          <span class="margin-right-10">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              height="1em"
-                              viewBox="0 0 448 512"
-                            >
-                              <path
-                                d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"
-                              />
-                            </svg>
-                          </span>
-                          <span>Xóa</span>
-                        </button>
-                      </mat-menu>
-                    </div>
-                  </div>
+                      <span>Xóa</span>
+                    </button>
+                  </mat-menu>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </mat-expansion-panel>
     </div>
   </div>
 </div>
-
-
-  <!-- <div *ngFor="let item of taskList; trackBy: trackByFn">
-    <p> {{ item.taskId }} </p>
-    <div *ngFor="let subtask of item.subtask; trackBy: trackByFnn">
-      <b>{{ subtask.subTaskId }}</b>
-    </div>
-    <button (click)="show(item.subtask)">Click</button>
-</div> -->
-
-<mat-expansion-panel [class.disabled-pointer]="item.subtask?.length==0" hideToggle *ngFor="let item of taskList; trackBy: trackByFn">
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      {{ item.taskId }}
-    </mat-panel-title>
-    <mat-panel-description >
-      
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-  <div *ngFor="let subtask of item.subtask; trackBy: trackByFnn">
-    {{ subtask.subTaskId }}
-  </div>
-</mat-expansion-panel>
-
