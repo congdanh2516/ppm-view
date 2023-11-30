@@ -22,7 +22,7 @@ export class TaskService {
     );
   }
 
-  findTaskById(taskId: string): Observable<Task> {
+  getTaskById(taskId: string): Observable<Task> {
     return this.httpClient.get<Task>(`${api}/${taskId}`).pipe(
       tap((taskId) => {
         console.log('Find task with id successfully', taskId);

@@ -249,19 +249,18 @@ export class ProcessDetailComponent implements OnInit {
     this.detectChanges();
   }
 
-  updateDialogTask(task: Task) {
+  updateDialogTask(taskId: any) {
     const dialogRef = this.dialog.open(TaskModificationComponent, {
       disableClose: true,
       width: '500px',
       data: {
-        task: task,
+        taskId: taskId,
       },
     });
 
-    dialogRef.afterClosed().subscribe((response) => {
-      console.log('TaskModificationComponent id: ' + task.taskId);
+    dialogRef.afterClosed().subscribe(() => {
+      this.getProjectListNSchedule();
     });
-    this.detectChanges();
   }
 
   updateDialogSubtask(subtask: Subtask, task: Task) {
@@ -487,4 +486,13 @@ export class ProcessDetailComponent implements OnInit {
   //     verticalPosition: this.verticalPosition, // Truyền dữ liệu message vào component
   //   });
   // }
+
+  getProjectListNSchedule() {
+    this.adminProcessSV.scheduleProcess(this.projectId).subscribe({
+      next: ((res) => {
+        this.getTaskList();
+      }),
+      error: ((error) => {})
+    })
+  }
 }

@@ -181,3 +181,7 @@
 .mat-expansion-panel-body {
   padding-right: 0px !important;
 }
+
+::ng-deep .mat-expansion-panel-body {
+  padding-bottom: 5px !important;
+}

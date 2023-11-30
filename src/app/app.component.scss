@@ -9,7 +9,7 @@
 
 #toast {
     position: fixed;
-    z-index: 9 !important;
+    z-index: 99999 !important;
     top: 25px;
     left: 50%;
     animation: slideInDown ease .5s, slideOutUp linear .5s 3.5s forwards;

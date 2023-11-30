@@ -2,14 +2,14 @@
   <div class="task-creation-form__title">
     Chỉnh sửa công việc
   </div>
-  <form class="task-creation-form__form" [formGroup]="creationForm" (ngSubmit)="creatTask()">
+  <form class="task-creation-form__form" [formGroup]="modificationForm" (ngSubmit)="updateTask()">
     <div class="task-creation-form__form__name">
       <label for="">Tên công việc</label>
-      <input type="text" name="" id="" formControlName="">
+      <input type="text" name="" id="" tabindex="-1" formControlName="taskName">
     </div>
     <div class="task-creation-form__form__description">
       <label for="">Mô tả công việc</label>
-      <input type="text" name="" id="" formControlName="">
+      <input type="text" name="" id="" tabindex="-1" formControlName="taskDescription">
     </div>
     <div class="task-creation-form__form__prerequiste">
       <label for="">Công việc tiên quyết</label>
@@ -54,7 +54,7 @@
     </div>
     <div class="task-creation-form__form__duration">
       <label for="">Thời gian</label>
-      <input type="number" name="" id=""> <span>ngày</span>
+      <input type="number" name="" id="" tabindex="-1" formControlName="taskDuration"> <span>ngày</span>
     </div>
     <!-- <div class="task-creation-form__form__period">
       <label for="">Khoảng thời gian thực hiện</label>
@@ -64,7 +64,8 @@
         Hủy
       </div>
       <button type="submit" class="task-creation-form__form__action__creative-btn">
-        Cập nhật
+        <app-loader size="15px" color="white" *ngIf="isLoading; else btnname"></app-loader>
+        <ng-template #btnname>Cập nhật</ng-template>
       </button>
     </div>
   </form>
