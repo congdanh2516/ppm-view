@@ -29,6 +29,7 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { AuthenticationService } from 'src/app/feature/authentication/services/authentication.service';
+import { AdminProcessService } from '../../services/admin-process/admin-process.service';
 
 @Component({
   selector: 'app-process-detail',
@@ -70,9 +71,10 @@ export class ProcessDetailComponent implements OnInit {
   @Input() subtask: Subtask;
   @Input() projectList: Project[] = [];
 
-
   taskList: Array<any> = [];
-  projectId: string = "";
+  projectId: string = '';
+
+  panelOpenState = false;
 
   constructor(
     private taskService: TaskService,
@@ -82,8 +84,7 @@ export class ProcessDetailComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private router: Router,
     private subtaskService: SubtaskService,
-    private _snackBar: MatSnackBar,
-    private authenticationSV: AuthenticationService
+    private adminProcessSV: AdminProcessService
   ) {
     this.route.params.subscribe((params: any) => {
       this.projectId = params.id;
@@ -91,13 +92,6 @@ export class ProcessDetailComponent implements OnInit {
     });
     this.getTaskList();
     this.getProjectList();
-  }
-
-  reloadComponent() {
-    const currentUrl = this.router.url;
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate([currentUrl]);
-    });
   }
 
   handleOnClick(event: Event): void {
@@ -113,27 +107,45 @@ export class ProcessDetailComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void {}
+  show(x: any) {
+    console.log('x: ', x);
+  }
+
+  trackByFn(index: any, item: any) {
+    return item.taskId;
+  }
+
+  trackByFnn(index: any, item: any) {
+    return item.subTaskId;
   }
 
   getTaskList() {
     this.taskService.getTaskList().subscribe({
       next: (task: any) => {
-        console.log("task list: ", task);
+        console.log('task list: ', task);
         // task.forEach((item: any) => {
-          
+
         // })
         this.taskList = task;
-        for(let i=0; i<this.taskList.length; i ++) {
-          this.taskService.getSubtaskList(this.taskList[i].taskId).subscribe((subtaskList) => {
-            this.taskList[i].substask = subtaskList;
-            console.log("subtask: ", subtaskList);
-          })
+        console.log('task - subtask 1: ', this.taskList);
+
+        for (let i = 0; i < this.taskList.length; i++) {
+          this.taskService
+            .getSubtaskList(this.taskList[i].taskId)
+            .subscribe((subtaskList) => {
+              this.taskList[i].subtask = subtaskList;
+            });
+          // console.log("abc: ", this.taskList);
+          // this.taskList[i].subtask = ["abc", "def"];
         }
 
-        console.log("task - subtask: ", task);
+        // setTimeout(() => {
+        //   this.appear = true;
+        //   console.log("gh: ", this.taskList);
+        // }, 2000)
 
+        console.log('task - subtask: ', this.taskList);
 
         const tasks = task.map((item: any) => {
           return {
@@ -143,7 +155,7 @@ export class ProcessDetailComponent implements OnInit {
           };
         });
         console.log('task', tasks);
-        this.tasklist = tasks;
+        this.taskList = tasks;
         console.log('call api get all tasks successfully!' + task);
       },
       error: (error) => {
@@ -297,6 +309,12 @@ export class ProcessDetailComponent implements OnInit {
         this.route.params.subscribe((params: any) => {
           this.getProjectById(params.id);
         });
+        this.adminProcessSV
+          .scheduleProcess(response.projectId)
+          .subscribe((data) => {
+            console.log('modify start date: ', data);
+            this.getTaskList();
+          });
       });
     });
     this.detectChanges();
@@ -328,7 +346,7 @@ export class ProcessDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(TaskCreationComponent, {
       disableClose: true,
       width: '500px',
-      height : 'auto',
+      height: 'auto',
       data: {
         projectId: projectId,
         task: this.task,
@@ -336,21 +354,7 @@ export class ProcessDetailComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((data) => {
-      this.tasklist = [
-        ...this.tasklist,
-        {
-          ...data,
-          taskStartAt: format(new Date(data.taskStartAt)),
-          taskEndAt: format(new Date(data.taskEndAt)),
-          taskId: data.taskId,
-        },
-      ];
-      data = {
-        ...data,
-        taskStartAt: time(data.taskStartAt),
-        taskEndAt: time(data.taskEndAt),
-      };
-      this.handleCreateTask(data);
+      this.getTaskList();
     });
   }
 
@@ -375,17 +379,14 @@ export class ProcessDetailComponent implements OnInit {
 
   handleCreateTask(task: Task) {
     this.createTask(task);
-    this.cdr.detectChanges();
   }
 
   handleCreateSubtask(subtask: Subtask) {
     this.createSubtask(subtask);
-    this.cdr.detectChanges();
   }
 
   handleUpdateSubtask(subtask: Subtask) {
     this.updataSubtask(subtask);
-    this.cdr.detectChanges();
   }
 
   createSubtask(subtask: Subtask) {
@@ -396,7 +397,6 @@ export class ProcessDetailComponent implements OnInit {
           this.getProjectById(params.id);
           this.taskService.getTaskList();
         });
-        this.reloadComponent();
       },
       error: (error) => {
         console.log(error);
