@@ -10,8 +10,9 @@
         </div>
         <div class="process__all__list">
             <div class="process__all__list__process-item" *ngFor="let process of processList"
-                [routerLink]="[process.projectId]"
+                (click)="openDetail(process.projectId)"
             >
+            <!-- [routerLink]="[process.projectId]" -->
             <!-- <a ></a> -->
             
                 <div class="process__all__list__process-item__name">

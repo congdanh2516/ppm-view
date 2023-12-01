@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProcessCreationComponent } from './components/process-creation/process-creation.component';
 import { TaskCreationComponent } from './components/task-creation/task-creation.component';
 import { AdminProcessService } from './services/admin-process/admin-process.service';
+import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-admin-process',
@@ -13,7 +15,11 @@ export class AdminProcessComponent {
 
   processList: Array<any> = [];
 
-  constructor(public dialog: MatDialog, private adminProcessSV: AdminProcessService) {
+  constructor(public dialog: MatDialog, 
+            private adminProcessSV: AdminProcessService,
+            private router: Router,
+            private localStorageSV: LocalStorageService
+  ) {
     this.getProcessList();
   }
 
@@ -40,5 +46,10 @@ export class AdminProcessComponent {
     this.adminProcessSV.getProcessList().subscribe((data: any) => {
       this.processList = data;
     })
+  }
+
+  openDetail(projectId: any) {
+    this.router.navigateByUrl(`/admin/process/list/${projectId}`);
+    this.localStorageSV.setItem("project", {projectId: projectId});
   }
 }

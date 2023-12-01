@@ -47,11 +47,11 @@
     display: flex;
     // display: none;
     justify-content: center;
-    transition: background-color .5s ease;
-    background-color: transparent;
+    transition: background-color 1s ease;
+    background-color: rgba(0, 0, 0, 0.15);
     &--active {
         background-color: rgba(0, 0, 0, 0.15);
-        transition: background-color .5s ease;
+        transition: background-color 1s ease;
     }
 }
 .confirm-box {

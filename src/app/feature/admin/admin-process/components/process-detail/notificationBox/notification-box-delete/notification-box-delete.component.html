@@ -1,4 +1,4 @@
-<h1 class="box-title" mat-dialog-title>Thông báo</h1>
+<!-- <h1 class="box-title" mat-dialog-title>Thông báo</h1>
 <div mat-dialog-content>
   <p class="text-content">
     Bạn có muốn xóa công việc
@@ -18,4 +18,22 @@
   >
     Đồng ý
   </button>
+</div> -->
+
+<div class="task-deletion">
+  <div class="task-deletion__content">
+    <div class="task-deletion__content__title">
+      Xác nhận xóa công việc <b>{{ data.taskName }}</b>?
+    </div>
+    <div class="task-deletion__content__description">
+      
+    </div>
+  </div>
+  <div class="task-deletion__action">
+    <div class="task-deletion__action__cancel-btn" (click)="onNoClick()">Hủy</div>
+    <button class="task-deletion__action__approval-btn" (click)="deleteTask()"[disabled]="isLoading" [mat-dialog-close]="{action: true}">
+      <app-loader size="15px" color="white" *ngIf="isLoading; else btnname"></app-loader>
+      <ng-template #btnname>Đồng ý</ng-template>
+    </button>
+  </div>
 </div>

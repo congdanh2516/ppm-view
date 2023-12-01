@@ -30,6 +30,7 @@ import {
 } from '@angular/material/snack-bar';
 import { AuthenticationService } from 'src/app/feature/authentication/services/authentication.service';
 import { AdminProcessService } from '../../services/admin-process/admin-process.service';
+import { ConfirmBoxModalService } from 'src/app/core/services/confirm-box-modal.service';
 
 @Component({
   selector: 'app-process-detail',
@@ -64,7 +65,7 @@ export class ProcessDetailComponent implements OnInit {
     this.trigger.openMenu();
   }
 
-  @Input() project: Project;
+  project: any;
   @Input() task: Task;
   @Input() tasklist: Task[] = [];
   @Input() subtasklist: Subtask[] = [];
@@ -82,7 +83,6 @@ export class ProcessDetailComponent implements OnInit {
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
-    private router: Router,
     private subtaskService: SubtaskService,
     private adminProcessSV: AdminProcessService
   ) {
@@ -123,30 +123,14 @@ export class ProcessDetailComponent implements OnInit {
   getTaskList() {
     this.taskService.getTaskList().subscribe({
       next: (task: any) => {
-        console.log('task list: ', task);
-        // task.forEach((item: any) => {
-
-        // })
         this.taskList = task;
-        console.log('task - subtask 1: ', this.taskList);
-
         for (let i = 0; i < this.taskList.length; i++) {
           this.taskService
             .getSubtaskList(this.taskList[i].taskId)
             .subscribe((subtaskList) => {
               this.taskList[i].subtask = subtaskList;
             });
-          // console.log("abc: ", this.taskList);
-          // this.taskList[i].subtask = ["abc", "def"];
         }
-
-        // setTimeout(() => {
-        //   this.appear = true;
-        //   console.log("gh: ", this.taskList);
-        // }, 2000)
-
-        console.log('task - subtask: ', this.taskList);
-
         const tasks = task.map((item: any) => {
           return {
             ...item,
@@ -177,7 +161,7 @@ export class ProcessDetailComponent implements OnInit {
   }
 
   getProjectById(projectId: string) {
-    this.projectService.findProjectById(projectId).subscribe({
+    this.projectService.getProjectById(projectId).subscribe({
       next: (project: any) => {
         this.project = project;
         console.log('call api find project by id successfully', project);
@@ -190,24 +174,14 @@ export class ProcessDetailComponent implements OnInit {
 
   deleteDialogTask(task: Task): void {
     const dialogRef = this.dialog.open(NotificationBoxDeleteComponent, {
-      width: '500px',
-      data: {
-        taskId: task.taskId,
-        taskName: task.taskName,
-      },
+      data: task
     });
-    dialogRef.afterClosed().subscribe((response) => {
-      console.log('Dialog closed with result:', response.taskId);
-      this.taskService.deleteTask(response.taskId).subscribe(() => {
-        this.tasklist = this.tasklist.filter(
-          (task) => task.taskId !== response.taskId
-        );
-        console.log('taskList handle delete' + this.tasklist);
-        this.route.params.subscribe((params: any) => {
-          this.getProjectById(params.id);
-        });
-      });
+    dialogRef.afterClosed().subscribe((response) => { //response: {action: true}
+      if(response!=undefined) {
+        this.getProjectListNSchedule();
+      }
     });
+
   }
 
   deleteDialogSubTask(subTask: Subtask): void {
@@ -258,38 +232,25 @@ export class ProcessDetailComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.getProjectListNSchedule();
+    dialogRef.afterClosed().subscribe((data) => { //data: {action: true}
+      if(data!==undefined) {
+        this.getProjectListNSchedule();
+      }
     });
   }
 
   updateDialogSubtask(subtask: Subtask, task: Task) {
-    const dialogRef = this.dialog.open(NotificationBoxUpdateSubtaskComponent, {
+    const dialogRef = this.dialog.open(NotificationBoxCreateSubtaskComponent, {
       disableClose: true,
       width: '500px',
       data: {
         subtask: subtask,
-        taskId: task.taskId,
-        taskName: task.taskName,
+        task: task
       },
     });
 
-    dialogRef.componentInstance.cancelUpdate.subscribe(() => {
-      this.detectChanges();
-      dialogRef.close();
-    });
-
     dialogRef.afterClosed().subscribe((data) => {
-      if (data) {
-        const updatedSubtaskIndex = this.subtasklist.findIndex(
-          (item) => item.subTaskId === subtask.subTaskId
-        );
-        if (updatedSubtaskIndex !== -1) {
-          this.subtasklist[updatedSubtaskIndex] = { ...data };
-        }
-        this.handleUpdateSubtask(data);
-      }
-      this.detectChanges();
+      
     });
   }
 
@@ -329,15 +290,7 @@ export class ProcessDetailComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((data) => {
-      if (data) {
-        // Kiểm tra xem có dữ liệu được trả về từ hộp thoại không
-        // Nếu có, thêm subtask mới vào subtasklist
-        console.log('test data', data);
-        this.subtasklist = [...this.subtasklist, { ...data }];
-
-        // Các công việc khác bạn muốn thực hiện trong hàm này
-        this.handleCreateSubtask(data);
-      }
+      this.getTaskList();
     });
   }
 
@@ -352,8 +305,10 @@ export class ProcessDetailComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe((data) => {
-      this.getTaskList();
+    dialogRef.afterClosed().subscribe((data) => { //data: {action: true}
+      if(data!==undefined) {
+        this.getTaskList();
+      }
     });
   }
 
@@ -372,20 +327,9 @@ export class ProcessDetailComponent implements OnInit {
     }
   }
 
-  handleDelete(projectId: string) {
-    this.deleteTask(projectId);
-  }
-
-  handleCreateTask(task: Task) {
-    this.createTask(task);
-  }
 
   handleCreateSubtask(subtask: Subtask) {
     this.createSubtask(subtask);
-  }
-
-  handleUpdateSubtask(subtask: Subtask) {
-    this.updataSubtask(subtask);
   }
 
   createSubtask(subtask: Subtask) {
@@ -396,22 +340,6 @@ export class ProcessDetailComponent implements OnInit {
           this.getProjectById(params.id);
           this.taskService.getTaskList();
         });
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
-  }
-
-  createTask(task: Task) {
-    this.taskService.createTask(task).subscribe({
-      next: (task: any) => {
-        this.task = task;
-        this.route.params.subscribe((params: any) => {
-          this.getProjectById(params.id);
-          this.taskService.getTaskList();
-        });
-        // this.reloadComponent();
       },
       error: (error) => {
         console.log(error);
@@ -432,16 +360,8 @@ export class ProcessDetailComponent implements OnInit {
       },
     });
   }
-  deleteTask(projectId: string) {
-    this.taskService.deleteTask(projectId).subscribe({
-      next: (project: any) => {
-        this.project = project;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
-  }
+
+
   getSubtasks(taskId: any) {
     console.log('taskId: ', taskId);
 
@@ -462,30 +382,6 @@ export class ProcessDetailComponent implements OnInit {
       });
     }
   }
-
-  updataSubtask(subtask: Subtask) {
-    this.subtaskService.updateSubtask(subtask).subscribe({
-      next: (subtask: any) => {
-        this.subtask = subtask;
-        this.route.params.subscribe((params: any) => {
-          this.getProjectById(params.id);
-        });
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
-  }
-  // horizontalPosition: MatSnackBarHorizontalPosition = 'right';
-  // verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  // openSnackBar(duration: number, message: string) {
-  //   this._snackBar.openFromComponent(NotificationBoxMessageComponent, {
-  //     duration: duration * 1000,
-  //     data: { message: message },
-  //     horizontalPosition: this.horizontalPosition,
-  //     verticalPosition: this.verticalPosition, // Truyền dữ liệu message vào component
-  //   });
-  // }
 
   getProjectListNSchedule() {
     this.adminProcessSV.scheduleProcess(this.projectId).subscribe({

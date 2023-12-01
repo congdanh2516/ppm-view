@@ -1,32 +1,60 @@
 .grantt {
     display: flex;
+    width: 100%;
+    padding: 20px;
     &__task-info {
+        width: 30%;
+        max-width: 30%;
+        overflow-y: auto;
         &__heading {
             height: 30px;
             border: 1px solid red;
         }
         &__task-list {
+            table {
+                tr, td, th{
+                    height: 50px;
+                    border: 1px solid black;
+                }
+                .name {
+                    min-width: 400px;
+                }
+                .duration {
+                    min-width: 150px;
+                }
+                .date {
+                    min-width: 200px;
+                } 
+            }
             &__item {
                 height: 50px;
                 display: flex;
                 align-items: center;
             }
         }
-
     }
     &__process {
+        background-color: green;
         position: relative;
+        width: 70%;
+        overflow-x: auto;
+        overflow-y: hidden;
         &__date-division {
+            
             position: absolute;
             top: 0;
             left: 0;
             border: 1px solid green;
             display: flex;
             height: 100px;
+            // display: none;
+            
+            max-width: 100%;
+
             &__date {
                 box-sizing: border-box;
                 height: 100%;
-                width: 30px;
+                min-width: 30px;
                 border: 1px solid red;
             }
         }

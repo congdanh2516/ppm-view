@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, tap, throwError } from 'rxjs';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { ToastBoxModalService } from 'src/app/core/services/toast-box-modal.service';
 import { environment } from 'src/environments/environment';
 
@@ -12,7 +13,11 @@ export class AuthenticationService {
 
   userId: string = ""
 
-  constructor(private httpClient: HttpClient, private router: Router, private toastSV: ToastBoxModalService) { }
+  constructor(private httpClient: HttpClient, 
+              private router: Router, 
+              private toastSV: ToastBoxModalService,
+              private localStorageSV: LocalStorageService
+  ) { }
 
   signIn(account: any) {
     let api: string = environment.url + 'user/login';
@@ -22,9 +27,8 @@ export class AuthenticationService {
     return this.httpClient.get(api, {headers: header})
     .pipe(
       tap((data: any) => {
-        console.log("user info: ", data);
+        this.localStorageSV.setItem('name', data.username);
         this.userId = data.userId;
-        console.log("userId: ", data.userId);
         this.router.navigateByUrl('/admin/process/list');
         this.toastSV.sendMessage({
           isDisplay: true,

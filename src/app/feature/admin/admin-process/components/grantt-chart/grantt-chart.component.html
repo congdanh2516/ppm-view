@@ -1,11 +1,25 @@
 <!-- <p>grantt-chart works!</p> -->
 <div class="grantt">
     <div class="grantt__task-info">
-        <div class="grantt__task-info__heading"></div>
+        <!-- <div class="grantt__task-info__heading"></div> -->
         <div class="grantt__task-info__task-list">
-            <div class="grantt__task-info__task-list__item" *ngFor="let item of [].constructor(5)">
-                Cong viec 1
-            </div>
+            <!-- <div class="grantt__task-info__task-list__item" *ngFor="let task of taskList">
+               {{ task.taskName }}
+            </div> -->
+            <table>
+                <tr>
+                    <th class="name">Tên công việc</th>
+                    <th class="duration">Thời gian (ngày)</th>
+                    <th class="date">Ngày bắt đầu</th>
+                    <th class="date">Ngày kết thúc</th>
+                </tr>
+                <tr *ngFor="let task of taskList" >
+                    <td class="name">{{ task.taskName }}</td>
+                    <td class="duration"> {{ task.taskDuration }} </td>
+                    <td class="date">{{ task.taskStartAt }}</td>
+                    <td class="date">{{ task.taskEndAt }}</td>
+                </tr>
+            </table>
         </div>
     </div>
     <div class="grantt__process">
@@ -15,16 +29,10 @@
             </div>
         </div>
         <div class="grantt__process__processing-bar-list">
-            <div class="grantt__process__processing-bar-list__item">
-                <app-processing-bar [startDateProcess]="'2023-11-20'"
-                                    [startDateTask]="'2023-11-28'"
-                                    [endDateTask]="'2023-11-30'"
-                ></app-processing-bar>
-            </div>
-            <div class="grantt__process__processing-bar-list__item">
-                <app-processing-bar [startDateProcess]="'2023-11-20'"
-                                    [startDateTask]="'2023-11-20'"
-                                    [endDateTask]="'2023-11-25'"
+            <div class="grantt__process__processing-bar-list__item" *ngFor="let task of taskList">
+                <app-processing-bar [startDateProcess]="projectInfo.projectStartAt"
+                                    [startDateTask]="task.taskStartAt"
+                                    [endDateTask]="task.taskEndAt"
                 ></app-processing-bar>
             </div>
         </div>

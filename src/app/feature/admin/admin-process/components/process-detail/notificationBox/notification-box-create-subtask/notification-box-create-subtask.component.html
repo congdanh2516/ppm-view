@@ -1,21 +1,27 @@
 <div class="creation-subtask">
-  <div class="creation-subtask__title">Thêm tiêu chí</div>
+  <div class="creation-subtask__title">
+    <span *ngIf="!isModifying; else update">Thêm tiêu chí</span>
+    <ng-template #update>Chỉnh sửa tiêu chí</ng-template>
+  </div>
   <div class="creation-subtask__form">
     <div class="creation-subtask__form__name">
       <label for="">Tên</label>
-      <input type="text" [(ngModel)]=" subTaskInfo.subTaskName">
+      <input type="text" tabindex=-1 [(ngModel)]=" subTaskInfo.subTaskName">
     </div>
     <div class="creation-subtask__form__description">
       <label for="">Mô tả</label>
-      <textarea name="" id="" cols="30" rows="5" [(ngModel)]=" subTaskInfo.subtaskDescription"></textarea>
+      <textarea name="" id="" cols="30" rows="5" tabindex=-1 [(ngModel)]=" subTaskInfo.subtaskDescription"></textarea>
     </div>
     <div class="creation-subtask__form__action">
       <div class="creation-subtask__form__action__cancel-btn" (click)="onNoClick()">
         Hủy
       </div>
-      <button type="submit" class="creation-subtask__form__action__creative-btn">
+      <button type="submit" class="creation-subtask__form__action__creative-btn" (click)="submit()">
         <app-loader size="15px" color="white" *ngIf="isLoading; else btnname"></app-loader>
-        <ng-template #btnname>Thêm tiêu chí</ng-template>
+        <ng-template #btnname>
+          <span *ngIf="!isModifying; else update">Thêm tiêu chí</span>
+          <ng-template #update>Cập nhật</ng-template>
+        </ng-template>
       </button>
     </div>
   </div>

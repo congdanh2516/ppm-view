@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { AuthenticationService } from 'src/app/feature/authentication/services/authentication.service';
 
 @Component({
@@ -12,8 +13,19 @@ export class HeaderComponent {
 
   signOutDialogOpening: boolean;
   signOutDialogOpeningTimeOut: any;
+  username: string = '';
+  today: Date;
+  todayStr: string = '';
+  monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-  constructor(private authenticationSV: AuthenticationService) {}
+  constructor(private authenticationSV: AuthenticationService,
+              private localStorageSV: LocalStorageService      
+  ) {
+    this.username = this.localStorageSV.getItem('name');
+    this.today = new Date();
+    this.todayStr = (this.today.getDay() < 10? "0" + this.today.getDay() : this.today.getDay()) + " " + this.monthNames[this.today.getMonth()] + ", " + this.today.getFullYear();
+    console.log(this.today);
+  }
 
   openSignOutDialog() {
     this.closeSignOutDialogTimeOutOnHover();
@@ -34,5 +46,6 @@ export class HeaderComponent {
   logOut() {
     this.authenticationSV.logOut();
   }
+
   
 }

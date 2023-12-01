@@ -1,5 +1,6 @@
+@import '../../../../../../../assets/scss/sass-config.scss';
 .processing-bar {
     height: 20px;
-    border: 1px solid red;
-    background-color: red;
+    border: 1px solid $dark-blue;
+    background-color: $dark-blue;
 }

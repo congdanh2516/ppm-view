@@ -28,9 +28,13 @@
             padding-left: 10px;
         }
       }
+      textarea {
+        height: 100px;
+        padding: 8px 5px;
+      }
     }
     &__action{
-      margin-top: 35px;
+      margin-top: 15px;
       display: flex;
       justify-content: right;
       &__creative-btn {

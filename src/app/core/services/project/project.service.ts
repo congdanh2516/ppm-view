@@ -20,7 +20,7 @@ export class ProjectService {
     );
   }
 
-  findProjectById(projectId: any): Observable<Project> {
+  getProjectById(projectId: any): Observable<Project> {
     return this.httpClient.get<Project>(`${api}/${projectId}`).pipe(
       tap((project) => {
         console.log('Find project with id successfully', project);

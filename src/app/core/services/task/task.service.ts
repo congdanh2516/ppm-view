@@ -16,16 +16,18 @@ export class TaskService {
   getTaskList(): Observable<Task[]> {
     return this.httpClient.get<Task[]>(api).pipe(
       tap((task) => {
-        console.log('Successfully retrieved: ', task);
       }),
       catchError(this.handleError)
     );
   }
 
+  getTaskListByProjectId(idProject: any) {
+    return this.httpClient.get<Task[]>(`${api}?projectId=${idProject}`);
+  }
+
   getTaskById(taskId: string): Observable<Task> {
     return this.httpClient.get<Task>(`${api}/${taskId}`).pipe(
       tap((taskId) => {
-        console.log('Find task with id successfully', taskId);
       }),
       catchError(this.handleError)
     );
@@ -34,7 +36,6 @@ export class TaskService {
   createTask(task: Task): Observable<Task> {
     return this.httpClient.post<Task>(api, task).pipe(
       tap((task) => {
-        console.log('Create task successfully:', task);
       }),
       catchError(this.handleError)
     );
@@ -43,7 +44,7 @@ export class TaskService {
   updateTask(task: Task): Observable<Task> {
     return this.httpClient.patch<Task>(`${api}/${task.taskId}`, task).pipe(
       tap((task) => {
-        console.log('Updated task successfully:', task);
+        
       }),
       catchError(this.handleError)
     );
@@ -52,7 +53,7 @@ export class TaskService {
   deleteTask(taskId: string): Observable<Task> {
     return this.httpClient.delete<Task>(`${api}/${taskId}`).pipe(
       tap((taskId) => {
-        console.log(`Delete task ${taskId} successfully`);
+        
       })
     );
   }
@@ -60,7 +61,7 @@ export class TaskService {
   getSubtaskList(taskId: string): Observable<Subtask[]> {
     return this.httpClient.get<Subtask[]>(`${api}/${taskId}/subtasks`).pipe(
       tap((subTasks) => {
-        console.log('Successfully retrieved subtask by taskId: ', subTasks);
+
       }),
       catchError(this.handleError)
     );
