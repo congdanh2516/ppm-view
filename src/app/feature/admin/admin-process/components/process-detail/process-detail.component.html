@@ -77,12 +77,21 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="width-height-100-percent padding-5">
+          <div
+            *ngIf="project.projectDuration != 0"
+            class="width-height-100-percent padding-5"
+          >
             Thời gian: <span>{{ project.projectDuration }}</span> ngày
+          </div>
+          <div
+            *ngIf="project.projectDuration == 0"
+            class="width-height-100-percent padding-5"
+          >
+            Thời gian: <span>Chưa xác định</span>
           </div>
         </div>
         <div class="col-3">
-          <div>
+          <div *ngIf="project.projectEndAt != project.projectStartAt">
             <div class="width-height-100-percent padding-5">
               Ngày kết thúc:
               <span
@@ -92,6 +101,12 @@
                   disabled
                   [(ngModel)]="project.projectEndAt"
               /></span>
+            </div>
+          </div>
+          <div *ngIf="project.projectEndAt == project.projectStartAt">
+            <div class="width-height-100-percent padding-5">
+              Ngày kết thúc:
+              <span>Chưa xác định</span>
             </div>
           </div>
         </div>
@@ -159,7 +174,7 @@
                       />
                     </svg>
                   </span>
-                  <span class="opacity">
+                  <span class="opacity" (click)="handleOnClick($event)">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="1.5rem"
@@ -233,7 +248,7 @@
                 <div class="col-4 padding-left-40">
                   Tiêu chí: {{ subtask.subTaskName }}
                 </div>
-                <div class="col-6">Mô Tả: {{ subtask.subTaskDescription }}</div>
+                <div class="col-6">Mô tả: {{ subtask.subTaskDescription }}</div>
                 <div class="col-2 text-right margin-left-10-minus">
                   <div class="margin-right-10">
                     <span

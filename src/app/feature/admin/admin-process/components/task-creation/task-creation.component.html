@@ -1,106 +1,50 @@
-<!-- <h1 class="box-title" mat-dialog-title>Tạo công việc</h1>
-<div class="box-content" mat-dialog-content>
-  <mat-form-field class="box-content__field-100">
-    <mat-label>Tên công việc</mat-label>
-    <input matInput type="text" [(ngModel)]="task.taskName" />
-  </mat-form-field>
-  <mat-form-field class="box-content__field-100">
-    <mat-label>Mô tả công việc</mat-label>
-    <textarea
-      matInput
-      type="text"
-      [(ngModel)]="task.taskDescription"
-    ></textarea>
-  </mat-form-field>
-  <mat-form-field class="box-content__field-100">
-    <mat-label>Điều kiện tiên quyết</mat-label>
-    <mat-chip-list #chipList class="chip-list">
-      <div>
-        <mat-chip
-          class="chip-list__chip-item"
-          *ngFor="let itemPrerequisites of prerequisites.value"
-          [removable]="true"
-          (removed)="removeTopping(itemPrerequisites)"
-        >
-          {{ itemPrerequisites }}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="1em"
-            viewBox="0 0 384 512"
-          >
-            
-            <path
-              d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
-            />
-          </svg>
-        </mat-chip>
-      </div>
-    </mat-chip-list>
-    <mat-select
-      [formControl]="prerequisites"
-      multiple
-      [style.display]="prerequisites.value ? 'none' : 'block'"
-    >
-      <mat-option
-        *ngFor="let prerequisites of prerequisitesList"
-        [value]="prerequisites"
-      >
-        {{ prerequisites }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field class="box-content__field-30 float-left">
-    <mat-label>Thời gian</mat-label>
-    <input matInput type="number" [(ngModel)]="task.taskDuration" />
-  </mat-form-field>
-  <mat-form-field class="box-content__field-60 float-right">
-    <mat-label>Bắt đầu - Kết thúc</mat-label>
-    <mat-date-range-input [rangePicker]="picker">
-      <input
-        matStartDate
-        placeholder="Bắt đầu"
-        [(ngModel)]="task.taskStartAt"
-      />
-      <input matEndDate placeholder="Kết thúc" [(ngModel)]="task.taskEndAt" />
-    </mat-date-range-input>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-date-range-picker #picker></mat-date-range-picker>
-  </mat-form-field>
-</div>
-<div mat-dialog-actions class="float-right btn-box">
-  <button class="btn-box__close" mat-button (click)="onNoClick()">Không</button>
-  <button class="btn-box__success" mat-button [mat-dialog-close]="task">
-    Đồng ý
-  </button>
-</div> -->
-
 <div class="task-creation-form">
-  <div class="task-creation-form__title">
-    Tạo công việc
-  </div>
-  <form class="task-creation-form__form" [formGroup]="creationForm" (ngSubmit)="creatTask()">
+  <div class="task-creation-form__title">Tạo công việc</div>
+  <form
+    class="task-creation-form__form"
+    [formGroup]="creationForm"
+    (ngSubmit)="creatTask()"
+  >
     <div class="task-creation-form__form__name">
       <label for="">Tên công việc</label>
-      <input type="text" name="" id="" formControlName="taskName">
+      <input type="text" name="" id="" formControlName="taskName" />
     </div>
     <div class="task-creation-form__form__description">
       <label for="">Mô tả công việc</label>
-      <input type="text" name="" id="" formControlName="taskDescription">
+      <input type="text" name="" id="" formControlName="taskDescription" />
     </div>
     <div class="task-creation-form__form__duration">
       <label for="">Thời gian</label>
-      <input type="number" name="" id="" formControlName="taskDuration"> <span>ngày</span>
+      <input
+        type="number"
+        name=""
+        id=""
+        min="1"
+        formControlName="taskDuration"
+      />
+      <span>ngày</span>
     </div>
     <!-- <div class="task-creation-form__form__period">
       <label for="">Khoảng thời gian thực hiện</label>
     </div> -->
     <div class="task-creation-form__form__action">
-      <div class="task-creation-form__form__action__cancel-btn" (click)="onNoClick()">
+      <div
+        class="task-creation-form__form__action__cancel-btn"
+        (click)="onNoClick()"
+      >
         Hủy
       </div>
-      <button type="submit" class="task-creation-form__form__action__creative-btn" [disabled]="isLoading" [mat-dialog-close]="{action: true}">
-        <app-loader size="15px" color="white" *ngIf="isLoading; else btnname"></app-loader>
+      <button
+        type="submit"
+        class="task-creation-form__form__action__creative-btn"
+        [disabled]="isLoading"
+        [mat-dialog-close]="{ action: true }"
+      >
+        <app-loader
+          size="15px"
+          color="white"
+          *ngIf="isLoading; else btnname"
+        ></app-loader>
         <ng-template #btnname>Thêm công việc</ng-template>
       </button>
     </div>
