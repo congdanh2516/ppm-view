@@ -183,17 +183,10 @@ export class ProcessDetailComponent {
   }
 
   getProjectById(projectId: string) {
-    this.adminProcessSV.scheduleProcess(this.projectId).subscribe({
-      next: (res) => {
-        this.projectService.getProjectById(projectId).subscribe({
-          next: (project: any) => {
-            this.project = project;
-            console.log('call api find project by id successfully', project);
-          },
-          error: (error) => {
-            console.log(error);
-          },
-        });
+    this.projectService.getProjectById(projectId).subscribe({
+      next: (project: any) => {
+        this.project = project;
+        console.log('call api find project by id successfully', project);
       },
       error: (error) => {
         console.log(error);
@@ -228,6 +221,7 @@ export class ProcessDetailComponent {
 
     dialogRef.afterClosed().subscribe((data) => {
       if (data !== undefined) {
+        this.getTaskList();
         this.getProjectListNSchedule();
       }
     });
