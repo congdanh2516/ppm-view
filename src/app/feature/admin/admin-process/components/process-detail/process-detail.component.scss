@@ -1,4 +1,15 @@
 @import "../../../../../../assets/scss/sass-config.scss";
+.loader {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  height: calc(100% - 100px);
+  width: 100%;
+  background-color: $gray;
+  z-index: 2;
+}
 .process-detail {
   padding: 20px 50px;
   padding-right: 40px;

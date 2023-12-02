@@ -76,6 +76,7 @@ export class ProcessDetailComponent implements OnInit {
   projectId: string = '';
 
   panelOpenState = false;
+  isLoading: boolean = false;
 
   constructor(
     private taskService: TaskService,
@@ -121,6 +122,7 @@ export class ProcessDetailComponent implements OnInit {
   }
 
   getTaskList() {
+    this.isLoading = true;
     this.taskService.getTaskList().subscribe({
       next: (task: any) => {
         this.taskList = task;
@@ -129,6 +131,9 @@ export class ProcessDetailComponent implements OnInit {
             .getSubtaskList(this.taskList[i].taskId)
             .subscribe((subtaskList) => {
               this.taskList[i].subtask = subtaskList;
+              if(i==this.taskList.length - 1) {
+                this.isLoading = false;
+              }
             });
         }
         const tasks = task.map((item: any) => {
@@ -232,7 +237,8 @@ export class ProcessDetailComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe((data) => { //data: {action: true}
+    dialogRef.afterClosed().subscribe((data) => {
+      console.log("data: ", data);
       if(data!==undefined) {
         this.getProjectListNSchedule();
       }
@@ -250,7 +256,9 @@ export class ProcessDetailComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((data) => {
-      
+      if(data!==undefined) {
+        this.getProjectListNSchedule();
+      }
     });
   }
 
@@ -307,7 +315,8 @@ export class ProcessDetailComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((data) => { //data: {action: true}
       if(data!==undefined) {
-        this.getTaskList();
+        // this.getTaskList();
+        this.getProjectListNSchedule();
       }
     });
   }

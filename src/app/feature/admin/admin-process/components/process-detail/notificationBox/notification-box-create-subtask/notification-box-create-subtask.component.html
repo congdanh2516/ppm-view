@@ -16,7 +16,7 @@
       <div class="creation-subtask__form__action__cancel-btn" (click)="onNoClick()">
         Hủy
       </div>
-      <button type="submit" class="creation-subtask__form__action__creative-btn" (click)="submit()">
+      <button type="submit" class="creation-subtask__form__action__creative-btn" (click)="submit()" [mat-dialog-close]="data">
         <app-loader size="15px" color="white" *ngIf="isLoading; else btnname"></app-loader>
         <ng-template #btnname>
           <span *ngIf="!isModifying; else update">Thêm tiêu chí</span>

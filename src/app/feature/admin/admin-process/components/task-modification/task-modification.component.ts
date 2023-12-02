@@ -58,8 +58,12 @@ export class TaskModificationComponent {
     modificationTask.taskId = this.data.taskId;
     this.taskSV.updateTask(modificationTask).subscribe({
       next: (res) => {
-        this.isLoading = false;
-        this.onNoClick();
+        // this.isLoading = false;
+        // this.onNoClick();
+        setTimeout(() => {
+          this.onNoClick();
+          this.isLoading = false;
+        }, 2000);
         this.toastSV.sendMessage({
           isDisplay: true,
           message: "Cập nhật công việc thành công",
@@ -94,6 +98,7 @@ export class TaskModificationComponent {
   }
 
   onNoClick(): void {
+    this.data = "abc";
     this.dialogRef.close();
   }
 

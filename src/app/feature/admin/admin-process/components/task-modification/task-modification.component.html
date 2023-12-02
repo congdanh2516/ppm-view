@@ -63,7 +63,7 @@
       <div class="task-creation-form__form__action__cancel-btn" (click)="onNoClick()">
         Hủy
       </div>
-      <button type="submit" class="task-creation-form__form__action__creative-btn" [disabled]="isLoading" [mat-dialog-close]="{action: true}">
+      <button type="submit" class="task-creation-form__form__action__creative-btn" [disabled]="isLoading" [mat-dialog-close]="data">
         <app-loader size="15px" color="white" *ngIf="isLoading; else btnname"></app-loader>
         <ng-template #btnname>Cập nhật</ng-template>
       </button>
