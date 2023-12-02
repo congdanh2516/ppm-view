@@ -21,16 +21,7 @@ import { Subtask } from 'src/app/core/models/subtask';
 import { TaskModificationComponent } from '../task-modification/task-modification.component';
 import { NotificationBoxCreateSubtaskComponent } from './notificationBox/notification-box-create-subtask/notification-box-create-subtask.component';
 import { SubtaskService } from 'src/app/core/services/subtask/subtask.service';
-import { NotificationBoxUpdateSubtaskComponent } from './notificationBox/notification-box-update-subtask/notification-box-update-subtask.component';
-import { NotificationBoxMessageComponent } from './notificationBox/notification-box-message/notification-box-message.component';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
-import { AuthenticationService } from 'src/app/feature/authentication/services/authentication.service';
 import { AdminProcessService } from '../../services/admin-process/admin-process.service';
-import { ConfirmBoxModalService } from 'src/app/core/services/confirm-box-modal.service';
 
 @Component({
   selector: 'app-process-detail',
@@ -92,20 +83,10 @@ export class ProcessDetailComponent implements OnInit {
       this.getProjectById(params.id);
     });
     this.getTaskList();
-    this.getProjectList();
   }
 
   handleOnClick(event: Event): void {
     event.stopPropagation();
-  }
-
-  private detectChanges(): void {
-    this.route.params.subscribe((params: any) => {
-      this.getProjectById(params.id);
-      this.getProjectList();
-      this.getTaskList();
-    });
-    this.cdr.detectChanges();
   }
 
   ngOnInit(): void {}
@@ -123,7 +104,7 @@ export class ProcessDetailComponent implements OnInit {
 
   getTaskList() {
     this.isLoading = true;
-    this.taskService.getTaskList().subscribe({
+    this.taskService.getTaskListByProjectId(this.projectId).subscribe({
       next: (task: any) => {
         this.taskList = task;
         for (let i = 0; i < this.taskList.length; i++) {
@@ -131,7 +112,7 @@ export class ProcessDetailComponent implements OnInit {
             .getSubtaskList(this.taskList[i].taskId)
             .subscribe((subtaskList) => {
               this.taskList[i].subtask = subtaskList;
-              if(i==this.taskList.length - 1) {
+              if (i == this.taskList.length - 1) {
                 this.isLoading = false;
               }
             });
@@ -166,10 +147,17 @@ export class ProcessDetailComponent implements OnInit {
   }
 
   getProjectById(projectId: string) {
-    this.projectService.getProjectById(projectId).subscribe({
-      next: (project: any) => {
-        this.project = project;
-        console.log('call api find project by id successfully', project);
+    this.adminProcessSV.scheduleProcess(this.projectId).subscribe({
+      next: (res) => {
+        this.projectService.getProjectById(projectId).subscribe({
+          next: (project: any) => {
+            this.project = project;
+            console.log('call api find project by id successfully', project);
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
       },
       error: (error) => {
         console.log(error);
@@ -179,14 +167,14 @@ export class ProcessDetailComponent implements OnInit {
 
   deleteDialogTask(task: Task): void {
     const dialogRef = this.dialog.open(NotificationBoxDeleteComponent, {
-      data: task
+      data: task,
     });
-    dialogRef.afterClosed().subscribe((response) => { //response: {action: true}
-      if(response!=undefined) {
+    dialogRef.afterClosed().subscribe((response) => {
+      //response: {action: true}
+      if (response != undefined) {
         this.getProjectListNSchedule();
       }
     });
-
   }
 
   deleteDialogSubTask(subTask: Subtask): void {
@@ -225,7 +213,6 @@ export class ProcessDetailComponent implements OnInit {
         });
       });
     });
-    this.detectChanges();
   }
 
   updateDialogTask(taskId: any) {
@@ -238,8 +225,8 @@ export class ProcessDetailComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((data) => {
-      console.log("data: ", data);
-      if(data!==undefined) {
+      console.log('data: ', data);
+      if (data !== undefined) {
         this.getProjectListNSchedule();
       }
     });
@@ -251,12 +238,12 @@ export class ProcessDetailComponent implements OnInit {
       width: '500px',
       data: {
         subtask: subtask,
-        task: task
+        task: task,
       },
     });
 
     dialogRef.afterClosed().subscribe((data) => {
-      if(data!==undefined) {
+      if (data !== undefined) {
         this.getProjectListNSchedule();
       }
     });
@@ -285,7 +272,6 @@ export class ProcessDetailComponent implements OnInit {
           });
       });
     });
-    this.detectChanges();
   }
 
   createDialogSubtask(task: Task) {
@@ -313,8 +299,9 @@ export class ProcessDetailComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe((data) => { //data: {action: true}
-      if(data!==undefined) {
+    dialogRef.afterClosed().subscribe((data) => {
+      //data: {action: true}
+      if (data !== undefined) {
         // this.getTaskList();
         this.getProjectListNSchedule();
       }
@@ -328,6 +315,7 @@ export class ProcessDetailComponent implements OnInit {
       this.updateDialogProjectName(this.project);
     }
   }
+
   handleUpdateInfor(event: Event): void {
     if (!this.isDisabledInfor) {
       this.project.projectStartAt = (event.target as HTMLInputElement).value;
@@ -335,7 +323,6 @@ export class ProcessDetailComponent implements OnInit {
       this.updateDialogProjectDate(this.project);
     }
   }
-
 
   handleCreateSubtask(subtask: Subtask) {
     this.createSubtask(subtask);
@@ -370,7 +357,6 @@ export class ProcessDetailComponent implements OnInit {
     });
   }
 
-
   getSubtasks(taskId: any) {
     console.log('taskId: ', taskId);
 
@@ -394,10 +380,11 @@ export class ProcessDetailComponent implements OnInit {
 
   getProjectListNSchedule() {
     this.adminProcessSV.scheduleProcess(this.projectId).subscribe({
-      next: ((res) => {
+      next: (res) => {
         this.getTaskList();
-      }),
-      error: ((error) => {})
-    })
+        this.getProjectById(this.projectId);
+      },
+      error: (error) => {},
+    });
   }
 }

@@ -5,9 +5,16 @@
   <div class="row">
     <div class="col-9">
       <div class="row">
-        <div class="col-4 task-infor padding-left-0 padding-right-0" style="display: flex;">
-          <div style="display: flex; align-items: end; padding-bottom: 5px;">
-            <a [routerLink]="['/admin/process/list']" style="text-decoration: none;  color: black; font-weight: 700;">Home&nbsp;</a>/&nbsp;
+        <div
+          class="col-4 task-infor padding-left-0 padding-right-0"
+          style="display: flex"
+        >
+          <div style="display: flex; align-items: end; padding-bottom: 5px">
+            <a
+              [routerLink]="['/admin/process/list']"
+              style="text-decoration: none; color: black; font-weight: 700"
+              >Home&nbsp;</a
+            >/&nbsp;
           </div>
           <input
             class="task-infor__taskname"
@@ -44,7 +51,6 @@
                   ><input
                     class="task-infor__date"
                     type="date"
-                    [value]="project.projectStartAt | date : 'yyyy-MM-dd'"
                     [disabled]="isDisabledInfor ? true : false"
                     [(ngModel)]="project.projectStartAt"
                     (change)="handleUpdateInfor($event)"
@@ -78,7 +84,14 @@
         <div class="col-3">
           <div>
             <div class="width-height-100-percent padding-5">
-              Ngày kết thúc: <span>{{ project.projectEndAt }}</span>
+              Ngày kết thúc:
+              <span
+                ><input
+                  class="task-infor__date"
+                  type="date"
+                  disabled
+                  [(ngModel)]="project.projectEndAt"
+              /></span>
             </div>
           </div>
         </div>
@@ -110,11 +123,10 @@
       </div>
       <mat-expansion-panel
         class="table-task__body-task mt-2 background-gray padding-left-0 padding-right-0"
-        
         hideToggle
         *ngFor="let item of taskList; trackBy: trackByFn"
       >
-      <!-- [class.disabled-pointer]="item.subtask?.length == 0" -->
+        <!-- [class.disabled-pointer]="item.subtask?.length == 0" -->
         <mat-expansion-panel-header
           class="table-task__body-task__task padding-left-0 padding-right-0"
         >
@@ -160,7 +172,10 @@
                     </svg>
                   </span>
                   <mat-menu #menutask="matMenu">
-                    <button mat-menu-item (click)="updateDialogTask(item.taskId)">
+                    <button
+                      mat-menu-item
+                      (click)="updateDialogTask(item.taskId)"
+                    >
                       <span class="margin-right-10">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -211,7 +226,7 @@
             </div>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div *ngIf="item.subtask?.length!=0; else haveNoSubtask">
+        <div *ngIf="item.subtask?.length != 0; else haveNoSubtask">
           <div *ngFor="let subtask of item.subtask; trackBy: trackByFnn">
             <div class="table-task__body-task__task__subtask">
               <div class="row">
@@ -265,10 +280,7 @@
                         </span>
                         <span>Chỉnh sửa</span>
                       </button>
-                      <button
-                        mat-menu-item
-                        (click)="deleteDialogTask(subtask)"
-                      >
+                      <button mat-menu-item (click)="deleteDialogTask(subtask)">
                         <span class="margin-right-10">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -289,9 +301,7 @@
             </div>
           </div>
         </div>
-        <ng-template #haveNoSubtask >
-          Chưa thêm tiêu chí đánh giá
-        </ng-template>
+        <ng-template #haveNoSubtask> Chưa thêm tiêu chí đánh giá </ng-template>
       </mat-expansion-panel>
     </div>
   </div>
