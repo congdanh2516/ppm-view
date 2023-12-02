@@ -202,3 +202,13 @@
 ::ng-deep .mat-expansion-panel-body {
   padding-bottom: 5px !important;
 }
+
+.NoSubtask {
+  margin-left: 20px;
+  margin-top: 5px;
+  padding: 5px 5px 5px 20px;
+  border-radius: 5px;
+  border-left: 10px solid #1a2848;
+  background-color: #ffffff;
+  margin-right: -25px !important;
+}

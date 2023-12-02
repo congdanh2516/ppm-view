@@ -6,7 +6,7 @@ import { AuthenticationService } from 'src/app/feature/authentication/services/a
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
   faArrowRightFromBracket = faArrowRightFromBracket;
@@ -16,20 +16,43 @@ export class HeaderComponent {
   username: string = '';
   today: Date;
   todayStr: string = '';
-  monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
 
-  constructor(private authenticationSV: AuthenticationService,
-              private localStorageSV: LocalStorageService      
+  constructor(
+    private authenticationSV: AuthenticationService,
+    private localStorageSV: LocalStorageService
   ) {
     this.username = this.localStorageSV.getItem('name');
     this.today = new Date();
-    this.todayStr = (this.today.getDay() < 10? "0" + this.today.getDay() : this.today.getDay()) + " " + this.monthNames[this.today.getMonth()] + ", " + this.today.getFullYear();
+    this.todayStr =
+      (this.today.getDay() < 10
+        ? '0' + this.today.getDay()
+        : this.today.getDay()) +
+      ' ' +
+      this.monthNames[this.today.getMonth()] +
+      ', ' +
+      this.today.getFullYear();
     console.log(this.today);
   }
 
   openSignOutDialog() {
     this.closeSignOutDialogTimeOutOnHover();
-    this.signOutDialogOpening === undefined ? this.signOutDialogOpening = true : this.signOutDialogOpening = !this.signOutDialogOpening;
+    this.signOutDialogOpening === undefined
+      ? (this.signOutDialogOpening = true)
+      : (this.signOutDialogOpening = !this.signOutDialogOpening);
     this.setSignOutDialogTimeOut();
   }
 
@@ -40,12 +63,10 @@ export class HeaderComponent {
   setSignOutDialogTimeOut() {
     this.signOutDialogOpeningTimeOut = setTimeout(() => {
       this.signOutDialogOpening = false;
-    }, 3000)
+    }, 3000);
   }
 
   logOut() {
     this.authenticationSV.logOut();
   }
-
-  
 }

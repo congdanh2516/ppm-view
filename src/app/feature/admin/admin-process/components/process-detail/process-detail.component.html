@@ -232,7 +232,7 @@
               <div class="row">
                 <div class="col-1 padding-left-10"></div>
                 <div class="col-4">{{ subtask.subTaskName }}</div>
-                <div class="col-5">{{ subtask.taskParentId }}</div>
+                <div class="col-5">{{ subtask.subTaskDescription }}</div>
                 <div class="col-2 text-right">
                   <div class="margin-right-10">
                     <span
@@ -301,7 +301,9 @@
             </div>
           </div>
         </div>
-        <ng-template #haveNoSubtask> Chưa thêm tiêu chí đánh giá </ng-template>
+        <ng-template #haveNoSubtask>
+          <p class="NoSubtask">Chưa thêm tiêu chí đánh giá</p>
+        </ng-template>
       </mat-expansion-panel>
     </div>
   </div>
