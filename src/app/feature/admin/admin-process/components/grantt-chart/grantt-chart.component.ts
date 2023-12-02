@@ -12,6 +12,7 @@ export class GranttChartComponent {
 
   taskList: Array<any> = [];
   projectInfo: any;
+  dateList: Array<any> = [];
 
   constructor(private taskSV: TaskService,
               private localStorageSV: LocalStorageService,
@@ -20,6 +21,17 @@ export class GranttChartComponent {
     let projectId = this.localStorageSV.getItem("project")?.projectId;
     this.projectSV.getProjectById(projectId).subscribe((res: any) => {
       this.projectInfo = res;
+      console.log("period project: ", res);
+      let dstartDateProject = new Date(res.projectStartAt);
+      let dendDatePoject = new Date(res.projectEndAt);
+      this.dateList.push(dstartDateProject);
+      while(dstartDateProject.getTime()!==dendDatePoject.getTime()) {
+        let nextDate = new Date(dstartDateProject);
+        nextDate.setDate(dstartDateProject.getDate() + 1);
+        this.dateList.push(nextDate);
+        dstartDateProject = new Date(nextDate);
+      }
+      console.log("date list: ", this.dateList);
     })
     this.taskSV.getTaskListByProjectId(projectId).subscribe((res: any) => {
       this.taskList = res;

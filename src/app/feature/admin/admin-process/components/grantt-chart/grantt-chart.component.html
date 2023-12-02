@@ -24,8 +24,8 @@
     </div>
     <div class="grantt__process">
         <div class="grantt__process__date-division">
-            <div class="grantt__process__date-division__date" *ngFor="let item of  [].constructor(50)">
-                30
+            <div class="grantt__process__date-division__date" *ngFor="let date of dateList">
+                {{ date.getDate() < 10 ? "0" + date.getDate() : date.getDate() }}
             </div>
         </div>
         <div class="grantt__process__processing-bar-list">

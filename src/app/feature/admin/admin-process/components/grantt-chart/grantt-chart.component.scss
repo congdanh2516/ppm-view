@@ -17,7 +17,7 @@
                     border: 1px solid black;
                 }
                 .name {
-                    min-width: 400px;
+                    min-width: 420px;
                 }
                 .duration {
                     min-width: 150px;
@@ -40,17 +40,13 @@
         overflow-x: auto;
         overflow-y: hidden;
         &__date-division {
-            
             position: absolute;
             top: 0;
             left: 0;
             border: 1px solid green;
             display: flex;
-            height: 100px;
-            // display: none;
-            
+            height: 100px;            
             max-width: 100%;
-
             &__date {
                 box-sizing: border-box;
                 height: 100%;
