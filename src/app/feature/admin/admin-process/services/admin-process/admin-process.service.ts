@@ -4,26 +4,23 @@ import { catchError, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdminProcessService {
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getProcessList() {
-    let api: string = environment.url + "projects?isTemplate=true";
-    return this.httpClient.get(api)
-            .pipe(
-              tap((data) => {
-                console.log("data: ", data);
-              }),
-              catchError(this.handleError)
-            )
-          
+    let api: string = environment.url + 'projects?isTemplate=true';
+    return this.httpClient.get(api).pipe(
+      tap((data) => {
+        console.log('data: ', data);
+      }),
+      catchError(this.handleError)
+    );
   }
 
   createTask(newTask: any) {
-    let api: string = environment.url + "tasks";
+    let api: string = environment.url + 'tasks';
     return this.httpClient.post(api, newTask);
   }
 
@@ -33,8 +30,13 @@ export class AdminProcessService {
   }
 
   createProcess(newProcess: any) {
-    let api: string = environment.url + "projects";
+    let api: string = environment.url + 'projects';
     return this.httpClient.post(api, newProcess);
+  }
+
+  deleteProcessById(processId: string) {
+    let api: string = environment.url + `projects/${processId}`;
+    return this.httpClient.delete(api);
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -42,8 +44,12 @@ export class AdminProcessService {
       console.error('An error occurred:', error.error);
     } else {
       console.error(
-        `Backend returned code ${error.status}, body was: `, error.error);
+        `Backend returned code ${error.status}, body was: `,
+        error.error
+      );
     }
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+    return throwError(
+      () => new Error('Something bad happened; please try again later.')
+    );
   }
 }

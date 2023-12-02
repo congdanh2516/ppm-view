@@ -1,81 +1,98 @@
-@import '../../../../assets/scss/sass-config.scss';
+@import "../../../../assets/scss/sass-config.scss";
 .process {
-    padding: 0 40px;
-    margin-top: 25px;
-    &__all {
-        &__heading {
-            &__title {
-                display: flex;
-                align-items: center;
-            }
-            &__button {
-                display: flex;
-                justify-content: right;
-                &__creation {
-                    @include button(200px, 50px, $dark-blue);
-                }
-            }
+  padding: 0 40px;
+  margin-top: 25px;
+  &__all {
+    &__heading {
+      &__title {
+        display: flex;
+        align-items: center;
+      }
+      &__button {
+        display: flex;
+        justify-content: right;
+        &__creation {
+          @include button(200px, 50px, $dark-blue);
         }
-        &__list {
-            width: 100%;
-            margin-top: 25px;
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 20px;
-            &__process-item {
-                position: relative;
-                padding: 10px;
-                background-color: white;
-                height: 120px;
-                border-radius: 3px;
-                cursor: pointer;
-                @extend %shadow;
-                &__name {
-                    font: {
-                        size: 18px;
-                        weight: 600;
-                    }
-                }
-                &__duration {
-                    margin-top: 5px;
-                    .title {
-                        color: rgba(0, 0, 0, 0.7);
-                        font-size: 13px;
-                    }
-                    .value{
-                        font-weight: 600;
-                        font-size: 14px;
-                    }
-                }
-                &__detail-btn {
-                    position: absolute;
-                    right: 10px;
-                    bottom: 10px;
-                    font-size: 12px;
-                    display: flex;
-                    align-items: center;
-                    color: $dark-blue;
-                    font-weight: 600;
-                    svg {
-                        margin-right: 3px;
-                        margin-top: 1px;
-                        stroke: $dark-blue;
-                        stroke-width: 1px;
-                    }
-                    padding: 5px;
-                    cursor: pointer;
-                    transition: all 0.5 ease;
-                    &:hover {
-                        @extend %shadow;
-                        transition: all 0.5s ease;
-                    }
-                }
-                transition: all 0.5s ease;
-                &:hover {
-                    box-shadow: 0 0 8px 0.5px $dark-blue;
-                    transition: all 0.5s ease;
-                }
-            }
-        }
+      }
     }
+    &__list {
+      width: 100%;
+      margin-top: 25px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 20px;
+      &__process-item {
+        position: relative;
+        padding: 10px;
+        background-color: white;
+        height: 120px;
+        border-radius: 3px;
+        cursor: pointer;
+        @extend %shadow;
+        &__name {
+          font: {
+            size: 18px;
+            weight: 600;
+          }
+        }
+        &__duration {
+          margin-top: 5px;
+          .title {
+            color: rgba(0, 0, 0, 0.7);
+            font-size: 13px;
+          }
+          .value {
+            font-weight: 600;
+            font-size: 14px;
+          }
+        }
+        &__remove {
+          margin-top: -70px;
+          margin-right: -13px;
+          .item {
+            color: #000000;
+            opacity: 0.2;
+            font-size: 13px;
+            text-align: center;
+            height: 20px;
+            width: 20px;
+            float: right;
+          }
+          .item:hover {
+            color: white;
+            opacity: 0.8;
+          }
+        }
+        &__detail-btn {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+          font-size: 12px;
+          display: flex;
+          align-items: center;
+          color: $dark-blue;
+          font-weight: 600;
+          svg {
+            margin-right: 3px;
+            margin-top: 1px;
+            stroke: $dark-blue;
+            stroke-width: 1px;
+          }
+          padding: 5px;
+          cursor: pointer;
+          transition: all 0.5 ease;
+          &:hover {
+            @extend %shadow;
+            transition: all 0.5s ease;
+          }
+        }
+        transition: all 0.5s ease;
+        &:hover {
+          box-shadow: 0 0 8px 0.5px $dark-blue;
+          transition: all 0.5s ease;
+        }
+      }
+    }
+  }
 }

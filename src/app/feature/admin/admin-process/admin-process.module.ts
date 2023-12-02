@@ -34,6 +34,7 @@ import { GranttChartComponent } from './components/grantt-chart/grantt-chart.com
 import { ProcessingBarComponent } from './components/grantt-chart/processing-bar/processing-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { DdMmYYYYDatePipe } from '../../../utils/dd-mm-yyyy-date.pipe';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { RouterModule } from '@angular/router';
     NotificationBoxMessageComponent,
     GranttChartComponent,
     ProcessingBarComponent,
+    DdMmYYYYDatePipe,
   ],
   imports: [
     CommonModule,
@@ -73,7 +75,7 @@ import { RouterModule } from '@angular/router';
     MatAutocompleteModule,
     MatSnackBarModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

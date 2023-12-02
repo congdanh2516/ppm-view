@@ -1,36 +1,36 @@
 <header class="header">
-    <a class="header__app-info" [routerLink]="['/admin/process/list']"> 
-        <div class="header__app-info__logo"></div>
-        <div class="header__app-info__name">
-            ODA Project
-        </div>
-    </a>
-    <div class="header__flex-info">
-        <div class="header__flex-info__time">
-            <div class="header__flex-info__time__title">TODAY</div>
-            <div class="header__flex-info__time__value">
-                {{ todayStr }}
-            </div>
-        </div>
-        <div class="header__flex-info__divide"></div>
-        <div class="header__flex-info__profile" (click)="openSignOutDialog()">
-            <div class="header__flex-info__profile__title">PROFILE</div>
-            <div class="header__flex-info__profile__value">
-                <div class="active-status"></div>
-                <div class="name">{{ username }}</div>
-            </div>
-        </div>
+  <a class="header__app-info" [routerLink]="['/admin/process/list']">
+    <div class="header__app-info__logo"></div>
+    <div class="header__app-info__name">ODA Project</div>
+  </a>
+  <div class="header__flex-info">
+    <div class="header__flex-info__time">
+      <div class="header__flex-info__time__title">TODAY</div>
+      <div class="header__flex-info__time__value">
+        {{ todayStr }}
+      </div>
     </div>
+    <div class="header__flex-info__divide"></div>
+    <div class="header__flex-info__profile" (click)="openSignOutDialog()">
+      <div class="header__flex-info__profile__title">PROFILE</div>
+      <div class="header__flex-info__profile__value">
+        <div class="active-status"></div>
+        <div class="name">{{ username }}</div>
+      </div>
+    </div>
+  </div>
 </header>
 
-<div class="sign-out" *ngIf="signOutDialogOpening !== undefined"
-    (mouseover)="closeSignOutDialogTimeOutOnHover()"
-    (mouseout)="setSignOutDialogTimeOut()"
-    [class.slideDown]="signOutDialogOpening"
-    [class.slideUp]="!signOutDialogOpening && signOutDialogOpening !== undefined"    
+<div
+  class="sign-out"
+  *ngIf="signOutDialogOpening !== undefined"
+  (mouseover)="closeSignOutDialogTimeOutOnHover()"
+  (mouseout)="setSignOutDialogTimeOut()"
+  [class.slideDown]="signOutDialogOpening"
+  [class.slideUp]="!signOutDialogOpening && signOutDialogOpening !== undefined"
 >
-    <div class="sign-out__btn" (click)="logOut()">
-        <fa-icon [icon]="faArrowRightFromBracket"></fa-icon>
-        Đăng xuất
-    </div>
+  <div class="sign-out__btn" (click)="logOut()">
+    <fa-icon [icon]="faArrowRightFromBracket"></fa-icon>
+    Đăng xuất
+  </div>
 </div>

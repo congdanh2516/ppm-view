@@ -1,8 +1,6 @@
 import { Component, Inject, Input } from '@angular/core';
 import { ProcessDetailComponent } from '../../process-detail.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ProjectService } from 'src/app/core/services/project/project.service';
-import { Subtask } from 'src/app/core/models/subtask';
 import { SubtaskService } from 'src/app/core/services/subtask/subtask.service';
 import { ToastBoxModalService } from 'src/app/core/services/toast-box-modal.service';
 
@@ -12,7 +10,6 @@ import { ToastBoxModalService } from 'src/app/core/services/toast-box-modal.serv
   styleUrls: ['./notification-box-create-subtask.component.scss'],
 })
 export class NotificationBoxCreateSubtaskComponent {
-
   @Input() taskParentName: string | undefined;
   isLoading: boolean = false;
   isModifying: boolean = false;
@@ -20,8 +17,8 @@ export class NotificationBoxCreateSubtaskComponent {
   subTaskInfo: any = {
     subTaskName: '',
     subTaskDescription: '',
-    taskParentId: ''
-  }
+    taskParentId: '',
+  };
 
   constructor(
     public dialogRef: MatDialogRef<ProcessDetailComponent>,
@@ -29,21 +26,21 @@ export class NotificationBoxCreateSubtaskComponent {
     private subtaskSV: SubtaskService,
     private toastSV: ToastBoxModalService
   ) {
-     console.log("data sub task: ", data);
-     this.subTaskInfo.taskParentId = data.taskId;
-     if(data.subtask != undefined) this.isModifying = true;
-     if(this.isModifying) {
-      console.log("subtask: ", data.subtask)
+    console.log('data sub task: ', data);
+    this.subTaskInfo.taskParentId = data.taskId;
+    if (data.subtask != undefined) this.isModifying = true;
+    if (this.isModifying) {
+      console.log('subtask: ', data.subtask);
       this.subTaskInfo.taskParentId = data.task.taskId;
       this.subTaskInfo.subTaskName = data.subtask?.subTaskName;
       this.subTaskInfo.subTaskDescription = data.subtask?.subTaskDescription;
       this.subTaskInfo.subTaskId = data.subtask?.subTaskId;
-      console.log("aaa: ", this.subTaskInfo);
-     }
+      console.log('aaa: ', this.subTaskInfo);
+    }
   }
 
   submit() {
-    if(this.isModifying) {
+    if (this.isModifying) {
       this.updateSubtask();
     } else {
       this.createSubtask();
@@ -54,22 +51,22 @@ export class NotificationBoxCreateSubtaskComponent {
     this.subtaskSV.createSubtask(this.subTaskInfo).subscribe({
       next: (res) => {
         this.isLoading = false;
-        console.log("screat subtask: ", res);
+        console.log('screat subtask: ', res);
         this.onNoClick();
         this.toastSV.sendMessage({
           isDisplay: true,
-          message: "Theem tieeu thành công",
-          icon: 'success'
-        })
+          message: 'Thêm tiêu chí thành công',
+          icon: 'success',
+        });
       },
       error: (error) => {
         this.toastSV.sendMessage({
           isDisplay: true,
-          message: "Thất bại. Vui lòng thử lại sau",
-          icon: 'error'
-        })
-      }
-    })
+          message: 'Thất bại. Vui lòng thử lại sau',
+          icon: 'error',
+        });
+      },
+    });
   }
 
   updateSubtask() {
@@ -77,18 +74,18 @@ export class NotificationBoxCreateSubtaskComponent {
       next: (res) => {
         this.toastSV.sendMessage({
           isDisplay: true,
-          message: "Cập nhật công việc thành công",
-          icon: 'success'
-        })
+          message: 'Cập nhật công việc thành công',
+          icon: 'success',
+        });
       },
       error: (error) => {
         this.toastSV.sendMessage({
           isDisplay: true,
-          message: "Thất bại. Vui lòng thử lại sau",
-          icon: 'error'
-        })
-      }
-    })
+          message: 'Thất bại. Vui lòng thử lại sau',
+          icon: 'error',
+        });
+      },
+    });
   }
 
   onNoClick(): void {

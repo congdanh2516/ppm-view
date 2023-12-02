@@ -5,51 +5,71 @@ import { TaskCreationComponent } from './components/task-creation/task-creation.
 import { AdminProcessService } from './services/admin-process/admin-process.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { ToastBoxModalService } from 'src/app/core/services/toast-box-modal.service';
+import { truncateString } from 'src/app/utils/truncateString';
 
 @Component({
   selector: 'app-admin-process',
   templateUrl: './admin-process.component.html',
-  styleUrls: ['./admin-process.component.scss']
+  styleUrls: ['./admin-process.component.scss'],
 })
 export class AdminProcessComponent {
-
   processList: Array<any> = [];
 
-  constructor(public dialog: MatDialog, 
-            private adminProcessSV: AdminProcessService,
-            private router: Router,
-            private localStorageSV: LocalStorageService
+  constructor(
+    public dialog: MatDialog,
+    private adminProcessSV: AdminProcessService,
+    private router: Router,
+    private localStorageSV: LocalStorageService,
+    private toastSV: ToastBoxModalService
   ) {
     this.getProcessList();
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(TaskCreationComponent, {
-    });
+  handleOnClick(event: Event): void {
+    event.stopPropagation();
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
+  openDialog(): void {
+    const dialogRef = this.dialog.open(TaskCreationComponent, {});
+
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
     });
   }
 
   openCreationProcessDialog() {
     const dialogRef = this.dialog.open(ProcessCreationComponent, {
-      disableClose: true
+      disableClose: true,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       this.getProcessList();
     });
   }
 
   getProcessList() {
     this.adminProcessSV.getProcessList().subscribe((data: any) => {
-      this.processList = data;
-    })
+      this.processList = data.map((item: any) => ({
+        ...item,
+        projectName: truncateString(item.projectName, 15),
+      }));
+    });
   }
 
   openDetail(projectId: any) {
     this.router.navigateByUrl(`/admin/process/list/${projectId}`);
-    this.localStorageSV.setItem("project", {projectId: projectId});
+    this.localStorageSV.setItem('project', { projectId: projectId });
+  }
+
+  deleteProcess(projectId: any) {
+    this.adminProcessSV.deleteProcessById(projectId).subscribe(() => {
+      this.getProcessList();
+    });
+    this.toastSV.sendMessage({
+      isDisplay: true,
+      message: 'Xóa quy trình thành công',
+      icon: 'success',
+    });
   }
 }
