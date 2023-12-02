@@ -1,21 +1,27 @@
-<h1 class="box-title" mat-dialog-title>Thông báo</h1>
-<div mat-dialog-content>
-  <p class="text-content">
-    Bạn có muốn thay đổi quy trình này với tên <br />
-    <span class="text-content__textName"
-      ><b>{{ data.projectName }}</b></span
+<div class="task-deletion">
+  <div class="task-deletion__content">
+    <div class="task-deletion__content__title">
+      Xác nhận thay đổi quy trình với tên <b>{{ data.projectName }}</b
+      >?
+    </div>
+    <div class="task-deletion__content__description"></div>
+  </div>
+  <div class="task-deletion__action">
+    <div class="task-deletion__action__cancel-btn" (click)="onNoClick()">
+      Hủy
+    </div>
+    <button
+      class="task-deletion__action__approval-btn"
+      (click)="updateProject()"
+      [disabled]="isLoading"
+      [mat-dialog-close]="{ action: true }"
     >
-    này không?
-  </p>
-</div>
-<div class="float-right btn-box" mat-dialog-actions>
-  <button class="btn-box__close" mat-button (click)="onNoClick()">Không</button>
-  <button
-    class="btn-box__success"
-    mat-button
-    [mat-dialog-close]="data"
-    cdkFocusInitial
-  >
-    Đồng ý
-  </button>
+      <app-loader
+        size="15px"
+        color="white"
+        *ngIf="isLoading; else btnname"
+      ></app-loader>
+      <ng-template #btnname>Đồng ý</ng-template>
+    </button>
+  </div>
 </div>
