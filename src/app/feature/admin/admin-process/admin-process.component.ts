@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { ToastBoxModalService } from 'src/app/core/services/toast-box-modal.service';
 import { truncateString } from 'src/app/utils/truncateString';
+import { NotificationDeleteProcessComponent } from 'src/app/shared/notification-delete-process/notification-delete-process.component';
 
 @Component({
   selector: 'app-admin-process',
@@ -62,14 +63,16 @@ export class AdminProcessComponent {
     this.localStorageSV.setItem('project', { projectId: projectId });
   }
 
-  deleteProcess(projectId: any) {
-    this.adminProcessSV.deleteProcessById(projectId).subscribe(() => {
-      this.getProcessList();
+  deleteProcess(project: any): void {
+    const dialogRef = this.dialog.open(NotificationDeleteProcessComponent, {
+      data: {
+        projectId: project.projectId,
+        projectName: project.projectName,
+      },
     });
-    this.toastSV.sendMessage({
-      isDisplay: true,
-      message: 'Xóa quy trình thành công',
-      icon: 'success',
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getProcessList();
     });
   }
 }

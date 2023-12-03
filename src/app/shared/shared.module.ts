@@ -8,6 +8,7 @@ import { ConfirmBoxModalComponent } from './confirm-box-modal/confirm-box-modal.
 import { ToastBoxModalComponent } from './toast-box-modal/toast-box-modal.component';
 import { LoaderComponent } from './loader/loader.component';
 import { RouterModule } from '@angular/router';
+import { NotificationDeleteProcessComponent } from './notification-delete-process/notification-delete-process.component';
 
 
 
@@ -18,7 +19,8 @@ import { RouterModule } from '@angular/router';
     ErrorMessageComponent,
     ConfirmBoxModalComponent,
     ToastBoxModalComponent,
-    LoaderComponent
+    LoaderComponent,
+    NotificationDeleteProcessComponent
   ],
   imports: [
     CommonModule,
