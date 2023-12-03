@@ -35,6 +35,8 @@ import { ProcessingBarComponent } from './components/grantt-chart/processing-bar
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { DdMmYYYYDatePipe } from '../../../utils/dd-mm-yyyy-date.pipe';
+import { InformationTaskComponent } from './components/process-detail/notificationBox/information-task/information-task.component';
+import { InformationSubtaskComponent } from './components/process-detail/notificationBox/information-subtask/information-subtask.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { DdMmYYYYDatePipe } from '../../../utils/dd-mm-yyyy-date.pipe';
     GranttChartComponent,
     ProcessingBarComponent,
     DdMmYYYYDatePipe,
+    InformationTaskComponent,
+    InformationSubtaskComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,68 @@
+<div class="task-deletion">
+  <div class="task-deletion__content">
+    <div class="task-deletion__content__title">
+      Công việc: <b>{{ data.taskName }}</b>
+    </div>
+    <div class="task-deletion__content__description mt-4">
+      <div class="row">
+        <div class="col-6">
+          <p>
+            Ngày bắt đầu:
+            <i
+              ><span>{{ data.taskStartAt }}</span></i
+            >
+          </p>
+        </div>
+        <div class="col-6">
+          <p class="float-right">
+            Ngày kết thúc:
+            <i
+              ><span>{{ data.taskEndAt }}</span></i
+            >
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <p>
+            Thời gian công việc:
+            <i
+              ><span>{{ data.taskDuration }}</span> Ngày</i
+            >
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-2">
+              <p>Mô tả:</p>
+            </div>
+            <div class="col-10">
+              <span>{{ data.taskDescription }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-6">
+              <p>Công việc tuyên quyết:</p>
+            </div>
+            <div class="col-6">
+              <div *ngFor="let dependency of selectedPrerequisites" class="row">
+                <span>{{ dependency.taskName }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="task-deletion__action">
+    <button class="task-deletion__action__approval-btn" (click)="onNoClick()">
+      Đồng ý
+    </button>
+  </div>
+</div>

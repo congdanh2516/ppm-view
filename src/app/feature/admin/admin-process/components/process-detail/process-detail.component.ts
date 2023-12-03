@@ -16,6 +16,9 @@ import { TaskModificationComponent } from '../task-modification/task-modificatio
 import { NotificationBoxCreateSubtaskComponent } from './notificationBox/notification-box-create-subtask/notification-box-create-subtask.component';
 import { SubtaskService } from 'src/app/core/services/subtask/subtask.service';
 import { AdminProcessService } from '../../services/admin-process/admin-process.service';
+import { InformationTaskComponent } from './notificationBox/information-task/information-task.component';
+import { InformationSubtaskComponent } from './notificationBox/information-subtask/information-subtask.component';
+import { truncateString } from 'src/app/utils/truncateString';
 
 @Component({
   selector: 'app-process-detail',
@@ -130,7 +133,15 @@ export class ProcessDetailComponent {
           this.taskService
             .getSubtaskList(this.taskList[i].taskId)
             .subscribe((subtaskList) => {
-              this.taskList[i].subtask = subtaskList;
+              this.taskList[i].subtask = subtaskList.map((item: any) => ({
+                ...item,
+                subTaskName: item.subTaskName
+                  ? truncateString(item.subTaskName, 15)
+                  : null,
+                subTaskDescription: item.subTaskDescription
+                  ? truncateString(item.subTaskDescription, 30)
+                  : null,
+              }));
               if (i == this.taskList.length - 1) {
                 this.isLoading = false;
               }
@@ -141,6 +152,10 @@ export class ProcessDetailComponent {
             ...item,
             taskStartAt: item.taskStartAt ? format(item.taskStartAt) : null,
             taskEndAt: item.taskEndAt ? format(item.taskEndAt) : null,
+            taskName: item.taskName ? truncateString(item.taskName, 15) : null,
+            taskDescription: item.taskDescription
+              ? truncateString(item.taskDescription, 20)
+              : null,
           };
         });
         console.log('task', tasks);
@@ -190,6 +205,24 @@ export class ProcessDetailComponent {
       },
       error: (error) => {
         console.log(error);
+      },
+    });
+  }
+
+  getTaskById(taskId: any) {
+    const dialogRef = this.dialog.open(InformationTaskComponent, {
+      width: '500px',
+      data: {
+        taskId: taskId,
+      },
+    });
+  }
+
+  getSubtasksById(subtaskId: any) {
+    const dialogRef = this.dialog.open(InformationSubtaskComponent, {
+      width: '500px',
+      data: {
+        subtaskId: subtaskId,
       },
     });
   }
@@ -262,6 +295,7 @@ export class ProcessDetailComponent {
       width: '500px',
       data: {
         taskId: taskId,
+        projectId: this.projectId,
       },
     });
 

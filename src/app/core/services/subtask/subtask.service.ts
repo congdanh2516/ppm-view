@@ -11,6 +11,10 @@ const api = 'http://103.221.220.183:8081/subtasks';
 export class SubtaskService {
   constructor(private httpClient: HttpClient) {}
 
+  getSubtaskById(subtaskId: string) {
+    return this.httpClient.get(`${api}/${subtaskId}`);
+  }
+
   createSubtask(subtask: Subtask): Observable<Subtask> {
     return this.httpClient.post<Subtask>(api, subtask).pipe(
       tap((subtask) => {

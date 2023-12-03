@@ -174,7 +174,11 @@
                       />
                     </svg>
                   </span>
-                  <span class="opacity" (click)="handleOnClick($event)">
+                  <span
+                    class="opacity"
+                    (click)="handleOnClick($event)"
+                    (click)="getTaskById(item.taskId)"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="1.5rem"
@@ -266,7 +270,10 @@
                         />
                       </svg>
                     </span>
-                    <span class="opacity">
+                    <span
+                      class="opacity"
+                      (click)="getSubtasksById(subtask.subTaskId)"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="1.5rem"

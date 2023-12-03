@@ -1,0 +1,63 @@
+@import "../../../../../../../../assets/scss/sass-config.scss";
+.btn-box {
+  &__success {
+    background-color: $green;
+    color: #fff !important;
+    &:hover {
+      opacity: 0.6;
+      color: $dark-blue !important;
+    }
+  }
+  &__close {
+    background-color: $red;
+    color: #fff !important;
+    &:hover {
+      opacity: 0.6;
+      color: $dark-blue !important;
+    }
+  }
+}
+
+.float-right {
+  float: right !important;
+}
+
+.box-title {
+  font-size: 24px;
+  font-family: sans-serif;
+  font-weight: 600;
+  text-align: $dark-blue;
+}
+
+.text-content {
+  color: #000 !important;
+  &__textName {
+    color: $red !important;
+  }
+}
+
+.task-deletion {
+  width: 100%;
+  padding: 20px;
+  &__content {
+    &__title {
+      fa-icon {
+        margin-right: 5px;
+        color: $red;
+      }
+    }
+  }
+  &__action {
+    margin-top: 20px;
+    display: flex;
+    justify-content: right;
+    &__approval-btn {
+      @include button(130px, 40px, $dark-blue);
+    }
+    &__cancel-btn {
+      margin-right: 10px;
+      @include button(80px, 40px, absolute);
+      color: black;
+    }
+  }
+}
