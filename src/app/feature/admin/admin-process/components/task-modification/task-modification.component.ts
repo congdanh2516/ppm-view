@@ -22,6 +22,8 @@ export class TaskModificationComponent {
   isLoading: boolean = false;
   dependency: Dependency;
   tmp: any;
+  prerequisiteList: any[] = [];
+  prerequisiteIdList: any[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<ProcessDetailComponent>,
@@ -37,6 +39,7 @@ export class TaskModificationComponent {
       taskDuration: [],
     });
     this.createDependency();
+    this.getDependencies();
 
     this.taskSV.getTaskById(data.taskId).subscribe((task: any) => {
       console.log('taskInfo: ', task);
@@ -130,5 +133,34 @@ export class TaskModificationComponent {
     } else {
       console.warn('Không có prerequisites nào được chọn.');
     }
+  }
+
+  getDependencies() {
+    this.dependencySV.getDependencies().subscribe({
+      next: (item: any) => {
+        this.selectedPrerequisites = item;
+        console.log("item length ", item.length);
+        for (let i = 0; i < this.selectedPrerequisites.length; i++) {
+          console.log(i);
+          if (this.selectedPrerequisites[i].taskId == this.data.taskId) {
+            console.log("call api times: ");
+            this.taskSV
+              .getTaskById(this.selectedPrerequisites[i].taskDependentId)
+              .subscribe({
+                next: (res: any) => {
+                  console.log('res: ', res);
+                  // this.prerequisiteList.push({ ...res });
+                  // console.log('task id: ', this.prerequisiteList);
+                  this.prerequisiteIdList.push({ ...res }.taskId);
+                  console.log('test finished', this.prerequisiteIdList);
+                  // console.log('selectedPrerequisites', this.prerequisiteList);
+                  // this.prerequisites.setValue([...this.prerequisiteList]);
+                  // console.log('prerequisites', this.prerequisites);
+                },
+              });
+          }
+        }
+      },
+    });
   }
 }
