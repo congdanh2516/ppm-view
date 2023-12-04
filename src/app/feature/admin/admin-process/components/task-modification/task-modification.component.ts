@@ -25,6 +25,9 @@ export class TaskModificationComponent {
   prerequisiteList: any[] = [];
   prerequisiteIdList: any[] = [];
 
+  toppings = new FormControl<any[]>([]);
+  toppingList: Array<any> = [];
+
   constructor(
     public dialogRef: MatDialogRef<ProcessDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -38,7 +41,7 @@ export class TaskModificationComponent {
       taskDescription: '',
       taskDuration: [],
     });
-    this.createDependency();
+    // this.createDependency();
     this.getDependencies();
 
     this.taskSV.getTaskById(data.taskId).subscribe((task: any) => {
@@ -115,13 +118,20 @@ export class TaskModificationComponent {
               return { taskId: item.taskId, taskName: item.taskName };
             })
         );
+        this.toppingList = this.prerequisitesList.concat(
+          data
+            .filter((item: any) => item.taskId !== this.data.taskId)
+            .map((item: any) => {
+              return { taskId: item.taskId, taskName: item.taskName };
+            })
+        );
       },
     });
   }
 
   createDependency() {
-    if (this.prerequisites.value && this.prerequisites.value.length > 0) {
-      this.prerequisites.value.forEach((item: any) => {
+    if (this.toppings.value && this.toppings.value.length > 0) {
+      this.toppings.value.forEach((item: any) => {
         const newDependency = {
           dependencyType: 'FS',
           taskId: this.data.taskId,
@@ -139,28 +149,34 @@ export class TaskModificationComponent {
     this.dependencySV.getDependencies().subscribe({
       next: (item: any) => {
         this.selectedPrerequisites = item;
-        console.log("item length ", item.length);
+        
         for (let i = 0; i < this.selectedPrerequisites.length; i++) {
-          console.log(i);
+          // console.log(i);
           if (this.selectedPrerequisites[i].taskId == this.data.taskId) {
             console.log("call api times: ");
             this.taskSV
               .getTaskById(this.selectedPrerequisites[i].taskDependentId)
               .subscribe({
                 next: (res: any) => {
-                  console.log('res: ', res);
-                  // this.prerequisiteList.push({ ...res });
-                  // console.log('task id: ', this.prerequisiteList);
                   this.prerequisiteIdList.push({ ...res }.taskId);
-                  console.log('test finished', this.prerequisiteIdList);
-                  // console.log('selectedPrerequisites', this.prerequisiteList);
-                  // this.prerequisites.setValue([...this.prerequisiteList]);
-                  // console.log('prerequisites', this.prerequisites);
+                  console.log("prerequisiteIdList: ", this.prerequisiteIdList);
+                  
+                  this.prerequisiteList.push({ ...res });
+                  this.prerequisites.setValue([...this.prerequisiteList]);
+                  console.log("prerequisites: ", this.prerequisites);
+
+                  this.toppings.setValue([...this.prerequisiteIdList]);
+                  console.log("toppings: ", this.toppings);
+                  
                 },
               });
           }
         }
       },
     });
+  }
+
+  showArray() {
+    console.log("array: ", this.toppings);
   }
 }

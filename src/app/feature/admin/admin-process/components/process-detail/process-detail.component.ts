@@ -4,7 +4,7 @@ import { Task } from 'src/app/core/models/task';
 import { TaskService } from 'src/app/core/services/task/task.service';
 import { Project } from 'src/app/core/models/project';
 import { ProjectService } from 'src/app/core/services/project/project.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationBoxDeleteComponent } from './notificationBox/notification-box-delete/notification-box-delete.component';
 import { NotificationBoxUpdateComponent } from './notificationBox/notification-box-update/notification-box-update.component';
@@ -19,6 +19,7 @@ import { AdminProcessService } from '../../services/admin-process/admin-process.
 import { InformationTaskComponent } from './notificationBox/information-task/information-task.component';
 import { InformationSubtaskComponent } from './notificationBox/information-subtask/information-subtask.component';
 import { truncateString } from 'src/app/utils/truncateString';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-process-detail',
@@ -47,12 +48,16 @@ export class ProcessDetailComponent {
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private subtaskService: SubtaskService,
-    private adminProcessSV: AdminProcessService
+    private adminProcessSV: AdminProcessService,
+    private router: Router,
+    private localStorageSV: LocalStorageService
   ) {
     this.route.params.subscribe((params: any) => {
       this.projectId = params.id;
       this.getProjectById(params.id);
     });
+    this.projectId = this.localStorageSV.getItem("project")?.projectId;
+    this.getProjectById(this.projectId);
     this.getTaskList();
   }
 
@@ -376,5 +381,9 @@ export class ProcessDetailComponent {
         this.getTaskList();
       }
     });
+  }
+
+  openGrantt() {
+    this.router.navigateByUrl('/admin/process/list/grantt')
   }
 }

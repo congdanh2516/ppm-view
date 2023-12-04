@@ -59,7 +59,7 @@ export class AdminProcessComponent {
   }
 
   openDetail(projectId: any) {
-    this.router.navigateByUrl(`/admin/process/list/${projectId}`);
+    this.router.navigateByUrl(`/admin/process/list/detail`);
     this.localStorageSV.setItem('project', { projectId: projectId });
   }
 

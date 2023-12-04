@@ -104,3 +104,12 @@
 ::ng-deep #cdk-overlay-1{
   // height: 200px !important;
 }
+
+::ng-deep .mat-mdc-select-trigger {
+  margin-top: 10px;
+}
+
+::ng-deep .cdk-overlay-pane:not(.mat-mdc-select-panel-above) div.mat-mdc-select-panel {
+  height: 185px !important;
+  // max-height: 200px !important;
+}

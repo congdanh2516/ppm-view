@@ -1,7 +1,24 @@
 <!-- <p>grantt-chart works!</p> -->
+<div class="project-info">
+    <div class="project-info__name">
+        <a href="">Home </a> /
+        <a href="" class="project-info__name__name">Project Name </a>/ 
+        <span>Sơ đồ Grantt</span>
+    </div>
+    <div class="project-info__time">
+        <div class="project-info__time__period">
+            Giai đoạn: 2024-12-01 đến 2024/12/31
+        </div>
+        <div class="project-info__time__duration">
+            Thời gian: 31 ngày
+        </div>
+    </div>
+</div>
 <div class="grantt">
     <div class="grantt__task-info">
-        <!-- <div class="grantt__task-info__heading"></div> -->
+        <div class="grantt__task-info__heading">
+            Sơ đồ Grantt
+        </div>
         <div class="grantt__task-info__task-list">
             <!-- <div class="grantt__task-info__task-list__item" *ngFor="let task of taskList">
                {{ task.taskName }}
@@ -9,32 +26,45 @@
             <table>
                 <tr>
                     <th class="name">Tên công việc</th>
-                    <th class="duration">Thời gian (ngày)</th>
-                    <th class="date">Ngày bắt đầu</th>
-                    <th class="date">Ngày kết thúc</th>
+                    <th class="duration">Thời gian</th>
+                    <!-- <th class="date">Ngày bắt đầu</th>
+                    <th class="date">Ngày kết thúc</th> -->
                 </tr>
                 <tr *ngFor="let task of taskList" >
                     <td class="name">{{ task.taskName }}</td>
-                    <td class="duration"> {{ task.taskDuration }} </td>
-                    <td class="date">{{ task.taskStartAt }}</td>
-                    <td class="date">{{ task.taskEndAt }}</td>
+                    <td class="duration"> {{ task.taskDuration }} ngày </td>
+                    <!-- <td class="date">{{ task.taskStartAt }}</td>
+                    <td class="date">{{ task.taskEndAt }}</td> -->
                 </tr>
             </table>
         </div>
     </div>
     <div class="grantt__process">
         <div class="grantt__process__date-division">
-            <div class="grantt__process__date-division__date" *ngFor="let date of dateList">
-                {{ date.getDate() < 10 ? "0" + date.getDate() : date.getDate() }}
+            <div class="grantt__process__date-division__month">
+                <div class="grantt__process__date-division__month__item" *ngFor="let item of datePerMonth; let i=index" [style.min-width]="(i==datePerMonth.length-1? item.amount - 1 : item.amount)*unitWidth + 'px'">
+                    {{ monthNames[item.month] }} {{ item.year }}
+                </div>
+            </div>
+            <div class="grantt__process__date-division__date">
+                <div class="grantt__process__date-division__date__item" *ngFor="let date of dateList; let i=index" >
+                    {{ date.getDate() < 10 ? "0" + date.getDate() : date.getDate() }}
+                </div>
             </div>
         </div>
+        <hr style="margin-top: 99px; min-width: 100%; height: 3px; border:none; color:gray;background-color:gray; opacity: 1;" [style.min-width]="dateList.length*unitWidth + 'px'">
         <div class="grantt__process__processing-bar-list">
-            <div class="grantt__process__processing-bar-list__item" *ngFor="let task of taskList">
+            <div class="grantt__process__processing-bar-list__item" *ngFor="let task of taskList; let i=index">
                 <app-processing-bar [startDateProcess]="projectInfo.projectStartAt"
                                     [startDateTask]="task.taskStartAt"
                                     [endDateTask]="task.taskEndAt"
+                                    [color] = "i"
                 ></app-processing-bar>
             </div>
         </div>
     </div>
 </div>
+
+<a class="grantt-chart-btn" (click)="openDetail()">
+    Chi tiết quy trình
+  </a>

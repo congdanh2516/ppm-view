@@ -1,26 +1,76 @@
+@import '../../../../../../assets/scss/sass-config.scss';
+.project-info {
+    // bordeR: 1px solid red;
+    padding: 20px 40px;
+    padding-top: 25px;
+    &__name {
+        a {
+            text-decoration: none;
+            color: $dark-blue;
+            font-weight: 700;
+        }
+        &__name {
+            font: {
+                size: 26px;
+            }
+        }
+    }
+    &__time {
+        margin-top: 15px;
+        display: flex;
+        &__duration {
+            margin-left: 30px;
+        }
+    }
+}
 .grantt {
     display: flex;
-    width: 100%;
-    padding: 20px;
+    width: 95.5%;
+    padding: 5px;
+    // padding-bottom: 5px;
+    border-radius: 5px;
+    background-color: white;
+    margin: auto;
+    margin-top: 10px;
     &__task-info {
+        // padding: 20px 0;
         width: 30%;
         max-width: 30%;
-        overflow-y: auto;
+        overflow-x: hidden;
+        box-shadow: 12px 0px 20px -20px rgba(0,0,0,0.45);
         &__heading {
-            height: 30px;
-            border: 1px solid red;
+            height: 50px;
+            // border: 1px solid rgba(128, 128, 128, 0.4);
+            // border-bottom: none;
+            border-right: 1px solid rgba(128, 128, 128, 0.4);
+            line-height: 50px;
+            padding-left: 10px;
+            font: {
+                weight: 700;
+                size: 20px;
+            }
         }
         &__task-list {
+            width: 100%;
             table {
+                width: 100%;
                 tr, td, th{
                     height: 50px;
-                    border: 1px solid black;
+                    border: 1px solid rgba(128, 128, 128, 0.4);
+                    border-left: none;
+                    padding: 10px;
+                }
+                th {
+                    border-bottom: 3px solid rgba(128, 128, 128);
                 }
                 .name {
-                    min-width: 420px;
+                    // min-width: 420px;
+                    width: 75%;
                 }
                 .duration {
-                    min-width: 150px;
+                    // min-width: 155px;
+                    width: 25%;
+                    text-align: center;
                 }
                 .date {
                     min-width: 200px;
@@ -34,28 +84,54 @@
         }
     }
     &__process {
-        background-color: green;
+        // background-color: green;
+        // padding: 20px;
         position: relative;
         width: 70%;
         overflow-x: auto;
         overflow-y: hidden;
+        border-right: 1px solid rgba(128, 128, 128, 0.4);
         &__date-division {
+            // padding: 20px 0;
             position: absolute;
             top: 0;
             left: 0;
-            border: 1px solid green;
-            display: flex;
-            height: 100px;            
+            // border: 1px solid green;
+            // display: flex;
+            height: 100%;            
             max-width: 100%;
+            &__month {
+                display: flex;
+                height: 50px;
+                // border: 1px solid red;
+                &__item {
+                    line-height: 50px;
+                    padding-left: 10px;
+                    border: 1px solid rgba(128, 128, 128, 0.4);
+                    border-left: none;
+                    border-bottom: none;
+                    font-weight: 700;
+                    // min-width: 1400px;
+                }
+            }
             &__date {
-                box-sizing: border-box;
+                display: flex;
+                margin-top: 0px;
                 height: 100%;
-                min-width: 30px;
-                border: 1px solid red;
+                &__item {
+                    text-align: center;                
+                    box-sizing: border-box;
+                    height: 100%;
+                    min-width: 40px;
+                    border-right: 1px solid rgba(128, 128, 128, 0.4);
+                    border-top: 1px solid rgba(128, 128, 128, 0.4);
+                    padding-top: 13px;
+                    font-weight: 700;
+                }
             }
         }
         &__processing-bar-list {
-            margin-top: 30px;
+            margin-top: 100px;
             position: absolute;
             top: 0;
             left: 0;
@@ -63,8 +139,42 @@
                 display: flex;
                 align-items: center;
                 height: 50px;
-                border: 1px solid red;
+                // border: 1px solid red;
             }
         }
     }
+}
+
+.grantt-chart-btn {
+    position: sticky;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    width: 180px;
+    text-align: center;
+    @extend %shadow;
+    top: 90.5%;
+    bottom: 10px;
+    left: 88%;
+    font-weight: 700;
+    cursor: pointer;
+    display: block;
+    color: $dark-blue;
+    text-decoration: none;
+  }
+
+::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+    background: absolute;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $gray;
+    -webkit-border-radius: 1ex;
+    -webkit-box-shadow: 0px 1px 2px absolute;
+}
+
+::-webkit-scrollbar-corner {
+    background: absolute;
 }

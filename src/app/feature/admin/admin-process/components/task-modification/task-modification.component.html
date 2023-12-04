@@ -27,7 +27,7 @@
     </div>
     <div class="task-creation-form__form__prerequiste">
       <label for="">Công việc tiên quyết</label>
-      <mat-form-field class="box-content__field-100">
+      <!-- <mat-form-field class="box-content__field-100">
         <mat-chip-list #chipList class="chip-list">
           <div>
             <mat-chip
@@ -36,12 +36,12 @@
               [removable]="true"
               (removed)="removeTopping(itemPrerequisites)"
             >
-              {{ itemPrerequisites.taskName }}
+              {{ itemPrerequisites.taskId }}
             </mat-chip>
           </div>
         </mat-chip-list>
         <mat-select
-          [formControl]="prerequisites"
+        
           multiple
           [style.display]="prerequisites ? 'none' : 'block'"
           [(ngModel)]="prerequisiteIdList"
@@ -52,6 +52,11 @@
           >
             {{ prerequisite.taskId }}
           </mat-option>
+        </mat-select>
+      </mat-form-field> -->
+      <mat-form-field >
+        <mat-select [formControl]="toppings" multiple tabindex="-1">
+          <mat-option *ngFor="let topping of toppingList" [value]="topping.taskId" (click)="showArray()" >{{ topping.taskName }}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
