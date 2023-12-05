@@ -325,7 +325,7 @@
           </div>
         </div>
         <ng-template #haveNoSubtask>
-          <p class="NoSubtask">Chưa thêm tiêu chí đánh giá</p>
+          <div class="noSubtask">Chưa thêm tiêu chí đánh giá. <span (click)="createDialogSubtask(item)">Thêm</span> </div>
         </ng-template>
       </mat-expansion-panel>
     </div>
@@ -333,5 +333,5 @@
 </div>
 
 <a class="grantt-chart-btn" (click)="openGrantt()">
-  Sơ đồ Grant chart
+  Sơ đồ Grant
 </a>

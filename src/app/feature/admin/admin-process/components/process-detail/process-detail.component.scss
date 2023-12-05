@@ -66,7 +66,7 @@
         padding: 20px 0px 20px 0px;
         border-left: 10px solid #1a2848;
         background-color: #ffffff;
-        border-radius: 5px;
+        border-radius: 3px;
         width: 100% !important;
         display: block !important;
       }
@@ -75,7 +75,7 @@
         margin-left: 20px;
         margin-top: 5px;
         padding: 20px 0px 20px 0px;
-        border-radius: 5px;
+        border-radius: 3px;
         border-left: 10px solid #1a2848;
         background-color: #ffffff;
         margin-right: -25px !important;
@@ -192,6 +192,7 @@
 
 .grantt-chart-btn {
   position: sticky;
+  z-index: 5;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
@@ -224,12 +225,17 @@
   padding-bottom: 5px !important;
 }
 
-.NoSubtask {
+.noSubtask {
   margin-left: 20px;
   margin-top: 5px;
-  padding: 5px 5px 5px 20px;
-  border-radius: 5px;
+  padding: 20px;
+  border-radius: 3px;
   border-left: 10px solid #1a2848;
   background-color: #ffffff;
   margin-right: -25px !important;
+  span {
+    cursor: pointer;
+    // color: $green;
+    font-weight: 700;
+  }
 }

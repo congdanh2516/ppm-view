@@ -234,6 +234,7 @@ export class ProcessDetailComponent {
 
   createDialogSubtask(task: Task) {
     const dialogRef = this.dialog.open(NotificationBoxCreateSubtaskComponent, {
+      disableClose: true,
       width: '500px',
       data: {
         taskId: task.taskId,
@@ -242,7 +243,9 @@ export class ProcessDetailComponent {
     });
 
     dialogRef.afterClosed().subscribe((data) => {
-      this.getTaskList();
+      if(data!=undefined) {
+        this.getTaskList();
+      }
     });
   }
 

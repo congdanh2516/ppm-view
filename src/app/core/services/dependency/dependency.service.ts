@@ -10,13 +10,16 @@ export class DependencyService {
 
   createDependency(dependency: any) {
     let api = environment.url + 'dependencies';
-    return this.httpClient.post(api, dependency).subscribe((data: any) => {
-      console.log('dependency', data);
-    });
+    return this.httpClient.post(api, dependency);
   }
 
   getDependencies() {
     let api = environment.url + 'dependencies';
     return this.httpClient.get(api);
+  }
+
+  deleteDependencies(depedencyId: any) {
+    let api = environment.url + `dependencies/${depedencyId}`;
+    return this.httpClient.delete(api);
   }
 }

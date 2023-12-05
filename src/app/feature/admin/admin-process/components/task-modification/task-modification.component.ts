@@ -24,9 +24,13 @@ export class TaskModificationComponent {
   tmp: any;
   prerequisiteList: any[] = [];
   prerequisiteIdList: any[] = [];
+  prerequisiteIdListBackup: any = [];
 
   toppings = new FormControl<any[]>([]);
   toppingList: Array<any> = [];
+
+  dependencyList: any = [];  //luu thong tin tat ca dependency
+  dependencyListBackup: any = [];
 
   constructor(
     public dialogRef: MatDialogRef<ProcessDetailComponent>,
@@ -40,6 +44,7 @@ export class TaskModificationComponent {
       taskName: [''],
       taskDescription: '',
       taskDuration: [],
+      taskId: []
     });
     // this.createDependency();
     this.getDependencies();
@@ -51,36 +56,66 @@ export class TaskModificationComponent {
         .get('taskDescription')
         ?.setValue(task.taskDescription);
       this.modificationForm.get('taskDuration')?.setValue(task.taskDuration);
+      this.modificationForm.get('taskId')?.setValue(task.taskId);
     });
     this.getTaskByProjectId();
   }
 
   updateTask() {
-    this.isLoading = true;
-    let modificationTask: any = this.modificationForm.value;
-    modificationTask.taskId = this.data.taskId;
-    this.taskSV.updateTask(modificationTask).subscribe({
-      next: (res) => {
-        this.createDependency();
-        setTimeout(() => {
-          this.onNoClick();
-          this.isLoading = false;
-        }, 2000);
-        this.toastSV.sendMessage({
-          isDisplay: true,
-          message: 'Cập nhật công việc thành công',
-          icon: 'success',
-        });
-      },
-      error: (error) => {
-        console.log(error);
-        this.toastSV.sendMessage({
-          isDisplay: true,
-          message: 'Thất bại. Vui lòng thử lại sau.',
-          icon: 'error',
-        });
-      },
-    });
+    // this.isLoading = true;
+    // let modificationTask: any = this.modificationForm.value;
+    // modificationTask.taskId = this.data.taskId;
+    // this.taskSV.updateTask(modificationTask).subscribe({
+    //   next: (res) => {
+    //     this.createDependency();
+    //     setTimeout(() => {
+    //       this.onNoClick();
+    //       this.isLoading = false;
+    //     }, 2000);
+    //     this.toastSV.sendMessage({
+    //       isDisplay: true,
+    //       message: 'Cập nhật công việc thành công',
+    //       icon: 'success',
+    //     });
+    //   },
+    //   error: (error) => {
+    //     console.log(error);
+    //     this.toastSV.sendMessage({
+    //       isDisplay: true,
+    //       message: 'Thất bại. Vui lòng thử lại sau.',
+    //       icon: 'error',
+    //     });
+    //   },
+    // });
+    this.taskSV.updateTask(this.modificationForm.value).subscribe((res: any) => {
+      console.log("modification: ", res);
+    })
+    console.log("toppingss: ", this.toppings.value);
+    console.log("prerequistesIdList: ", this.prerequisiteIdList);
+    this.toppings.value?.forEach((item) => {
+      console.log((this.prerequisiteIdList.includes(item)));
+      if(!this.prerequisiteIdList.includes(item)) {
+        //them dependency
+        let newDependency = {
+          dependencyType: 'FS',
+          taskId: this.data.taskId,
+          dependentTaskId: item,
+        };
+        console.log("new dependency: ", newDependency);
+        this.dependencySV.createDependency(newDependency).subscribe((res: any) =>{
+          console.log("add dependency: ", res);
+        })
+      }
+    })
+    this.prerequisiteIdList.forEach((item) => {
+      if(!this.toppings.value?.includes(item)) {
+        console.log("iddddd: ", this.findDependencyId(item));
+        //xoa
+        this.dependencySV.deleteDependencies(this.findDependencyId(item)).subscribe((res: any) => {
+          console.log("delete: ", res);
+        })
+      }
+    })
   }
 
   removeTopping(selectedPrerequisite: any): void {
@@ -111,20 +146,24 @@ export class TaskModificationComponent {
   getTaskByProjectId() {
     this.taskSV.getTaskListByProjectId(this.data.projectId).subscribe({
       next: (data: any) => {
-        this.prerequisitesList = this.prerequisitesList.concat(
-          data
-            .filter((item: any) => item.taskId !== this.data.taskId)
-            .map((item: any) => {
-              return { taskId: item.taskId, taskName: item.taskName };
-            })
-        );
-        this.toppingList = this.prerequisitesList.concat(
-          data
-            .filter((item: any) => item.taskId !== this.data.taskId)
-            .map((item: any) => {
-              return { taskId: item.taskId, taskName: item.taskName };
-            })
-        );
+        this.toppingList = data.filter((item: any) => {
+          return item.taskId!=this.data.taskId;
+        });
+
+        // this.prerequisitesList = this.prerequisitesList.concat(
+        //   data
+        //     .filter((item: any) => item.taskId !== this.data.taskId)
+        //     .map((item: any) => {
+        //       return { taskId: item.taskId, taskName: item.taskName };
+        //     })
+        // );
+        // this.toppingList = this.prerequisitesList.concat(
+        //   data
+        //     .filter((item: any) => item.taskId !== this.data.taskId)
+        //     .map((item: any) => {
+        //       return { taskId: item.taskId, taskName: item.taskName };
+        //     })
+        // );
       },
     });
   }
@@ -153,11 +192,15 @@ export class TaskModificationComponent {
         for (let i = 0; i < this.selectedPrerequisites.length; i++) {
           // console.log(i);
           if (this.selectedPrerequisites[i].taskId == this.data.taskId) {
+            
+            this.dependencyList.push(this.selectedPrerequisites[i]);
+            console.log("depency: ", this.dependencyList);
             console.log("call api times: ");
             this.taskSV
               .getTaskById(this.selectedPrerequisites[i].taskDependentId)
               .subscribe({
                 next: (res: any) => {
+
                   this.prerequisiteIdList.push({ ...res }.taskId);
                   console.log("prerequisiteIdList: ", this.prerequisiteIdList);
                   
@@ -178,5 +221,12 @@ export class TaskModificationComponent {
 
   showArray() {
     console.log("array: ", this.toppings);
+  }
+
+  findDependencyId(taskId: any) {
+    for(let i=0; i<this.dependencyList.length; i++) {
+      if(this.dependencyList[i].taskDependentId==taskId)
+        return this.dependencyList[i].id;
+    }
   }
 }

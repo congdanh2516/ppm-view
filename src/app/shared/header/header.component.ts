@@ -38,9 +38,9 @@ export class HeaderComponent {
     this.username = this.localStorageSV.getItem('name');
     this.today = new Date();
     this.todayStr =
-      (this.today.getDay() < 10
-        ? '0' + this.today.getDay()
-        : this.today.getDay()) +
+      (this.today.getDate() < 10
+        ? '0' + this.today.getDate()
+        : this.today.getDate()) +
       ' ' +
       this.monthNames[this.today.getMonth()] +
       ', ' +
