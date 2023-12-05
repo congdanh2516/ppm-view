@@ -191,7 +191,7 @@
 }
 
 .grantt-chart-btn {
-  position: sticky;
+  position: fixed;
   z-index: 5;
   padding: 20px;
   background-color: white;
@@ -201,7 +201,7 @@
   @extend %shadow;
   top: 90.5%;
   bottom: 10px;
-  left: 88%;
+  left: 86.2%;
   font-weight: 700;
   cursor: pointer;
   display: block;

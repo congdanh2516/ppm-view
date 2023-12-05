@@ -245,8 +245,8 @@ export class ProcessDetailComponent {
     dialogRef.afterClosed().subscribe((data) => {
       if (data != undefined) {
         this.getTaskList();
-        this.getProjectListNSchedule();
       }
+      this.getProjectListNSchedule();
     });
   }
 
@@ -264,8 +264,8 @@ export class ProcessDetailComponent {
     dialogRef.afterClosed().subscribe((data) => {
       if (data !== undefined) {
         this.getTaskList();
-        this.getProjectListNSchedule();
       }
+      this.getProjectListNSchedule();
     });
   }
 
@@ -282,7 +282,6 @@ export class ProcessDetailComponent {
         console.log(error);
       },
     });
-    this.getProjectListNSchedule();
   }
 
   updateDialogProjectName(project: Project) {
