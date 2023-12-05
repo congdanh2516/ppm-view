@@ -1,5 +1,5 @@
 <div class="process-creation">
-  <div class="process-creation__heading">Create process</div>
+  <div class="process-creation__heading">Tạo quy trình</div>
   <form
     class="process-creation__form"
     [formGroup]="processCreationForm"
@@ -45,7 +45,7 @@
         (click)="onNoclick()"
         class="process-creation__form__action__cancel-btn"
       >
-        Cancel
+        Hủy
       </div>
       <button type="submit" class="process-creation__form__action__create-btn">
         <app-loader
@@ -53,7 +53,7 @@
           color="white"
           *ngIf="isLoading; else btnname"
         ></app-loader>
-        <ng-template #btnname>Tạo quy trình</ng-template>
+        <ng-template #btnname>Đồng ý</ng-template>
       </button>
     </div>
   </form>

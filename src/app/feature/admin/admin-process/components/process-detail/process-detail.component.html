@@ -1,6 +1,6 @@
-<div class="loader" *ngIf="isLoading">
+<!-- <div class="loader" *ngIf="isLoading">
   <app-loader></app-loader>
-</div>
+</div> -->
 <div class="container-fluid process-detail">
   <div class="row">
     <div class="col-9">
@@ -222,7 +222,7 @@
                           />
                         </svg>
                       </span>
-                      <span>Thêm công việc con</span>
+                      <span>Thêm tiêu chí</span>
                     </button>
                     <button mat-menu-item (click)="deleteDialogTask(item)">
                       <span class="margin-right-10">
@@ -250,9 +250,9 @@
             <div class="table-task__body-task__task__subtask">
               <div class="row">
                 <div class="col-4 padding-left-40">
-                  Tiêu chí: {{ subtask.subTaskName }}
+                  {{ subtask.subTaskName }}
                 </div>
-                <div class="col-6">Mô tả: {{ subtask.subTaskDescription }}</div>
+                <div class="col-6">{{ subtask.subTaskDescription }}</div>
                 <div class="col-2 text-right margin-left-10-minus">
                   <div class="margin-right-10">
                     <span
@@ -325,13 +325,14 @@
           </div>
         </div>
         <ng-template #haveNoSubtask>
-          <div class="noSubtask">Chưa thêm tiêu chí đánh giá. <span (click)="createDialogSubtask(item)">Thêm</span> </div>
+          <div class="noSubtask">
+            Chưa thêm tiêu chí đánh giá.
+            <span (click)="createDialogSubtask(item)">Thêm</span>
+          </div>
         </ng-template>
       </mat-expansion-panel>
     </div>
   </div>
 </div>
 
-<a class="grantt-chart-btn" (click)="openGrantt()">
-  Sơ đồ Grant
-</a>
+<a class="grantt-chart-btn" (click)="openGrantt()"> Sơ đồ Grant </a>
