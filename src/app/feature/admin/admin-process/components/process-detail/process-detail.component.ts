@@ -56,7 +56,7 @@ export class ProcessDetailComponent {
       this.projectId = params.id;
       this.getProjectById(params.id);
     });
-    this.projectId = this.localStorageSV.getItem("project")?.projectId;
+    this.projectId = this.localStorageSV.getItem('project')?.projectId;
     this.getProjectById(this.projectId);
     this.getTaskList();
   }
@@ -243,8 +243,9 @@ export class ProcessDetailComponent {
     });
 
     dialogRef.afterClosed().subscribe((data) => {
-      if(data!=undefined) {
+      if (data != undefined) {
         this.getTaskList();
+        this.getProjectListNSchedule();
       }
     });
   }
@@ -281,6 +282,7 @@ export class ProcessDetailComponent {
         console.log(error);
       },
     });
+    this.getProjectListNSchedule();
   }
 
   updateDialogProjectName(project: Project) {
@@ -293,6 +295,11 @@ export class ProcessDetailComponent {
     dialogRef.afterClosed().subscribe(() => {
       this.route.params.subscribe((params: any) => {
         this.getProjectById(params.id);
+      });
+      this.adminProcessSV.scheduleProcess(this.projectId).subscribe({
+        next: () => {
+          this.getProjectById(this.projectId);
+        },
       });
     });
   }
@@ -346,6 +353,7 @@ export class ProcessDetailComponent {
           this.getTaskList();
           this.getProjectById(params.id);
         });
+        this.getProjectListNSchedule();
       });
     });
   }
@@ -371,6 +379,7 @@ export class ProcessDetailComponent {
     dialogRef.afterClosed().subscribe((response) => {
       if (response != undefined) {
         this.getTaskList();
+        this.getProjectListNSchedule();
       }
     });
   }
@@ -382,11 +391,12 @@ export class ProcessDetailComponent {
     dialogRef.afterClosed().subscribe((response) => {
       if (response != undefined) {
         this.getTaskList();
+        this.getProjectListNSchedule();
       }
     });
   }
 
   openGrantt() {
-    this.router.navigateByUrl('/admin/process/list/grantt')
+    this.router.navigateByUrl('/admin/process/list/grantt');
   }
 }

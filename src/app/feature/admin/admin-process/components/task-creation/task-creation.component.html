@@ -24,9 +24,6 @@
       />
       <span>ngày</span>
     </div>
-    <!-- <div class="task-creation-form__form__period">
-      <label for="">Khoảng thời gian thực hiện</label>
-    </div> -->
     <div class="task-creation-form__form__action">
       <div
         class="task-creation-form__form__action__cancel-btn"
@@ -45,7 +42,7 @@
           color="white"
           *ngIf="isLoading; else btnname"
         ></app-loader>
-        <ng-template #btnname>Thêm công việc</ng-template>
+        <ng-template #btnname>Thêm</ng-template>
       </button>
     </div>
   </form>
