@@ -144,7 +144,7 @@ export class ProcessDetailComponent {
                   ? truncateString(item.subTaskName, 15)
                   : null,
                 subTaskDescription: item.subTaskDescription
-                  ? truncateString(item.subTaskDescription, 30)
+                  ? truncateString(item.subTaskDescription, 100)
                   : null,
               }));
               if (i == this.taskList.length - 1) {

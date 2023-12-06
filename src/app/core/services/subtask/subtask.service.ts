@@ -15,8 +15,8 @@ export class SubtaskService {
     return this.httpClient.get(`${api}/${subtaskId}`);
   }
 
-  createSubtask(subtask: Subtask): Observable<Subtask> {
-    return this.httpClient.post<Subtask>(api, subtask).pipe(
+  createSubtask(subtask: any) {
+    return this.httpClient.post(api, subtask).pipe(
       tap((subtask) => {
         console.log('Create task successfully:', subtask);
       }),
@@ -24,15 +24,13 @@ export class SubtaskService {
     );
   }
 
-  updateSubtask(subtask: Subtask): Observable<Subtask> {
-    return this.httpClient
-      .patch<Subtask>(`${api}/${subtask.subTaskId}`, subtask)
-      .pipe(
-        tap((subtask) => {
-          console.log('Updated task successfully:', subtask);
-        }),
-        catchError(this.handleError)
-      );
+  updateSubtask(subtask: any) {
+    return this.httpClient.patch(`${api}/${subtask.subTaskId}`, subtask).pipe(
+      tap((subtask) => {
+        console.log('Updated task successfully:', subtask);
+      }),
+      catchError(this.handleError)
+    );
   }
 
   deleteSubtask(subtaskId: string): Observable<Subtask> {
@@ -42,6 +40,8 @@ export class SubtaskService {
       })
     );
   }
+
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

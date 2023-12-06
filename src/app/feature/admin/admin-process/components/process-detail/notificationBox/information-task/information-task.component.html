@@ -16,9 +16,12 @@
         <div class="col-6">
           <p class="float-right">
             Ngày kết thúc:
-            <i
-              ><span>{{ data.taskEndAt }}</span></i
-            >
+            <i>
+              <span *ngIf="data.taskEndAt; noHaveDate">{{
+                data.taskEndAt
+              }}</span>
+              <ng-template #NoHaveDate>Chưa xác định</ng-template>
+            </i>
           </p>
         </div>
       </div>
@@ -47,12 +50,18 @@
       <div class="row">
         <div class="col-12">
           <div class="row">
-            <div class="col-6">
-              <p>Công việc tuyên quyết:</p>
+            <div class="col-6" style="padding-right: 0px !important">
+              <p>Công việc cần làm trước:</p>
             </div>
-            <div class="col-6">
-              <div *ngFor="let dependency of prerequisiteList" class="row">
-                <span>{{ dependency.taskName }}</span>
+            <div class="col-6" style="padding-left: 0px !important">
+              <div
+                *ngFor="let dependency of prerequisiteList"
+                class="row"
+                style="margin-bottom: 2px"
+              >
+                <div style="padding-left: 0px !important">
+                  <span class="span-title">{{ dependency.taskName }}</span>
+                </div>
               </div>
             </div>
           </div>
