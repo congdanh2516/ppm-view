@@ -33,27 +33,39 @@ export class InformationTaskComponent {
           taskStartAt: data.taskStartAt ? format(data.taskStartAt) : null,
           taskEndAt: data.taskEndAt ? format(data.taskEndAt) : null,
         };
-        this.getDependencies();
+        this.getDependencies(this.data.taskId);
       },
     });
   }
 
-  getDependencies() {
-    this.dependencySV.getDependencies().subscribe({
-      next: (item: any) => {
-        this.selectedPrerequisites = item;
-        for (let i = 0; i < this.selectedPrerequisites.length; i++) {
-          if (this.selectedPrerequisites[i].taskId == this.data.taskId) {
-            this.taskSV
-              .getTaskById(this.selectedPrerequisites[i].taskDependentId)
-              .subscribe({
-                next: (res) => {
-                  this.prerequisiteList.push(res);
-                  console.log('selectedPrerequisites', this.prerequisiteList);
-                },
-              });
-          }
-        }
+  // getDependencies() {
+  //   this.dependencySV.getDependencies().subscribe({
+  //     next: (item: any) => {
+  //       this.selectedPrerequisites = item;
+  //       for (let i = 0; i < this.selectedPrerequisites.length; i++) {
+  //         if (this.selectedPrerequisites[i].taskId == this.data.taskId) {
+  //           this.taskSV
+  //             .getTaskById(this.selectedPrerequisites[i].taskDependentId)
+  //             .subscribe({
+  //               next: (res) => {
+  //                 this.prerequisiteList.push(res);
+  //                 console.log('selectedPrerequisites', this.prerequisiteList);
+  //               },
+  //             });
+  //         }
+  //       }
+  //     },
+  //   });
+  // }
+
+  getDependencies(taskId: string) {
+    this.taskSV.getAllDependencyByTaskId(taskId).subscribe({
+      next: (res: any) => {
+        console.log('get all dependencies');
+        this.prerequisiteList = res;
+      },
+      error: (err) => {
+        console.log('error', err);
       },
     });
   }

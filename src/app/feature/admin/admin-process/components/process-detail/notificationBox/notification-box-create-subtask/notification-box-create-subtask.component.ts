@@ -16,7 +16,7 @@ export class NotificationBoxCreateSubtaskComponent {
 
   subTaskInfo: any = {
     subTaskName: '',
-    subTaskDescription: '',
+    description: '',
     taskParentId: '',
   };
 
@@ -33,7 +33,7 @@ export class NotificationBoxCreateSubtaskComponent {
       console.log('subtask: ', data.subtask);
       this.subTaskInfo.taskParentId = data.task.taskId;
       this.subTaskInfo.subTaskName = data.subtask?.subTaskName;
-      this.subTaskInfo.subTaskDescription = data.subtask?.subTaskDescription;
+      this.subTaskInfo.description = data.subtask.subTaskDescription;
       this.subTaskInfo.subTaskId = data.subtask?.subTaskId;
       console.log('aaa: ', this.subTaskInfo);
     }

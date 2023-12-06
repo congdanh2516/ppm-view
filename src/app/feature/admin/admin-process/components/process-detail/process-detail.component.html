@@ -249,10 +249,10 @@
           <div *ngFor="let subtask of item.subtask; trackBy: trackByFnn">
             <div class="table-task__body-task__task__subtask">
               <div class="row">
-                <div class="col-4 padding-left-40">
+                <div class="col-2 padding-left-40">
                   {{ subtask.subTaskName }}
                 </div>
-                <div class="col-6">{{ subtask.subTaskDescription }}</div>
+                <div class="col-8">{{ subtask.subTaskDescription }}</div>
                 <div class="col-2 text-right margin-left-10-minus">
                   <div class="margin-right-10">
                     <span
@@ -335,4 +335,6 @@
   </div>
 </div>
 
-<a class="grantt-chart-btn position-flex" (click)="openGrantt()"> Sơ đồ Grant </a>
+<a class="grantt-chart-btn position-flex" (click)="openGrantt()">
+  Sơ đồ Grant
+</a>
